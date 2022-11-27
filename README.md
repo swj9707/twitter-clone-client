@@ -1,5 +1,5 @@
 # twitter-clone-client
-트위터 클론코딩 토이 프로젝트 API Client
+트위터 클론코딩 토이 프로젝트 API Client  
 서버 https://github.com/swj9707/twitter-clone-server
 
 # 개발 목적
