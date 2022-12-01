@@ -5,7 +5,7 @@ import {
   Routes,
   redirect,
 } from "react-router-dom";
-import { Auth, FollowerPage, Home, Profile } from "../Pages";
+import { Auth, EditProfile, FollowerPage, Home, Profile } from "../Pages";
 import Navigation from "./Navigation";
 
 interface props {
@@ -21,6 +21,7 @@ const AppRouter = ({ isLoggedIn }: props) => {
           <>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/editProfile" element={<EditProfile />} />
             <Route path="/followers" element={<FollowerPage />} />
           </>
         ) : (

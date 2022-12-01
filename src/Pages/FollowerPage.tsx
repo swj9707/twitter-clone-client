@@ -1,16 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Follower } from "../Components";
 
 const FollowerPage = () => {
   return (
     <>
-      <p />
-      <nav>
-        <ul>
-          <li>Follower</li>
-          <li>Following</li>
-        </ul>
-      </nav>
+      <div>
+        <button>Follower</button>
+        <button>Following</button>
+      </div>
+      <div>
+        <Follower />
+        <Follower />
+        <Follower />
+      </div>
     </>
   );
 };
