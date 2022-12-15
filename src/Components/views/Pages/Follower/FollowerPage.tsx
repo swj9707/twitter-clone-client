@@ -1,5 +1,5 @@
 import React from "react";
-import { Follower } from "../Components";
+import { Follower } from "../../..";
 
 const FollowerPage = () => {
   return (

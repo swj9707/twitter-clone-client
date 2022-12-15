@@ -1,4 +1,4 @@
-import { Tweet } from "../Components";
+import { Tweet } from "../../..";
 
 const Home = () => {
   return (

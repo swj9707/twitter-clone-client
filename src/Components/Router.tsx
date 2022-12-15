@@ -1,23 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   HashRouter as Router,
   Route,
   Routes,
   redirect,
 } from "react-router-dom";
-import { Auth, EditProfile, FollowerPage, Home, Profile } from "../Pages";
+import { useSelector } from "react-redux";
+import { Auth, EditProfile, FollowerPage, Home, Profile } from "./views/Pages";
 import Navigation from "./Navigation";
+import { RootStore } from "../Store/Data/Store";
 
 interface props {
   isLoggedIn: boolean;
 }
 
-const AppRouter = ({ isLoggedIn }: props) => {
+const AppRouter = () => {
+  const user = useSelector((state: RootStore) => state.AuthReducer);
+  console.log(user);
   return (
     <Router>
-      {isLoggedIn && <Navigation />}
+      {user.isLoggedIn && <Navigation />}
       <Routes>
-        {isLoggedIn ? (
+        {user.isLoggedIn ? (
           <>
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />

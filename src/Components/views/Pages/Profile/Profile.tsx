@@ -1,4 +1,9 @@
+import { RequestLogout } from "../../../../Service/Auth/AuthService";
+
 const Profile = () => {
+  const onClickLogout = () => {
+    RequestLogout();
+  };
   return (
     <>
       <div>
@@ -10,7 +15,7 @@ const Profile = () => {
       <div>
         <input type="text" placeholder="username" readOnly={true} />
       </div>
-      <button>Log out</button>
+      <button onClick={onClickLogout}>Log out</button>
       <div>
         <button>Follower</button>
         <button>Following</button>
