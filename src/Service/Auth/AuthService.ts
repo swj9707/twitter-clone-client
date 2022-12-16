@@ -1,5 +1,5 @@
 import { loginForm } from "../../Store/Type/Auth/Auth";
-import { LoginResponse, LogoutResponse } from "../../Store/Type/Auth/AuthRes";
+import { LoginResponse, ReissueResponse } from "../../Store/Type/Auth/AuthRes";
 import CustomAxios, { axiosPrivate } from "../Api/CustomAxios";
 
 export async function requestLogin(loginForm: loginForm) {
@@ -10,7 +10,6 @@ export async function requestLogin(loginForm: loginForm) {
       const accessToken = response.data.tokenInfo.accessToken;
       localStorage.setItem("ACCESS_TOKEN", accessToken);
       localStorage.setItem("USER_INFO", JSON.stringify(userInfo));
-      alert("로그인에 성공하였습니다 \n 토큰 값 : " + accessToken);
       window.location.href = "/";
       CustomAxios.defaults.headers.common["Authorization"] =
         "Bearer " + accessToken;
@@ -20,15 +19,10 @@ export async function requestLogin(loginForm: loginForm) {
     });
 }
 
-export async function RequestLogout() {
-  console.log(CustomAxios.defaults.headers);
-  alert(CustomAxios.defaults.headers);
-
+export async function requestLogout() {
   await axiosPrivate
     .post("/api/auth/v1/logout")
-    .then((res) => {
-      const response: LogoutResponse = res.data;
-      alert("logout success" + response.data.userEmail);
+    .then(() => {
       localStorage.removeItem("ACCESS_TOKEN");
       localStorage.removeItem("USER_INFO");
     })
@@ -37,4 +31,20 @@ export async function RequestLogout() {
     });
 
   window.location.href = "/";
+}
+
+export async function refreshToken() {
+  await axiosPrivate
+    .post("/api/auth/v1/reissue", {
+      accessToken: localStorage.getItem("ACCESS_TOKEN"),
+    })
+    .then((res) => {
+      const response: ReissueResponse = res.data;
+      const newAccessToken = response.data.accessToken;
+      localStorage.removeItem("ACCESS_TOKEN");
+      localStorage.setItem("ACCESS_TOKEN", newAccessToken);
+    })
+    .catch((ex) => {
+      console.log("Token Reissue Fail : " + ex);
+    });
 }

@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserInterface, AuthState } from "../Type/Auth/Auth";
+import { AuthState, TwitterUserDTO } from "../Type/Auth/Auth";
 import { LoginResponse, LogoutResponse } from "../Type/Auth/AuthRes";
 import { FailureResponse } from "../Type/BaseResponse";
 
 const userData = localStorage.getItem("USER_INFO");
-const user: UserInterface | null = userData ? JSON.parse(userData) : null;
+const user: TwitterUserDTO | null = userData ? JSON.parse(userData) : null;
 const initialState: AuthState = user
   ? {
       isLoggedIn: true,

@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import {
-  requestLogin,
-  RequestLogout,
-} from "../../../../Service/Auth/AuthService";
+import { useDispatch } from "react-redux";
+import { requestLogin } from "../../../../Service/Auth/AuthService";
+import { login_success } from "../../../../Store/Slices/AuthReducer";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const dispatch = useDispatch();
   const onChangeInput = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
 
@@ -23,11 +22,10 @@ const Auth = () => {
     requestLogin({
       userEmail: email,
       password: password,
+    }).then(() => {
+      alert("로그인 되었습니다.");
+      dispatch(login_success);
     });
-  };
-
-  const onClickLogout = () => {
-    RequestLogout();
   };
 
   return (
@@ -54,11 +52,6 @@ const Auth = () => {
           <input type="submit" value="Sign In" />
         </div>
       </form>
-      <div>
-        <button name="logout" onClick={onClickLogout}>
-          Test Logout Button
-        </button>
-      </div>
       <div>
         <button name="google">Continue with Google</button>
       </div>

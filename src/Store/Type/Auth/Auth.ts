@@ -1,16 +1,19 @@
-export const LOGIN_USER = "LOGIN_USER";
-
 export interface loginForm {
   userEmail: String;
   password: String;
 }
 
-export interface UserInterface {
-  userUid: string;
-  userEmail: string;
-}
-
 export interface AuthState {
   isLoggedIn: boolean;
-  user: UserInterface | null;
+  user: TwitterUserDTO | null;
+}
+
+export interface TwitterUserDTO {
+  userId: string;
+  email: string;
+  userName: string;
+  userRole: string;
+  provider: string;
+  userStatus: string;
+  lastLogin?: Date;
 }
