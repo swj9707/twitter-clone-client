@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { requestLogin } from "../../../../Service/Auth/AuthService";
-import { login_success } from "../../../../Store/Slices/AuthReducer";
+import {
+  login_success,
+  login_fail,
+} from "../../../../Store/Slices/AuthReducer";
+import { LoginResponse } from "../../../../Store/Type/Auth/AuthRes";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -19,12 +23,19 @@ const Auth = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(e);
     requestLogin({
       userEmail: email,
       password: password,
-    }).then(() => {
-      alert("로그인 되었습니다.");
-      dispatch(login_success);
+    }).then((res: LoginResponse) => {
+      if (res.status === "OK") {
+        dispatch(login_success(res));
+        alert("로그인 되었습니다.");
+        window.location.href = "/";
+      } else {
+        alert("로그인 에러!");
+        dispatch(login_fail());
+      }
     });
   };
 
