@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Navigation = () => (
@@ -9,12 +8,6 @@ const Navigation = () => (
       </li>
       <li>
         <Link to="/profile">My Profile</Link>
-      </li>
-      <li>
-        <Link to="/editProfile">Edit Profile</Link>
-      </li>
-      <li>
-        <Link to="/followers">Followers</Link>
       </li>
     </ul>
   </nav>

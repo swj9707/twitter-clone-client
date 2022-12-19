@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Auth, EditProfile, FollowerPage, Home, Profile } from "./views/Pages";
 import Navigation from "./Navigation";
 import { RootStore } from "../Store/Data/Store";
+import EditPassword from "./views/Pages/EditPassword/EditPassword";
 
 const AppRouter = () => {
   const user = useSelector((state: RootStore) => state.AuthReducer);
@@ -15,6 +16,7 @@ const AppRouter = () => {
             <Route path="/" element={<Home />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/editProfile" element={<EditProfile />} />
+            <Route path="/editPassword" element={<EditPassword />} />
             <Route path="/followers" element={<FollowerPage />} />
           </>
         ) : (

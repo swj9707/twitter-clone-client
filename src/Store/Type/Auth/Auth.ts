@@ -1,9 +1,9 @@
 export interface loginForm {
-  userEmail: String;
-  password: String;
+  userEmail: string;
+  password: string;
 }
 
-export interface AuthState {
+export interface userState {
   isLoggedIn: boolean;
   user: TwitterUserDTO | null;
 }
