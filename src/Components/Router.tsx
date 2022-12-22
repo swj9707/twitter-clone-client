@@ -1,7 +1,7 @@
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Auth, EditProfile, FollowerPage, Home, Profile } from "./views/Pages";
-import Navigation from "./Navigation";
+import Navigation from "./views/Component/Navigation";
 import { RootStore } from "../Store/Data/Store";
 import EditPassword from "./views/Pages/EditPassword/EditPassword";
 
