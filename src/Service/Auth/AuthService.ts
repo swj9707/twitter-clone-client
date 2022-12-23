@@ -1,8 +1,9 @@
 import { AxiosRequestConfig } from "axios";
-import { loginForm } from "../../Store/Type/Auth/Auth";
+import loginForm, { signupForm } from "../../Store/Type/Auth/Auth";
 import {
   LoginResponse,
   LogoutResponse,
+  RegisterResponse,
   ReissueResponse,
 } from "../../Store/Type/Auth/AuthRes";
 import CustomAxios, { axiosPrivate } from "../Api/CustomAxios";
@@ -19,6 +20,14 @@ export async function requestLogout() {
   const response: LogoutResponse = await axiosPrivate
     .post("/api/auth/v1/logout")
     .then((res) => res.data);
+  return response;
+}
+
+export async function requestSignup(signupForm: signupForm) {
+  const response: RegisterResponse = await CustomAxios.post(
+    "/api/auth/v1/register",
+    signupForm
+  ).then((res) => res.data);
   return response;
 }
 
