@@ -1,5 +1,11 @@
-export interface loginForm {
+export default interface loginForm {
   userEmail: string;
+  password: string;
+}
+
+export interface signupForm {
+  userEmail: string;
+  userName: string;
   password: string;
 }
 

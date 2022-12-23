@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { requestLogin } from "../../../../Service/Auth/AuthService";
 import {
   login_success,
@@ -61,6 +62,9 @@ const Auth = () => {
         />
         <div>
           <input type="submit" value="Sign In" />
+          <Link to="/signup">
+            <button>Sign up</button>
+          </Link>
         </div>
       </form>
       <div>

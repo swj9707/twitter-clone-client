@@ -11,6 +11,13 @@ export interface LoginResponse extends BaseResponse {
   };
 }
 
+export interface RegisterResponse extends BaseResponse {
+  data: {
+    userEmail: string;
+    userName: string;
+  };
+}
+
 export interface LogoutResponse extends BaseResponse {
   data: {
     userEmail: string;
