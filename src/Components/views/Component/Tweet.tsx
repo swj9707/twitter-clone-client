@@ -26,7 +26,6 @@ const Tweet = ({
     updateTweet({
       tweetId: tweetObj.tweetId,
       tweetContent: newTweet,
-      tweetImageMeta: "",
     })
       .then(() => {
         alert("수정 되었습니다.");
@@ -71,6 +70,9 @@ const Tweet = ({
       ) : (
         <>
           <h4>{tweetObj.tweetContent}</h4>
+          {tweetObj.tweetImageMeta && (
+            <img src={tweetObj.tweetImageMeta} width="100" height="100" />
+          )}
           {isOwner && (
             <div>
               <button onClick={onClickDelete}>Delete Tweet</button>
