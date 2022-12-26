@@ -22,7 +22,6 @@ export interface UpdateTweet {
   tweetId: number;
   tweetContent: string;
   tweetImageMeta?: TweetImageMeta;
-  tweetImageData?: File;
 }
 
 export interface DeleteTweet {
