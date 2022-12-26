@@ -7,16 +7,21 @@ export interface TweetDTO {
   status: string;
 }
 
+export interface TweetImageMeta {
+  type: string;
+  name: string;
+  size: number;
+}
+
 export interface CreateTweet {
-  userId?: string;
   tweetContent: string;
-  tweetImageMeta?: string;
+  tweetImageMeta?: TweetImageMeta;
 }
 
 export interface UpdateTweet {
   tweetId: number;
   tweetContent: string;
-  tweetImageMeta: string;
+  tweetImageMeta?: TweetImageMeta;
 }
 
 export interface DeleteTweet {

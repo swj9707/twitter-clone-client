@@ -8,11 +8,23 @@ import {
   ReadAllTweetsResponse,
   ReadTweetsResponse,
   TweetInfo,
+  UploadTweetImageTestRes,
 } from "../../Store/Type/Tweet/TweetRes";
 
 export async function createTweet(request: CreateTweet) {
   const response: TweetInfo = await axiosPrivate
     .post("/api/v1/tweet/create", request)
+    .then((res) => res.data);
+  return response;
+}
+
+export async function uploadTweetImageTest(request: FormData) {
+  const response: UploadTweetImageTestRes = await axiosPrivate
+    .post("/api/v1/tweet/uploadImage", request, {
+      headers: {
+        "Content-Type": "application/form-data",
+      },
+    })
     .then((res) => res.data);
   return response;
 }

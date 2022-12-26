@@ -8,6 +8,13 @@ export interface ReadAllTweetsResponse extends BaseResponse {
   data: TweetDTO[];
 }
 
+export interface UploadTweetImageTestRes extends BaseResponse {
+  data: {
+    imageName: string;
+    uploadDate: string;
+  };
+}
+
 export interface ReadTweetsResponse extends BaseResponse {
   data: {
     tweets: TweetDTO[];

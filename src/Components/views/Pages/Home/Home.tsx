@@ -1,11 +1,8 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Tweet } from "../../..";
-import {
-  readAllTweets,
-  readTweets,
-} from "../../../../Service/Tweet/TweetService";
+import backendConfig from "../../../../Config/api-config";
+import { readAllTweets } from "../../../../Service/Tweet/TweetService";
 import { RootStore } from "../../../../Store/Data/Store";
 import { TweetDTO } from "../../../../Store/Type/Tweet/Tweet";
 import TweetFactory from "../../Component/TweetFactory";

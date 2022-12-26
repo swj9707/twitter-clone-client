@@ -1,9 +1,12 @@
-let backendHost;
-
 const hostname = window && window.location && window.location.hostname;
 
-if (hostname === "localhost") {
-  backendHost = process.env.BACK_END_HOST_LOCAL;
-}
+const backendConfig = {
+  backendHost:
+    hostname === "localhost" ? process.env.REACT_APP_BACKEND_LOCAL : "wassup",
+  fileserverHost:
+    hostname === "localhost"
+      ? process.env.REACT_APP_FILESERVER_LOCAL
+      : "wassup",
+};
 
-export const API_BASE_URL = `${backendHost}`;
+export default backendConfig;
