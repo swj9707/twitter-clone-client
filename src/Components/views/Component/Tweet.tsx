@@ -13,6 +13,14 @@ import { useState } from "react";
 import { getTweetImageName } from "@/Utils/StringUtils";
 import { checkImage } from "@/Utils/FileUtils";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTrash,
+  faPencilAlt,
+  faPlus,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+
 const Tweet = ({
   tweetObj,
   isOwner,
@@ -114,10 +122,10 @@ const Tweet = ({
   };
 
   return (
-    <div>
+    <div className="tweet">
       {editing ? (
         <>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={onSubmit} className="container tweetEdit">
             <div>
               <input
                 type="text"
@@ -126,35 +134,40 @@ const Tweet = ({
                 required
                 onChange={onChangeNewTweet}
               />
-              <input type="submit" value="UpdateTweet" />
             </div>
-          </form>
-          <label>
-            <span>Add photos</span>
-          </label>
-          <input
-            id="attach-file"
-            type="file"
-            accept="image/*"
-            onChange={onFileChange}
-            style={{
-              opacity: 0,
-            }}
-          />
-          {attachment && (
-            <div className="factoryForm__attachment">
-              <img
-                src={attachment}
-                style={{
-                  backgroundImage: attachment,
-                }}
-              />
-              <div onClick={onClearAttachment}>
-                <span>Remove</span>
+
+            <label className="factoryInput__label">
+              <span>Add photos</span>
+              <FontAwesomeIcon icon={faPlus} />
+            </label>
+            <input
+              id="attach-file"
+              type="file"
+              accept="image/*"
+              onChange={onFileChange}
+              style={{
+                opacity: 0,
+              }}
+            />
+            {attachment && (
+              <div className="factoryForm__attachment">
+                <img
+                  src={attachment}
+                  style={{
+                    backgroundImage: attachment,
+                  }}
+                />
+                <div className="factoryForm__clear" onClick={onClearAttachment}>
+                  <span>Remove</span>
+                  <FontAwesomeIcon icon={faTimes} />
+                </div>
               </div>
-            </div>
-          )}
-          <button onClick={toggleEditing}>cancel</button>
+            )}
+            <input type="submit" value="UpdateTweet" className="formBtn" />
+            <button onClick={toggleEditing} className="formBtn cancelBtn">
+              cancel
+            </button>
+          </form>
         </>
       ) : (
         <>
@@ -163,9 +176,13 @@ const Tweet = ({
             <img src={tweetObj.tweetImageMeta} width="100" height="100" />
           )}
           {isOwner && (
-            <div>
-              <button onClick={onClickDelete}>Delete Tweet</button>
-              <button onClick={toggleEditing}>Edit Tweet</button>
+            <div className="nweet__actions">
+              <span onClick={onClickDelete}>
+                <FontAwesomeIcon icon={faTrash} />
+              </span>
+              <span onClick={toggleEditing}>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </span>
             </div>
           )}
         </>

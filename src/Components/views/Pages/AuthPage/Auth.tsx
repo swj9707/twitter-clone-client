@@ -42,7 +42,7 @@ const Auth = () => {
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="container">
         <input
           name="email"
           type="text"
@@ -50,6 +50,7 @@ const Auth = () => {
           required
           pattern="[a-z0-9]+@[a-z]+.[a-z]{2,3}"
           onChange={onChangeInput}
+          className="authInput"
           value={email}
         />
         <input
@@ -58,17 +59,20 @@ const Auth = () => {
           placeholder="Password"
           required
           onChange={onChangeInput}
+          className="authInput"
           value={password}
         />
         <div>
-          <input type="submit" value="Sign In" />
+          <input type="submit" className="formBtn confirmBtn" value="Sign In" />
           <Link to="/signup">
-            <button>Sign up</button>
+            <button className="formBtn confirmBtn">Sign up</button>
           </Link>
         </div>
       </form>
       <div>
-        <button name="google">Continue with Google</button>
+        <button className="formBtn confirmBtn" name="google">
+          Continue with Google
+        </button>
       </div>
     </div>
   );

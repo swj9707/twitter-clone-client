@@ -17,38 +17,48 @@ const Profile = () => {
     });
   };
   return (
-    <>
-      <div>
-        <input type="text" placeholder="Profile Image" readOnly={true} />
-      </div>
-      <div>
+    <div className="container">
+      <form className="profileForm">
         <input
           type="text"
           placeholder="Email"
           value={user.user?.email}
           readOnly={true}
+          className="formInput"
         />
-      </div>
-      <div>
         <input
           type="text"
           placeholder="username"
           value={user.user?.userName}
           readOnly={true}
+          className="formInput"
         />
+      </form>
+
+      <div
+        style={{
+          marginTop: 30,
+        }}
+      >
+        <div>
+          <Link to="/editPassword">
+            <span className="formBtn confirmBtn ">비밀번호 변경</span>
+          </Link>
+          <Link to="/editProfile">
+            <span className="formBtn confirmBtn">프로필 변경</span>
+          </Link>
+        </div>
+        <div
+          style={{
+            marginTop: 20,
+          }}
+        >
+          <span className="formBtn cancelBtn logOut" onClick={onClickLogout}>
+            Log Out
+          </span>
+        </div>
       </div>
-      <div>
-        <Link to="/editPassword">
-          <button>비밀번호 변경</button>
-        </Link>
-        <Link to="/editProfile">
-          <button>프로필 변경</button>
-        </Link>
-      </div>
-      <div>
-        <button onClick={onClickLogout}>Log out</button>
-      </div>
-    </>
+    </div>
   );
 };
 export default Profile;

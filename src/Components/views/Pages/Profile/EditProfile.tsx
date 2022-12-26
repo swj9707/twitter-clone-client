@@ -33,15 +33,25 @@ const EditProfile = () => {
   };
 
   return (
-    <form onSubmit={onSubmitChangeUsername}>
-      <input
-        type="text"
-        defaultValue={user.user?.userName}
-        placeholder="Display name"
-        onChange={onChangeInput}
-      />
-      <input type="submit" value="프로필 변경" />
-    </form>
+    <div className="container">
+      <form onSubmit={onSubmitChangeUsername} className="profileForm">
+        <input
+          type="text"
+          defaultValue={user.user?.userName}
+          placeholder="Display name"
+          onChange={onChangeInput}
+          className="formInput"
+        />
+        <input
+          type="submit"
+          value="프로필 변경"
+          className="formBtn"
+          style={{
+            marginTop: 10,
+          }}
+        />
+      </form>
+    </div>
   );
 };
 

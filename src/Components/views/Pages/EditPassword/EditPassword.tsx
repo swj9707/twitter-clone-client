@@ -18,7 +18,7 @@ const EditPassword = () => {
     }
   };
 
-  const onSubmitChangePassword = (e: React.FormEvent<HTMLInputElement>) => {
+  const onSubmitChangePassword = (e: any) => {
     e.preventDefault();
     editUserPassword({
       userId: user.user?.userId,
@@ -35,27 +35,38 @@ const EditPassword = () => {
   };
 
   return (
-    <form>
-      <div>
-        <input
-          name="password"
-          type="password"
-          onChange={onChangeInput}
-          placeholder="현재 비밀번호"
-        />
-      </div>
-      <div>
-        <input
-          name="newPassword"
-          type="password"
-          onChange={onChangeInput}
-          placeholder="변경 할 비밀번호"
-        />
-      </div>
-      <div>
-        <input type="submit" value="변경" />
-      </div>
-    </form>
+    <div className="container">
+      <form className="profileForm" onSubmit={onSubmitChangePassword}>
+        <div>
+          <input
+            name="password"
+            type="password"
+            onChange={onChangeInput}
+            placeholder="현재 비밀번호"
+            className="formInput"
+          />
+        </div>
+        <div>
+          <input
+            name="newPassword"
+            type="password"
+            onChange={onChangeInput}
+            placeholder="변경 할 비밀번호"
+            className="formInput"
+          />
+        </div>
+        <div>
+          <input
+            type="submit"
+            className="formBtn"
+            style={{
+              marginTop: 10,
+            }}
+            value="변경"
+          />
+        </div>
+      </form>
+    </div>
   );
 };
 

@@ -10,10 +10,7 @@ import Timeline from "./Timeline";
 
 const Home = () => {
   const user = useSelector((state: RootStore) => state.AuthReducer);
-  const [page, setPage] = useState(0);
   const [listInfo, setListInfo] = useState<TweetDTO[]>([]);
-  const [limit, setLimit] = useState(10);
-  const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
     readAllTweets().then((res) => {
@@ -22,9 +19,11 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div className="container">
       <TweetFactory userObj={user.user} />
-      <Timeline tweets={listInfo} fetching={false} />
+      <div style={{ marginTop: 30 }}>
+        <Timeline tweets={listInfo} fetching={false} />
+      </div>
     </div>
   );
 };

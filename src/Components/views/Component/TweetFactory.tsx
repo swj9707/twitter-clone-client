@@ -7,6 +7,8 @@ import { CreateTweet, TweetImageMeta } from "../../../Store/Type/Tweet/Tweet";
 import { TwitterUserDTO } from "../../../Store/Type/Auth/Auth";
 import { getTweetImageName } from "@/Utils/StringUtils";
 import { checkImage } from "@/Utils/FileUtils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const TweetFactory = ({ userObj }: { userObj: TwitterUserDTO | null }) => {
   const [tweet, setTweet] = useState("");
@@ -85,9 +87,10 @@ const TweetFactory = ({ userObj }: { userObj: TwitterUserDTO | null }) => {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <div>
+      <form onSubmit={onSubmit} className="factoryForm">
+        <div className="factoryInput__container">
           <input
+            className="factoryInput_input"
             value={tweet}
             onChange={onChange}
             type="text"
@@ -95,10 +98,11 @@ const TweetFactory = ({ userObj }: { userObj: TwitterUserDTO | null }) => {
             placeholder="What's on your mind?"
             maxLength={120}
           />
-          <input type="submit" value="submit" />
+          <input type="submit" value="&rarr;" className="factoryInput__arrow" />
         </div>
-        <label>
+        <label className="factoryInput__label">
           <span>Add photos</span>
+          <FontAwesomeIcon icon={faPlus} />
         </label>
         <input
           id="attach-file"
@@ -117,8 +121,9 @@ const TweetFactory = ({ userObj }: { userObj: TwitterUserDTO | null }) => {
                 backgroundImage: attachment,
               }}
             />
-            <div onClick={onClearAttachment}>
+            <div className="factoryForm__clear" onClick={onClearAttachment}>
               <span>Remove</span>
+              <FontAwesomeIcon icon={faTimes} />
             </div>
           </div>
         )}
