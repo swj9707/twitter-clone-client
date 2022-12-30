@@ -64,5 +64,5 @@
   "devDependencies": {
     "@types/dotenv": "^8.2.0"
   },
-  "homepage": "https://swj9707.github.io/twitter-clone-client"
+  "homepage": "https://swj-twitter-clone.netlify.app/"
 }
