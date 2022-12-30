@@ -69,11 +69,11 @@ const Auth = () => {
           </Link>
         </div>
       </form>
-      <div>
+      {/* <div>
         <button className="formBtn confirmBtn" name="google">
           Continue with Google
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
