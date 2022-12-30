@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { requestSignup } from "../../../../Service/Auth/AuthService";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const onChangeInput = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
@@ -27,7 +28,7 @@ const Signup = () => {
     })
       .then(() => {
         alert("회원가입이 완료되었습니다.");
-        window.location.replace("/");
+        navigate("/");
       })
       .catch((ex) => {
         console.log(ex);

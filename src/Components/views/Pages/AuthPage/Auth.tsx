@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { requestLogin } from "../../../../Service/Auth/AuthService";
 import {
   login_success,
   login_fail,
 } from "../../../../Store/Slices/AuthReducer";
 import { LoginResponse } from "../../../../Store/Type/Auth/AuthRes";
-
 const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const onChangeInput = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
@@ -32,7 +32,7 @@ const Auth = () => {
       if (res.status === "OK") {
         dispatch(login_success(res));
         alert("로그인 되었습니다.");
-        window.location.href = "/";
+        navigate("/");
       } else {
         alert("로그인 에러!");
         dispatch(login_fail());

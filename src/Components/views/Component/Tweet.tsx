@@ -20,7 +20,7 @@ import {
   faPlus,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { useNavigate } from "react-router-dom";
 const Tweet = ({
   tweetObj,
   isOwner,
@@ -33,6 +33,7 @@ const Tweet = ({
   const [attachment, setAttachment] = useState("");
   const [imageMeta, setImageMeta] = useState<TweetImageMeta>();
   const [imageFile, setImageFile] = useState<Blob>();
+  const navigate = useNavigate();
 
   const toggleEditing = () => setEdition((prev) => !prev);
 
@@ -68,12 +69,11 @@ const Tweet = ({
     await updateTweet(tweetObject)
       .then(() => {
         alert("Tweet이 수정 되었습니다.");
-        window.location.replace("/");
+        navigate("/");
       })
       .catch((ex) => {
         alert("Tweet을 수정하는 데 실패하였습니다.");
-        console.log(ex);
-        window.location.replace("/");
+        navigate("/");
       });
   };
 
@@ -81,12 +81,12 @@ const Tweet = ({
     deleteTweet({ tweetId: tweetObj.tweetId })
       .then(() => {
         alert("트윗이 삭제되었습니다.");
-        window.location.replace("/");
+        navigate("/");
       })
       .catch((ex) => {
         alert("트윗을 삭제하는 데 실패하였습니다.");
         console.log(ex);
-        window.location.replace("/");
+        navigate("/");
       });
   };
 

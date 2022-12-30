@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { requestLogout } from "../../../../Service/Auth/AuthService";
 import { RootStore } from "../../../../Store/Data/Store";
 import { logout } from "../../../../Store/Slices/AuthReducer";
@@ -8,12 +8,13 @@ import { LogoutResponse } from "../../../../Store/Type/Auth/AuthRes";
 const Profile = () => {
   const user = useSelector((state: RootStore) => state.AuthReducer);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onClickLogout = () => {
     requestLogout().then((res: LogoutResponse) => {
       alert("로그아웃 되었습니다.");
       dispatch(logout());
-      window.location.href = "/";
+      navigate("/");
     });
   };
   return (

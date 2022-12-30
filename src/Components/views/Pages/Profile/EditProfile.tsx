@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { editUserProfile } from "../../../../Service/User/UserService";
 import { RootStore } from "../../../../Store/Data/Store";
 import { change_username } from "../../../../Store/Slices/AuthReducer";
@@ -9,6 +10,7 @@ const EditProfile = () => {
   const user = useSelector((state: RootStore) => state.AuthReducer);
   const dispatch = useDispatch();
   const [newUserName, setNewUserName] = useState("");
+  const navigate = useNavigate();
 
   const onChangeInput = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
@@ -25,7 +27,7 @@ const EditProfile = () => {
       if (res.status === "OK") {
         dispatch(change_username(res));
         alert("닉네임을 변경하였습니다.");
-        window.location.replace("/");
+        navigate("/");
       } else {
         alert("회원 정보를 변경하는 데 문제가 생겼습니다.");
       }

@@ -9,12 +9,14 @@ import { getTweetImageName } from "@/Utils/StringUtils";
 import { checkImage } from "@/Utils/FileUtils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const TweetFactory = ({ userObj }: { userObj: TwitterUserDTO | null }) => {
   const [tweet, setTweet] = useState("");
   const [attachment, setAttachment] = useState("");
   const [imageMeta, setImageMeta] = useState<TweetImageMeta>();
   const [imageFile, setImageFile] = useState<Blob>();
+  const navigate = useNavigate();
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
@@ -40,7 +42,7 @@ const TweetFactory = ({ userObj }: { userObj: TwitterUserDTO | null }) => {
       .then(() => {
         alert("Tweet이 등록되었습니다.");
         setTweet("");
-        window.location.replace("/");
+        navigate("/");
       })
       .catch(() => {
         alert("Tweet 생성 시 에러가 발생하였습니다.");
