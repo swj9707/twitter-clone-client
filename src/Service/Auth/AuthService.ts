@@ -1,4 +1,3 @@
-import { AxiosRequestConfig } from "axios";
 import loginForm, { signupForm } from "../../Store/Type/Auth/Auth";
 import {
   LoginResponse,

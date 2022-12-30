@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootStore } from "../../../../Store/Data/Store";
 import { TweetDTO } from "../../../../Store/Type/Tweet/Tweet";

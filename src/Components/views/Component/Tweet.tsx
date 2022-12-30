@@ -153,6 +153,7 @@ const Tweet = ({
               <div className="factoryForm__attachment">
                 <img
                   src={attachment}
+                  alt="X"
                   style={{
                     backgroundImage: attachment,
                   }}
@@ -173,7 +174,12 @@ const Tweet = ({
         <>
           <h4>{tweetObj.tweetContent}</h4>
           {tweetObj.tweetImageMeta && (
-            <img src={tweetObj.tweetImageMeta} width="100" height="100" />
+            <img
+              src={tweetObj.tweetImageMeta}
+              alt="X"
+              width="100"
+              height="100"
+            />
           )}
           {isOwner && (
             <div className="nweet__actions">

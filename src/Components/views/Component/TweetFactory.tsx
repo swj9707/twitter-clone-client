@@ -122,6 +122,7 @@ const TweetFactory = ({ userObj }: { userObj: TwitterUserDTO | null }) => {
               style={{
                 backgroundImage: attachment,
               }}
+              alt="X"
             />
             <div className="factoryForm__clear" onClick={onClearAttachment}>
               <span>Remove</span>
