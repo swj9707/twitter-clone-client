@@ -9,15 +9,12 @@ import { getTweetImageName } from "@/Utils/StringUtils";
 import { checkImage } from "@/Utils/FileUtils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
-import { faWindows } from "@fortawesome/free-brands-svg-icons";
 
 const TweetFactory = ({ userObj }: { userObj: TwitterUserDTO | null }) => {
   const [tweet, setTweet] = useState("");
   const [attachment, setAttachment] = useState("");
   const [imageMeta, setImageMeta] = useState<TweetImageMeta>();
   const [imageFile, setImageFile] = useState<Blob>();
-  const navigate = useNavigate();
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
