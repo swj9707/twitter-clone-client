@@ -20,7 +20,6 @@ import {
   faPlus,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
 const Tweet = ({
   tweetObj,
   isOwner,
@@ -33,7 +32,6 @@ const Tweet = ({
   const [attachment, setAttachment] = useState("");
   const [imageMeta, setImageMeta] = useState<TweetImageMeta>();
   const [imageFile, setImageFile] = useState<Blob>();
-  const navigate = useNavigate();
 
   const toggleEditing = () => setEdition((prev) => !prev);
 
