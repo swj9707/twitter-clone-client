@@ -31,7 +31,6 @@ const Signup = () => {
         navigate("/");
       })
       .catch((ex) => {
-        console.log(ex);
         alert("회원 가입에 실패하였습니다.");
       });
   };

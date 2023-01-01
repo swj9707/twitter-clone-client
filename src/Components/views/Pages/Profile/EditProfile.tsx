@@ -15,7 +15,6 @@ const EditProfile = () => {
   const onChangeInput = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
     setNewUserName(target.value);
-    console.log(newUserName);
   };
 
   const onSubmitChangeUsername = (e: React.FormEvent<HTMLFormElement>) => {
