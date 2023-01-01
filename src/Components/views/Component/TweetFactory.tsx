@@ -10,6 +10,7 @@ import { checkImage } from "@/Utils/FileUtils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { faWindows } from "@fortawesome/free-brands-svg-icons";
 
 const TweetFactory = ({ userObj }: { userObj: TwitterUserDTO | null }) => {
   const [tweet, setTweet] = useState("");
@@ -42,7 +43,7 @@ const TweetFactory = ({ userObj }: { userObj: TwitterUserDTO | null }) => {
       .then(() => {
         alert("Tweet이 등록되었습니다.");
         setTweet("");
-        navigate("/");
+        window.location.reload();
       })
       .catch(() => {
         alert("Tweet 생성 시 에러가 발생하였습니다.");
@@ -78,7 +79,6 @@ const TweetFactory = ({ userObj }: { userObj: TwitterUserDTO | null }) => {
       setImageMeta(tweetImageMetadata);
       setImageFile(theFile);
       reader.readAsDataURL(theFile);
-      console.log(tweetImageMetadata);
     }
   };
 

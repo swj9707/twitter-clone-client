@@ -24,7 +24,6 @@ const Auth = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e);
     requestLogin({
       userEmail: email,
       password: password,

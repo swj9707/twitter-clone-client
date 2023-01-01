@@ -69,11 +69,11 @@ const Tweet = ({
     await updateTweet(tweetObject)
       .then(() => {
         alert("Tweet이 수정 되었습니다.");
-        navigate("/");
+        window.location.reload();
       })
       .catch((ex) => {
         alert("Tweet을 수정하는 데 실패하였습니다.");
-        navigate("/");
+        window.location.reload();
       });
   };
 
@@ -81,12 +81,11 @@ const Tweet = ({
     deleteTweet({ tweetId: tweetObj.tweetId })
       .then(() => {
         alert("트윗이 삭제되었습니다.");
-        navigate("/");
+        window.location.reload();
       })
       .catch((ex) => {
         alert("트윗을 삭제하는 데 실패하였습니다.");
-        console.log(ex);
-        navigate("/");
+        window.location.reload();
       });
   };
 
@@ -112,7 +111,6 @@ const Tweet = ({
       setImageMeta(tweetImageMetadata);
       setImageFile(theFile);
       reader.readAsDataURL(theFile);
-      console.log(tweetImageMetadata);
     }
   };
 
