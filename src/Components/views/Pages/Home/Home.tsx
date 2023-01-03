@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { readAllTweets } from "../../../../Service/Tweet/TweetService";
 import { RootStore } from "../../../../Store/Data/Store";
@@ -15,7 +14,7 @@ const Home = () => {
     readAllTweets().then((res) => {
       setListInfo([...res.data]);
     });
-  });
+  }, []);
 
   return (
     <div className="container">
