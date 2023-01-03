@@ -15,7 +15,7 @@ const Home = () => {
     readAllTweets().then((res) => {
       setListInfo([...res.data]);
     });
-  }, []);
+  });
 
   return (
     <div className="container">

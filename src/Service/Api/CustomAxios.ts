@@ -1,7 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { FailureResponse } from "../../Store/Type/BaseResponse";
-import { reissue } from "../Auth/AuthService";
-import { useNavigate } from "react-router-dom";
+import { refreshToken } from "../Auth/AuthService";
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 export default axios.create({
   baseURL: process.env.REACT_APP_GCP_API_SERVER,
@@ -30,25 +29,27 @@ axiosPrivate.interceptors.request.use((config) => {
 
 axiosPrivate.interceptors.response.use(
   (response) => response,
-  (error: AxiosError) => {
+  async (error: AxiosError) => {
     const responseData: FailureResponse | any = error.response?.data;
-    const navigate = useNavigate();
 
-    if (error.response?.status === 401) {
+    if (responseData.status === "UNAUTHORIZED") {
       if (responseData.data === "Token Expired") {
         const originRequest = error.config;
-        reissue().then(() => {
+        await refreshToken().then(() => {
           if (originRequest !== undefined) {
-            return axiosPrivate.request(originRequest);
+            window.location.reload();
+            const result = axiosPrivate(originRequest);
+            return Promise.resolve(result);
           }
         });
       }
-    } else if (error.response?.status === 403) {
+    } else if (responseData.status === "FORBIDDEN") {
       if (responseData.data === "리프레쉬 토큰이 만료되었습니다.") {
         localStorage.removeItem("ACCESS_TOKEN");
         localStorage.removeItem("USER_INFO");
-        navigate("/");
       }
     }
+
+    return Promise.resolve(error);
   }
 );
