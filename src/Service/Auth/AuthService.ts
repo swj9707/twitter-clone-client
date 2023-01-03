@@ -32,11 +32,13 @@ export async function requestSignup(signupForm: signupForm) {
 
 export const reissue = async () => {
   try {
-    const data = await CustomAxios.post("/api/auth/v1/reissue");
-
-    const newAccessToken = data.data.data.accessToken;
-    localStorage.removeItem("ACCESS_TOKEN");
-    localStorage.setItem("ACCESS_TOKEN", newAccessToken);
+    const userInfo = localStorage.getItem("USER_INFO");
+    if (userInfo != null) {
+      const data = await CustomAxios.post("/api/auth/v1/reissue");
+      const newAccessToken = data.data.data.accessToken;
+      localStorage.removeItem("ACCESS_TOKEN");
+      localStorage.setItem("ACCESS_TOKEN", newAccessToken);
+    }
   } catch (err) {
     console.log(err);
   }
@@ -44,9 +46,7 @@ export const reissue = async () => {
 
 export async function refreshToken() {
   await axiosPrivate
-    .post("/api/auth/v1/reissue", {
-      accessToken: localStorage.getItem("ACCESS_TOKEN"),
-    })
+    .post("/api/auth/v1/reissue")
     .then((res) => {
       const response: ReissueResponse = res.data;
       const newAccessToken = response.data.accessToken;

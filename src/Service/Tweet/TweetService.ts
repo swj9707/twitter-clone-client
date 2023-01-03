@@ -10,6 +10,7 @@ import {
   TweetInfo,
   UploadTweetImageTestRes,
 } from "../../Store/Type/Tweet/TweetRes";
+import { faWindows } from "@fortawesome/free-brands-svg-icons";
 
 export async function createTweet(request: CreateTweet) {
   const response: TweetInfo = await axiosPrivate
