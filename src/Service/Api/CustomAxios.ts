@@ -1,11 +1,9 @@
 import axios, { AxiosError } from "axios";
 import { FailureResponse } from "../../Store/Type/BaseResponse";
-import { refreshToken, reissue } from "../Auth/AuthService";
-import { useNavigate } from "react-router-dom";
-import { resolve } from "path";
+import { refreshToken } from "../Auth/AuthService";
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 export default axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_LOCAL,
+  baseURL: process.env.REACT_APP_GCP_API_SERVER,
   headers: {
     "Content-Type": "application/json",
   },
@@ -13,7 +11,7 @@ export default axios.create({
 });
 
 export const axiosPrivate = axios.create({
-  baseURL: process.env.REACT_APP_BACKEND_LOCAL,
+  baseURL: process.env.REACT_APP_GCP_API_SERVER,
   headers: {
     "Content-Type": "application/json",
     Authorization: "Bearer " + localStorage.getItem("ACCESS_TOKEN"),
