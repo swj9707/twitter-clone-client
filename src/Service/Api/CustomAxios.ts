@@ -3,7 +3,7 @@ import { FailureResponse } from "../../Store/Type/BaseResponse";
 import { refreshToken } from "../Auth/AuthService";
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 export default axios.create({
-  baseURL: process.env.REACT_APP_GCP_API_SERVER,
+  baseURL: process.env.REACT_APP_BACKEND_LOCAL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -11,7 +11,7 @@ export default axios.create({
 });
 
 export const axiosPrivate = axios.create({
-  baseURL: process.env.REACT_APP_GCP_API_SERVER,
+  baseURL: process.env.REACT_APP_BACKEND_LOCAL,
   headers: {
     "Content-Type": "application/json",
     Authorization: "Bearer " + localStorage.getItem("ACCESS_TOKEN"),
@@ -47,6 +47,7 @@ axiosPrivate.interceptors.response.use(
       if (responseData.data === "리프레쉬 토큰이 만료되었습니다.") {
         localStorage.removeItem("ACCESS_TOKEN");
         localStorage.removeItem("USER_INFO");
+        window.location.replace("/");
       }
     }
 
