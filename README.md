@@ -8,6 +8,8 @@
 
 SNS 서비스의 프론트엔드 설계 및 개발 공부 목적의 프로젝트입니다.
 
+위키 : https://github.com/swj9707/twitter-clone-client/wiki
+
 # Reference
 - Nomad Coder 트위터 클론코딩 강좌
   - https://nomadcoders.co/nwitter/lobby
