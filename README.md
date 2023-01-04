@@ -6,6 +6,13 @@
 서버 :  https://github.com/swj9707/twitter-clone-api-server  
 어드민 : https://github.com/swj9707/twitter-clone-admin 
 
+SNS 서비스의 프론트엔드 설계 및 개발 공부 목적의 프로젝트입니다.
+
+# Reference
+- Nomad Coder 트위터 클론코딩 강좌
+  - https://nomadcoders.co/nwitter/lobby
+  - 초기 버전은 해당 강좌를 따라하되, 완전히 새로운 UI/UX로 변경하는 게 목표입니다.
+
 # Tech Stacks
 <div>
   <row>
