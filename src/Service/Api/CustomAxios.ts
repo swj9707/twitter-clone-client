@@ -47,6 +47,7 @@ axiosPrivate.interceptors.response.use(
       if (responseData.data === "리프레쉬 토큰이 만료되었습니다.") {
         localStorage.removeItem("ACCESS_TOKEN");
         localStorage.removeItem("USER_INFO");
+        window.location.replace("/");
       }
     }
 
