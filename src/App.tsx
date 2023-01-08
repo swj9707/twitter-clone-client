@@ -1,10 +1,11 @@
 import { AppRouter } from "./Components";
+import GlobalStyles from "./Styles/GlobalStyles";
 
 function App() {
   return (
     <>
       <AppRouter />
-      <footer>https://github.com/swj9707/twitter-clone-client</footer>
+      <GlobalStyles />
     </>
   );
 }
