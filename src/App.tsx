@@ -1,6 +1,5 @@
-import { AppRouter } from "./Components";
 import GlobalStyles from "./Styles/GlobalStyles";
-
+import AppRouter from "./Components/Router";
 function App() {
   return (
     <>
