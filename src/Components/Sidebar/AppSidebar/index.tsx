@@ -10,18 +10,33 @@ import {
   ProfileIcon,
   Topside,
   PencilIcon,
-  MoreIcon,
+  TweetButton,
 } from "./styles";
-import Button from "@/Components/button";
+
 import { useNavigate } from "react-router-dom";
+import { useState, useCallback } from "react";
+import Tweetbox from "@/Components/Tweetbox";
+import Modal from "@/Components/Modal";
 
 const AppSidebar: React.FC = () => {
   const navigate = useNavigate();
+  const [isActive, setIsActive] = useState(false);
+  const [isOpenModal, setOpenModal] = useState(false);
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Container>
       <Topside>
-        <Logo />
+        <Logo onClick={() => navigate("/")} />
         <MenuButton
           onClick={() => {
             navigate("/");
@@ -40,29 +55,32 @@ const AppSidebar: React.FC = () => {
           <EmailIcon />
           <span> Message </span>
         </MenuButton> */}
-        <MenuButton onClick={() => navigate("/Profile")}>
+        <MenuButton onClick={() => navigate("/profile")}>
           <ProfileIcon />
           <span> Profile </span>
         </MenuButton>
-        <MenuButton onClick={() => navigate("/Profile")}>
+        {/* <MenuButton onClick={() => navigate("/setup")}>
           <MoreIcon />
           <span> More </span>
-        </MenuButton>
-        <Button>
+        </MenuButton> */}
+        {/* <TweetButton onClick={onClickToggleModal}>
           <PencilIcon />
           <span>Tweet</span>
-        </Button>
+        </TweetButton> */}
+        <TweetButton onClick={handleClickOpen}>
+          <PencilIcon />
+          <span>Tweet</span>
+        </TweetButton>
       </Topside>
       <Botside>
         <Avatar />
-
         <ProfileData>
           <strong>Test User</strong>
           <span>@testuser</span>
         </ProfileData>
-
         <ExitIcon />
       </Botside>
+      <Modal open={open} onClose={handleClose} children={<Tweetbox />} />
     </Container>
   );
 };

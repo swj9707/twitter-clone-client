@@ -27,10 +27,12 @@ html, body, #root {
 html {
   background: var(--primary);
 
+
 }
 
 :root {
   --primary: #000;
+  --primary-hover : #141414;
   --secondary: #15181C;
   --search: #202327;
   --white: #D9D9D9;
@@ -39,6 +41,7 @@ html {
   --retweet: #00C06B;
   --like: #E8265E;
   --twitter: #33A1F2;
+  --twitter-hover: #1a8cd8;
   --twitter-dark-hover: #011017;
   --twitter-light-hover: #2C8ED6;
 }

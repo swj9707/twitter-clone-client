@@ -58,6 +58,7 @@ export const FormInput = styled.input`
   border-radius: 10px;
   text-align: center;
   background-color: #d9d9d9;
+  color: #000;
 `;
 
 export const FormInputButton = styled.input`

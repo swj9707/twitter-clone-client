@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-import { Chat, Retweet, Favorite } from "@/Styles/Icons";
+import { Chat, Retweet, Favorite, ThreeDots } from "@/Styles/Icons";
 
 export const Container = styled.div`
   display: flex;
@@ -23,9 +23,12 @@ export const Retweeted = styled.div`
 
 export const Body = styled.div`
   display: flex;
+  flex-direction: column;
   margin-top: 3px;
   position: relative;
 `;
+
+export const Info = styled.div``;
 
 export const Avatar = styled.div`
   width: 49px;
@@ -45,12 +48,11 @@ export const Content = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 2px;
-  padding-left: 59px;
 `;
 
 export const Header = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
 
   font-size: 15px;
   white-space: nowrap;
@@ -80,7 +82,7 @@ export const Dot = styled.div`
 `;
 
 export const Description = styled.p`
-  font-size: 14px;
+  font-size: 20px;
   margin-top: 4px;
 `;
 
@@ -88,6 +90,7 @@ export const ImageContent = styled.div`
   margin-top: 12px;
   margin-bottom: 12px;
   overflow: auto;
+  height: auto;
   width: auto;
   height: min(200px, max(285px, 41vw));
   border-radius: 14px;
@@ -106,22 +109,14 @@ export const Icons = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-top: 1px solid var(--outline);
   flex-wrap: wrap;
-
   margin: 11px auto 0;
 
   width: 100%;
 
   @media (min-width: 330px) {
     width: 63%;
-  }
-
-  > div {
-    cursor: pointer;
-
-    &:hover {
-      opacity: 0.7;
-    }
   }
 `;
 
@@ -176,4 +171,15 @@ export const LikeIcon = styled(Favorite)`
 
 export const RetweetIcon = styled(Retweet)`
   ${iconCSS}
+`;
+
+export const OptionIcon = styled(ThreeDots)`
+  width: 19px;
+  height: 19px;
+  border-radius: 14px;
+  margin-left: 35px;
+  margin-right: 9px;
+  &:hover {
+    background: var(--twitter-dark-hover);
+  }
 `;

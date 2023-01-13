@@ -8,6 +8,10 @@ import ProfileMain from "../Pages/ProfileMain";
 import MainHome from "@/Pages/Home";
 import AuthPage from "@/Pages/Auth";
 
+import FooterMenu from "./FooterMenu";
+import SetupPage from "@/Pages/SetupPage";
+import TweetDetail from "@/Pages/TweetDetail";
+
 const AppRouter = () => {
   const user = useSelector((state: RootStore) => state.AuthReducer);
   return (
@@ -19,9 +23,12 @@ const AppRouter = () => {
               <AppSidebar />
               <Routes>
                 <Route path="/" element={<MainHome />} />
-                <Route path="/Profile" element={<ProfileMain />} />
+                <Route path="/profile" element={<ProfileMain />} />
+                <Route path="/setup" element={<SetupPage />} />
+                <Route path="/tweet" element={<TweetDetail />} />
               </Routes>
               <WidgetBar />
+              <FooterMenu />
             </>
           ) : (
             <Routes>

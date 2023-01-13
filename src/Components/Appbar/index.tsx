@@ -18,7 +18,7 @@ const WidgetBar = () => {
         <SearchInput placeholder="Search Twitter" />
         <SearchIcon />
       </SearchWrapper>
-      <StickyBox>
+      {/* <StickyBox>
         <Body>
           <List
             title="Who to Follow"
@@ -34,7 +34,7 @@ const WidgetBar = () => {
             elements={[<News />, <News />, <News />]}
           />
         </Body>
-      </StickyBox>
+      </StickyBox> */}
     </Container>
   );
 };

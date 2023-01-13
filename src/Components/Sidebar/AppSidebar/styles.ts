@@ -78,6 +78,10 @@ export const MenuButton = styled.button`
     margin-top: 16px;
   }
 
+  & + div {
+    margin-top: 16px;
+  }
+
   & + button:last-child {
     margin-top: 33px;
 
@@ -104,14 +108,27 @@ export const MenuButton = styled.button`
   &:hover {
     background: var(--twitter-dark-hover);
   }
+`;
 
-  &:hover,
-  &:active {
-    column-span,
-    svg {
-      color: var(--twitter);
-      fill: var(--twitter);
-    }
+export const TweetButton = styled(MenuButton)`
+  background: var(--twitter);
+  color: var(--white);
+  padding: 8.25px;
+
+  &:hover {
+    background: var(--twitter-hover);
+  }
+`;
+
+export const DropdownContainer = styled.div`
+  outline: 0;
+  button {
+    width: 100%;
+    height: auto;
+  }
+
+  & + button {
+    margin-top: 16px;
   }
 `;
 
@@ -199,4 +216,43 @@ export const ExitIcon = styled(ExitToApp)`
       }
     }
   }
+`;
+export const DropdownMenu = styled.div`
+  background: var(--twitter-dark-hover);
+  position: relative;
+  left: 200%;
+  width: 100px;
+  text-align: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  opacity: 1;
+  transform: translate(-50%, 0);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+  z-index: 3;
+`;
+
+export const Ul = styled.ul`
+  & > li {
+    margin-bottom: 10px;
+  }
+
+  & > li:first-of-type {
+    margin-top: 10px;
+  }
+
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Li = styled.li``;
+
+export const LinkWrapper = styled.a`
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
 `;
