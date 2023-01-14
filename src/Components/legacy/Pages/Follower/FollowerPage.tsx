@@ -1,6 +1,3 @@
-import React from "react";
-import { Follower } from "../../..";
-
 const FollowerPage = () => {
   return (
     <>
@@ -8,11 +5,7 @@ const FollowerPage = () => {
         <button>Follower</button>
         <button>Following</button>
       </div>
-      <div>
-        <Follower />
-        <Follower />
-        <Follower />
-      </div>
+      <div></div>
     </>
   );
 };

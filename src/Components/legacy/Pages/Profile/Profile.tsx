@@ -5,7 +5,7 @@ import { RootStore } from "../../../../Store/Data/Store";
 import { logout } from "../../../../Store/Slices/AuthReducer";
 import { LogoutResponse } from "../../../../Store/Type/Auth/AuthRes";
 
-const Profile = () => {
+const Profile = (props: any) => {
   const user = useSelector((state: RootStore) => state.AuthReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
