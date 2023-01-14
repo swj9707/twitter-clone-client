@@ -5,7 +5,7 @@ import {
   RegisterResponse,
   ReissueResponse,
 } from "../../Store/Type/Auth/AuthRes";
-import CustomAxios, { axiosPrivate } from "../Api/CustomAxios";
+import { CustomAxios } from "../Api/CustomAxios";
 
 export async function requestLogin(loginForm: loginForm) {
   const response: LoginResponse = await CustomAxios.post(
@@ -16,9 +16,9 @@ export async function requestLogin(loginForm: loginForm) {
 }
 
 export async function requestLogout() {
-  const response: LogoutResponse = await axiosPrivate
-    .post("/api/auth/v1/logout")
-    .then((res) => res.data);
+  const response: LogoutResponse = await CustomAxios.post(
+    "/api/auth/v1/logout"
+  ).then((res) => res.data);
   return response;
 }
 
@@ -30,23 +30,8 @@ export async function requestSignup(signupForm: signupForm) {
   return response;
 }
 
-export const reissue = async () => {
-  try {
-    const userInfo = localStorage.getItem("USER_INFO");
-    if (userInfo != null) {
-      const data = await CustomAxios.post("/api/auth/v1/reissue");
-      const newAccessToken = data.data.data.accessToken;
-      localStorage.removeItem("ACCESS_TOKEN");
-      localStorage.setItem("ACCESS_TOKEN", newAccessToken);
-    }
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 export async function refreshToken() {
-  await axiosPrivate
-    .post("/api/auth/v1/reissue")
+  await CustomAxios.post("/api/auth/v1/reissue")
     .then((res) => {
       const response: ReissueResponse = res.data;
       const newAccessToken = response.data.accessToken;
