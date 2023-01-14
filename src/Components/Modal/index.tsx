@@ -11,7 +11,6 @@ interface DialogProps {
 const CustomDialog = styled(DialogContent)({
   width: 598,
   backgroundColor: "#000",
-  padding: "10px 20px 10px 20px",
 });
 
 const Modal = (props: DialogProps) => {

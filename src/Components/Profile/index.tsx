@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Tweetbox from "@/Components/Tweetbox";
 import Modal from "@/Components/Modal";
 import Feed from "../Feed";
 import {
@@ -12,6 +11,7 @@ import {
   Followage,
   EditButton,
 } from "./styles";
+import ProfileEdit from "../ProfileEdit";
 
 const ProfilePage: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -39,15 +39,9 @@ const ProfilePage: React.FC = () => {
         </EditButton>
 
         <h1>Wassup</h1>
-        <h2>@wassup</h2>
-
-        <p>Junior Developer</p>
+        <h2>email@email.com</h2>
 
         <ul>
-          <li>
-            <LocationIcon />
-            Seoul, Korea
-          </li>
           <li>
             <CakeIcon />
             Joined December 2022
@@ -65,7 +59,7 @@ const ProfilePage: React.FC = () => {
       </ProfileData>
 
       <Feed />
-      <Modal open={open} onClose={handleClose} children={<Tweetbox />} />
+      <Modal open={open} onClose={handleClose} children={<ProfileEdit />} />
     </Container>
   );
 };
