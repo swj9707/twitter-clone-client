@@ -9,6 +9,7 @@ export const Container = styled.div`
   padding: 14px 16px;
   border-bottom: 1px solid var(--outline);
   max-width: 100%;
+  height: auto;
   &:hover {
     background: var(--primary-hover);
   }
@@ -89,7 +90,7 @@ export const ImageContent = styled.div`
   margin-bottom: 12px;
   overflow: auto;
   width: auto;
-  height: min(200px, max(285px, 41vw));
+  height: min(200px) max(100%);
   border-radius: 14px;
   cursor: pointer;
   &:hover {

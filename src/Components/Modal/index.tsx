@@ -1,6 +1,4 @@
-import { Dialog, DialogContent } from "@mui/material";
-import Tweetbox from "../Tweetbox";
-import { styled } from "@mui/system";
+import { Modal, Box } from "@mui/material";
 
 interface DialogProps {
   open: boolean;
@@ -8,19 +6,27 @@ interface DialogProps {
   children: React.ReactNode;
 }
 
-const CustomDialog = styled(DialogContent)({
-  width: 598,
-  backgroundColor: "#000",
-});
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: " min(601px, 100%)",
+  bgcolor: "var(--primary)",
+  border: "2px solid #000",
+  borderRadius: "15px",
+  boxShadow: 24,
+  p: 4,
+};
 
-const Modal = (props: DialogProps) => {
+const CustomModal = (props: DialogProps) => {
   const { onClose, open, children } = props;
 
   return (
-    <Dialog onClose={onClose} open={open}>
-      <CustomDialog>{children}</CustomDialog>
-    </Dialog>
+    <Modal onClose={onClose} open={open}>
+      <Box sx={style}>{children}</Box>
+    </Modal>
   );
 };
 
-export default Modal;
+export default CustomModal;

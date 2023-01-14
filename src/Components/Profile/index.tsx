@@ -6,14 +6,17 @@ import {
   Banner,
   Avatar,
   ProfileData,
-  LocationIcon,
   CakeIcon,
   Followage,
   EditButton,
 } from "./styles";
 import ProfileEdit from "../ProfileEdit";
 
-const ProfilePage: React.FC = () => {
+interface ProfilePageProps {
+  children: React.ReactNode;
+}
+
+const ProfilePage = () => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {

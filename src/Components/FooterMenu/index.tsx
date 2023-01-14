@@ -1,6 +1,6 @@
 import FloatButton from "../FloatButton";
 import { BellIcon, Container, EmailIcon, HomeIcon, SearchIcon } from "./styles";
-import Modal from "@/Components/Modal";
+import CustomModal from "@/Components/Modal";
 import { useState } from "react";
 import Tweetbox from "../Tweetbox";
 
@@ -22,7 +22,7 @@ const FooterMenu = () => {
       <SearchIcon />
       <BellIcon />
       <EmailIcon />
-      <Modal open={open} onClose={handleClose} children={<Tweetbox />} />
+      <CustomModal open={open} onClose={handleClose} children={<Tweetbox />} />
     </Container>
   );
 };

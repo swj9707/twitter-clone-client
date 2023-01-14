@@ -16,7 +16,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useState, useCallback } from "react";
 import Tweetbox from "@/Components/Tweetbox";
-import Modal from "@/Components/Modal";
+import CustomModal from "@/Components/Modal";
 
 const AppSidebar: React.FC = () => {
   const navigate = useNavigate();
@@ -80,7 +80,7 @@ const AppSidebar: React.FC = () => {
         </ProfileData>
         <ExitIcon />
       </Botside>
-      <Modal open={open} onClose={handleClose} children={<Tweetbox />} />
+      <CustomModal open={open} onClose={handleClose} children={<Tweetbox />} />
     </Container>
   );
 };

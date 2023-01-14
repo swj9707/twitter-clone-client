@@ -6,7 +6,6 @@ import {
   Header,
   ProfileData,
 } from "./styles";
-import { TextField } from "@mui/material";
 
 const ProfileEdit = () => {
   return (
@@ -20,14 +19,13 @@ const ProfileEdit = () => {
           <img src="https://twitter.clone.swj-dev.p-e.kr/cdn/test/testGif.gif" />
         </Avatar>
       </Banner>
-
       <ProfileData>
         <div
           style={{
             marginBottom: "10px",
           }}
         >
-          <TextField label="Username" color="primary" focused />
+          <input type="text" placeholder="Username" />
         </div>
       </ProfileData>
     </Container>

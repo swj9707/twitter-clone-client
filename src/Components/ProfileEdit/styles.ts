@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 import { LocationOn, Cake } from "@/Styles/Icons";
 import button from "../button";
+import { TextField, styled as MUIStyled, alpha } from "@mui/material";
+import InputBase from "@mui/material/InputBase";
 
 export const Container = styled.div`
   display: flex;
@@ -46,7 +48,7 @@ export const Banner = styled.div`
 
   width: 100%;
   height: min(33vw, 199px);
-  background: var(--twitter);
+  background: var(--twitter-dark-hover);
   position: relative;
   img {
     width: 100%;
@@ -71,46 +73,11 @@ export const Avatar = styled.div`
 
 export const ProfileData = styled.div`
   padding: min(calc(10vw + 7px), 67px) 16px 0;
-
+  margin-top : 15px;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
-
-  position: relative;
-
-  > h1 {
-    font-weight: bold;
-    font-size: 19px;
-  }
-
-  > h2 {
-    font-weight: normal;
-    font-size: 15px;
-
-    color: var(--gray);
-  }
-
-  > p {
-    font-size: 15px;
-    margin-top: 11px;
-  }
-
-  > ul {
-    list-style: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
-
-    > li {
-      display: flex;
-      align-items: center;
-
-      font-size: 15px;
-      color: var(--gray);
-
-      > svg {
-        fill: var(--gray);
-        margin-right: 5px;
-      }
-    }
+  align-items: center;
   }
 `;
 

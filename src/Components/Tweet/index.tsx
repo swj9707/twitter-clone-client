@@ -20,11 +20,7 @@ import {
 
 const Tweet: React.FC = () => {
   return (
-    <Container
-      onClick={() => {
-        console.log("Wassup");
-      }}
-    >
+    <Container>
       <Retweeted>
         <RetweetIcon />
         Wassup
