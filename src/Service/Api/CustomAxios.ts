@@ -33,7 +33,7 @@ CustomAxios.interceptors.response.use(
         await refreshToken().then(() => {
           if (originRequest !== undefined) {
             window.location.reload();
-            const result = axios(originRequest);
+            const result = CustomAxios(originRequest);
             return Promise.resolve(result);
           }
         });
