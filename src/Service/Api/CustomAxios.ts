@@ -38,8 +38,14 @@ CustomAxios.interceptors.response.use(
           }
         });
       }
-    } else if (responseData.status === "FORBIDDEN") {
-      if (responseData.data === "리프레쉬 토큰이 만료되었습니다.") {
+    } else if (
+      responseData.status === "FORBIDDEN" ||
+      responseData.status === "BAD_REQUEST"
+    ) {
+      if (
+        responseData.data === "리프레쉬 토큰이 만료되었습니다." ||
+        responseData.data === "올바르지 않은 토큰 요청입니다."
+      ) {
         localStorage.removeItem("ACCESS_TOKEN");
         localStorage.removeItem("USER_INFO");
         window.location.replace("/");
