@@ -4,12 +4,6 @@ import {
   UpdateTweet,
   DeleteTweet,
 } from "../../Store/Type/Tweet/Tweet";
-import {
-  ReadAllTweetsResponse,
-  ReadTweetsResponse,
-  TweetInfo,
-  UploadTweetImageTestRes,
-} from "../../Store/Type/Tweet/TweetRes";
 import { BaseResponse } from "@/Store/Type/BaseResponse";
 
 export async function createTweet(request: CreateTweet) {
