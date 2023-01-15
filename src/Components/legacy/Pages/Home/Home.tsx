@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { readAllTweets } from "../../../../Service/Tweet/TweetService";
-import { RootStore } from "../../../../Store/Data/Store";
-import { TweetDTO } from "../../../../Store/Type/Tweet/Tweet";
-import TweetFactory from "../../Component/TweetFactory";
+import { readAllTweets } from "@/Service/Tweet/TweetService";
+import { RootStore } from "@/Store/Data/Store";
+import { TweetDTO } from "@/Store/Type/Tweet/Tweet";
+import TweetFactory from "@/Components/legacy/Component/TweetFactory";
 import Timeline from "./Timeline";
 
 const Home = () => {

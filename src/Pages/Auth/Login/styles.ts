@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Twitter } from "@/Styles/Icons";
 
 export const Container = styled.div`

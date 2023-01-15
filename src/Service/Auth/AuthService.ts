@@ -1,6 +1,6 @@
+import { BaseResponse } from "@/Store/Type/BaseResponse";
 import loginForm, { signupForm } from "../../Store/Type/Auth/Auth";
 import {
-  LoginResponse,
   LogoutResponse,
   RegisterResponse,
   ReissueResponse,
@@ -8,7 +8,7 @@ import {
 import { CustomAxios } from "../Api/CustomAxios";
 
 export async function requestLogin(loginForm: loginForm) {
-  const response: LoginResponse = await CustomAxios.post(
+  const response: BaseResponse = await CustomAxios.post(
     "/api/auth/v1/login",
     loginForm
   ).then((res) => res.data);

@@ -1,13 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { requestLogin } from "../../../../Service/Auth/AuthService";
+import { useNavigate } from "react-router-dom";
+import { requestLogin } from "@/Service/Auth/AuthService";
+import { login_success, login_fail } from "@/Store/Slices/AuthReducer";
+import { LoginResponse } from "@/Store/Type/Auth/AuthRes";
 import {
-  login_success,
-  login_fail,
-} from "../../../../Store/Slices/AuthReducer";
-import { LoginResponse } from "../../../../Store/Type/Auth/AuthRes";
-const Auth = () => {
+  AuthForm,
+  BtnBlue,
+  FormInput,
+  FormInputButton,
+  Logo,
+  Title,
+  Wrapper,
+} from "./styles";
+import { BaseResponse } from "@/Store/Type/BaseResponse";
+
+const AuthPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -27,22 +35,25 @@ const Auth = () => {
     requestLogin({
       userEmail: email,
       password: password,
-    }).then((res: LoginResponse) => {
+    }).then((res: BaseResponse) => {
+      console.log(res);
       if (res.status === "OK") {
         dispatch(login_success(res));
         alert("로그인 되었습니다.");
         navigate("/");
       } else {
-        alert("로그인 에러!");
+        alert(res);
         dispatch(login_fail());
       }
     });
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit} className="container">
-        <input
+    <Wrapper>
+      <Logo />
+      <Title>Twitter Clone Project</Title>
+      <AuthForm onSubmit={onSubmit}>
+        <FormInput
           name="email"
           type="text"
           placeholder="Email"
@@ -51,8 +62,8 @@ const Auth = () => {
           onChange={onChangeInput}
           className="authInput"
           value={email}
-        />
-        <input
+        ></FormInput>
+        <FormInput
           name="password"
           type="password"
           placeholder="Password"
@@ -60,21 +71,26 @@ const Auth = () => {
           onChange={onChangeInput}
           className="authInput"
           value={password}
-        />
-        <div>
-          <input type="submit" className="formBtn confirmBtn" value="Sign In" />
-          <Link to="/signup">
-            <button className="formBtn confirmBtn">Sign up</button>
-          </Link>
+        ></FormInput>
+
+        <div
+          style={{
+            display: "flex",
+            flexFlow: "row",
+            justifyContent: "center",
+          }}
+        >
+          <FormInputButton
+            type="submit"
+            className="formBtn confirmBtn"
+            value="Sign In"
+          />
+          <BtnBlue onClick={() => navigate("/signup")}>Sign up</BtnBlue>
         </div>
-      </form>
-      {/* <div>
-        <button className="formBtn confirmBtn" name="google">
-          Continue with Google
-        </button>
-      </div> */}
-    </div>
+        {/* <BtnBlue>Google Login</BtnBlue> */}
+      </AuthForm>
+    </Wrapper>
   );
 };
 
-export default Auth;
+export default AuthPage;

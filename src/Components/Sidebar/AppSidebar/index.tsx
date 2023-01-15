@@ -14,21 +14,30 @@ import {
 } from "./styles";
 
 import { useNavigate } from "react-router-dom";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import Tweetbox from "@/Components/Tweetbox";
 import CustomModal from "@/Components/Modal";
+import { requestLogout } from "@/Service/Auth/AuthService";
+import { logout } from "@/Store/Slices/AuthReducer";
+import { LogoutResponse } from "@/Store/Type/Auth/AuthRes";
+import { useDispatch } from "react-redux";
 
-const AppSidebar: React.FC = () => {
+const AppSidebar = () => {
   const navigate = useNavigate();
-  const [isActive, setIsActive] = useState(false);
-  const [isOpenModal, setOpenModal] = useState(false);
-
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
+
+  const onClickLogout = () => {
+    requestLogout().then((res: LogoutResponse) => {
+      alert("로그아웃 되었습니다.");
+      dispatch(logout());
+      navigate("/");
+    });
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -78,7 +87,7 @@ const AppSidebar: React.FC = () => {
           <strong>Test User</strong>
           <span>@testuser</span>
         </ProfileData>
-        <ExitIcon />
+        <ExitIcon onClick={onClickLogout} />
       </Botside>
       <CustomModal open={open} onClose={handleClose} children={<Tweetbox />} />
     </Container>
