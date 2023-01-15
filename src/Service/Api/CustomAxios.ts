@@ -52,6 +52,6 @@ CustomAxios.interceptors.response.use(
       }
     }
 
-    return Promise.resolve(error);
+    return responseData;
   }
 );

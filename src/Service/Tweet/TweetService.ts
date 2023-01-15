@@ -4,15 +4,10 @@ import {
   UpdateTweet,
   DeleteTweet,
 } from "../../Store/Type/Tweet/Tweet";
-import {
-  ReadAllTweetsResponse,
-  ReadTweetsResponse,
-  TweetInfo,
-  UploadTweetImageTestRes,
-} from "../../Store/Type/Tweet/TweetRes";
+import { BaseResponse } from "@/Store/Type/BaseResponse";
 
 export async function createTweet(request: CreateTweet) {
-  const response: TweetInfo = await CustomAxios.post(
+  const response: BaseResponse = await CustomAxios.post(
     "/api/v1/tweet/create",
     request
   ).then((res) => res.data);
@@ -20,7 +15,7 @@ export async function createTweet(request: CreateTweet) {
 }
 
 export async function uploadTweetImageTest(request: FormData) {
-  const response: UploadTweetImageTestRes = await CustomAxios.post(
+  const response: BaseResponse = await CustomAxios.post(
     "/api/v1/tweet/uploadImage",
     request,
     {
@@ -33,22 +28,21 @@ export async function uploadTweetImageTest(request: FormData) {
 }
 
 export async function readTweets(pageNo: number) {
-  const response: ReadTweetsResponse = await CustomAxios.get(
-    "/api/v1/tweet/read",
-    { params: { pageNo: pageNo } }
-  ).then((res) => res.data);
+  const response: BaseResponse = await CustomAxios.get("/api/v1/tweet/read", {
+    params: { pageNo: pageNo },
+  }).then((res) => res.data);
   return response;
 }
 
 export async function readAllTweets() {
-  const response: ReadAllTweetsResponse = await CustomAxios.get(
+  const response: BaseResponse = await CustomAxios.get(
     "/api/v1/tweet/readAll"
   ).then((res) => res.data);
   return response;
 }
 
 export async function updateTweet(request: UpdateTweet) {
-  const response: TweetInfo = await CustomAxios.put(
+  const response: BaseResponse = await CustomAxios.put(
     "/api/v1/tweet/update",
     request
   ).then((res) => res.data);
@@ -56,7 +50,7 @@ export async function updateTweet(request: UpdateTweet) {
 }
 
 export async function deleteTweet(request: DeleteTweet) {
-  const response: TweetInfo = await CustomAxios.put(
+  const response: BaseResponse = await CustomAxios.put(
     "/api/v1/tweet/delete",
     request
   ).then((res) => res.data);
