@@ -7,6 +7,11 @@ export interface TweetDTO {
   status: string;
 }
 
+export interface ImageObj {
+  src: string;
+  file: File;
+}
+
 export interface TweetImageMeta {
   type: string;
   name: string;

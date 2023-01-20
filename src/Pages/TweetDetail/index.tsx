@@ -1,4 +1,4 @@
-import TweetContent from "@/Components/TweetContent";
+import TweetContent from "@/Components/Tweets/TweetContent";
 import { Container, Header } from "./styles";
 
 const TweetDetail = () => {

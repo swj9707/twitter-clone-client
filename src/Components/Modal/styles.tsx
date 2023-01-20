@@ -1,5 +1,4 @@
-import styled from "styled-components";
-import { Dialog, DialogContent, styled as MUIStyled } from "@mui/material";
+import { Dialog, styled as MUIStyled } from "@mui/material";
 
 export const CustomDialog = MUIStyled(Dialog)({
   width: " min(601px, 100%)",

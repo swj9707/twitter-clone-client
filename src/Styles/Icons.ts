@@ -7,8 +7,9 @@ export {
   LocationOn,
   Search,
   Chat,
+  Edit,
 } from "styled-icons/material-outlined";
-export { Person, Cake, Favorite } from "styled-icons/material";
+export { Person, Cake, Favorite, Cancel } from "styled-icons/material";
 export { ArrowLeft } from "styled-icons/heroicons-solid";
 export { Retweet } from "styled-icons/entypo";
 export { MoreHorizontalOutline } from "styled-icons/evaicons-outline";

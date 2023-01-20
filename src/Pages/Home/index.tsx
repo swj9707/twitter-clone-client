@@ -1,6 +1,6 @@
-import Tweet from "@/Components/Tweet";
-import Tweetbox from "@/Components/Tweetbox";
-import { Container, Header } from "./styles";
+import Tweet from "@/Components/Tweets/Tweet";
+import Tweetbox from "@/Components/Tweets/Tweetbox/Main";
+import { Container, Header, TweetContainer } from "./styles";
 import { useSelector } from "react-redux";
 import { RootStore } from "@/Store/Data/Store";
 
@@ -12,9 +12,9 @@ const MainHome = () => {
         <h2>Home</h2>
       </Header>
       <Tweetbox />
-      <Tweet />
-      <Tweet />
-      <Tweet />
+      <TweetContainer>
+        <Tweet />
+      </TweetContainer>
     </Container>
   );
 };

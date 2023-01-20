@@ -21,14 +21,12 @@ import {
 const Tweet: React.FC = () => {
   return (
     <Container>
-      <Retweeted>
+      {/* <Retweeted>
         <RetweetIcon />
         Wassup
-      </Retweeted>
-
+      </Retweeted> */}
       <Body>
         <Avatar />
-
         <Content>
           <Header>
             <strong>Yeah</strong>
@@ -48,8 +46,8 @@ const Tweet: React.FC = () => {
           <Description>Haha</Description>
 
           <ImageContent>
-            <img src="https://twitter.clone.swj-dev.p-e.kr/cdn/test/testGif.gif" />
-            {/* <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--7THYTvyf--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/oj0mjcfvpgzkf18w42n8.png" /> */}
+            {/* <img src="https://twitter.clone.swj-dev.p-e.kr/cdn/test/testGif.gif" /> */}
+            <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--7THYTvyf--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/oj0mjcfvpgzkf18w42n8.png" />
           </ImageContent>
 
           <Icons>
