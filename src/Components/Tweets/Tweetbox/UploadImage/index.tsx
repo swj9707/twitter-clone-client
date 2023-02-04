@@ -1,13 +1,5 @@
 import { ImageObj } from "@/Store/Type/Tweet/Tweet";
-import {
-  FC,
-  memo,
-  ReactElement,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-} from "react";
+import { FC, memo, ReactElement, useCallback, useEffect, useRef } from "react";
 import { FileIcon, InputButton } from "./styles";
 
 interface UploadImageProps {
@@ -15,7 +7,7 @@ interface UploadImageProps {
   onChangeImages: (callback: (prev: ImageObj[]) => ImageObj[]) => void;
 }
 
-const MAX_IMAGE = 4;
+const MAX_IMAGE = 1;
 
 const UploadImages: FC<UploadImageProps> = memo(
   ({ imageCount, onChangeImages }): ReactElement => {

@@ -1,5 +1,5 @@
 import { ImageObj } from "@/Store/Type/Tweet/Tweet";
-import { FC, memo, ReactElement, useMemo } from "react";
+import { FC, memo, ReactElement } from "react";
 import { CancelIcon, ImageContainer, ImageContent } from "./styles";
 
 interface AddTweetImageProps {

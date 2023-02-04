@@ -1,7 +1,6 @@
 import {
   Container,
   Content,
-  FileIcon,
   Footer,
   FooterAddForm,
   FooterWrapper,
@@ -10,13 +9,11 @@ import {
   TweetTextArea,
 } from "./styles";
 import { ChangeEvent, useCallback, useRef, useState } from "react";
-import { ImageObj } from "@/Store/Type/Tweet/Tweet";
+import { ImageObj, TweetImage, TweetRequest } from "@/Store/Type/Tweet/Tweet";
 import ProfileAvatar from "../ProfileAvatar";
 import UploadImages from "../UploadImage";
 import AddTweetImage from "../AddTweetImage";
-
-const MAX_LENGTH = 120;
-const MAX_IMAGE = 4;
+import { createTweet, uploadTweetImage } from "@/Service/Tweet/TweetService";
 
 const Tweetbox = () => {
   const [tweet, setTweet] = useState("");
@@ -24,23 +21,54 @@ const Tweetbox = () => {
 
   const imageCount = images.length;
 
-  const textarea = useRef();
-
-  const removeImage = useCallback(
-    (src: string) => {
-      setImages((prev) => prev.filter((obj) => obj.src !== src));
-    },
-    [images]
-  );
+  const removeImage = useCallback((src: string) => {
+    setImages((prev) => prev.filter((obj) => obj.src !== src));
+  }, []);
 
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTweet(e.target.value);
   };
 
   const onClickSubmit = () => {
-    //트윗 데이터 생성
-    //이미지 데이터 묶음 생성
-    //그 담부터??
+    let result: Array<TweetImage> = [];
+    let request: TweetRequest = {
+      tweetContent: tweet,
+      tweetImages: undefined,
+    };
+
+    if (images.length !== 0) {
+      images.forEach((element) => {
+        const file: File = element.file;
+        uploadTweetImage(file)
+          .then((res) => {
+            const image: TweetImage = res.data;
+            result.push(image);
+          })
+          .then(() => {
+            request.tweetImages = result;
+            createTweet(request);
+          })
+          .then(() => {
+            alert("트윗이 등록되었습니다.");
+            setTweet("");
+            setImages([]);
+          })
+          .catch(() => {
+            alert("트윗 생성 과정에서 오류가 발생했습니다.");
+            return;
+          });
+      });
+    } else {
+      createTweet(request)
+        .then(() => {
+          alert("트윗이 등록되었습니다.");
+          setTweet("");
+          setImages([]);
+        })
+        .catch(() => {
+          alert("트윗 생성 과정에서 오류가 발생하였습니다.");
+        });
+    }
   };
 
   return (
@@ -62,7 +90,7 @@ const Tweetbox = () => {
           <UploadImages imageCount={imageCount} onChangeImages={setImages} />
         </FooterWrapper>
         <FooterAddForm>
-          <TweetBoxButton>Tweet</TweetBoxButton>
+          <TweetBoxButton onClick={onClickSubmit}>Tweet</TweetBoxButton>
         </FooterAddForm>
       </Footer>
     </Container>

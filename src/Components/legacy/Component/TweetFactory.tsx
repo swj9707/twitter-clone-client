@@ -36,15 +36,15 @@ const TweetFactory = ({ userObj }: { userObj: TwitterUserDTO | null }) => {
       });
     }
 
-    await createTweet(tweetObject)
-      .then(() => {
-        alert("Tweet이 등록되었습니다.");
-        setTweet("");
-        window.location.reload();
-      })
-      .catch(() => {
-        alert("Tweet 생성 시 에러가 발생하였습니다.");
-      });
+    // await createTweet(tweetObject)
+    //   .then(() => {
+    //     alert("Tweet이 등록되었습니다.");
+    //     setTweet("");
+    //     window.location.reload();
+    //   })
+    //   .catch(() => {
+    //     alert("Tweet 생성 시 에러가 발생하였습니다.");
+    //   });
   };
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
