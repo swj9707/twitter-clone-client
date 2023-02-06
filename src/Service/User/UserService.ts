@@ -1,6 +1,10 @@
-import { BaseResponse } from "@/Store/Type/BaseResponse";
-import { EditUserPassword, EditUserProfile } from "../../Store/Type/User/User";
+import { BaseResponse } from "@/Data/Type/BaseResponse";
+import { EditUserPassword, EditUserProfile } from "@/Data/Type/User/User";
 import { CustomAxios } from "../Api/CustomAxios";
+
+// export async function getUserInfo() {
+
+// }
 
 export async function editUserProfile(EditUserProfile: EditUserProfile) {
   const response: BaseResponse = await CustomAxios.put(

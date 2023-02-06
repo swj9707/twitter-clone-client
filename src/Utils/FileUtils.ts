@@ -1,4 +1,4 @@
-import { TweetImageMeta } from "@/Store/Type/Tweet/Tweet";
+import { TweetImageMeta } from "@/Data/Type/Tweet/Tweet";
 
 export function checkImage(file: TweetImageMeta) {
   if (file.size > 1024 * 1024) {

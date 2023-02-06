@@ -9,7 +9,7 @@ import {
   TweetTextArea,
 } from "./styles";
 import { ChangeEvent, useCallback, useRef, useState } from "react";
-import { ImageObj, TweetImage, TweetRequest } from "@/Store/Type/Tweet/Tweet";
+import { ImageObj, TweetImage, TweetRequest } from "@/Data/Type/Tweet/Tweet";
 import ProfileAvatar from "../ProfileAvatar";
 import UploadImages from "../UploadImage";
 import AddTweetImage from "../AddTweetImage";

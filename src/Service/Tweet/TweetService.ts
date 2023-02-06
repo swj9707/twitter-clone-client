@@ -3,8 +3,8 @@ import {
   UpdateTweet,
   DeleteTweet,
   TweetRequest,
-} from "../../Store/Type/Tweet/Tweet";
-import { BaseResponse } from "@/Store/Type/BaseResponse";
+} from "@/Data/Type/Tweet/Tweet";
+import { BaseResponse } from "@/Data/Type/BaseResponse";
 
 export async function createTweet(request: TweetRequest) {
   const response: BaseResponse = await CustomAxios.post(

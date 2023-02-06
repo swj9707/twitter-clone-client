@@ -1,6 +1,6 @@
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootStore } from "@/Store/Data/Store";
+import { RootStore } from "@/Data/Store/Store";
 import AppSidebar from "@/Components/Sidebar/AppSidebar";
 import WidgetBar from "@/Components/Appbar";
 import { RootContainer, RootWrapper } from "@/Components/Layout/styles";

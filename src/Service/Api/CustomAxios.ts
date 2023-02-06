@@ -1,8 +1,8 @@
 import backendConfig from "@/Config/api-config";
 import axios, { AxiosError } from "axios";
-import { FailureResponse } from "../../Store/Type/BaseResponse";
+import { FailureResponse } from "@/Data/Type/BaseResponse";
 import { refreshToken } from "../Auth/AuthService";
-import { persistor } from "@/Store/Data/Store";
+import { persistor } from "@/Data/Store/Store";
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 

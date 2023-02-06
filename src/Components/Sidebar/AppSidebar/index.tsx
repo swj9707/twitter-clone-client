@@ -18,8 +18,8 @@ import { useState } from "react";
 import Tweetbox from "@/Components/Tweets/Tweetbox/Main";
 import CustomModal from "@/Components/Modal";
 import { requestLogout } from "@/Service/Auth/AuthService";
-import { logout } from "@/Store/Slices/AuthReducer";
-import { LogoutResponse } from "@/Store/Type/Auth/AuthRes";
+import { logout } from "@/Data/Slices/AuthReducer";
+import { LogoutResponse } from "@/Data/Type/Auth/AuthRes";
 import { useDispatch } from "react-redux";
 
 const AppSidebar = () => {

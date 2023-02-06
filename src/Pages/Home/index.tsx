@@ -2,7 +2,7 @@ import Tweet from "@/Components/Tweets/Tweet";
 import Tweetbox from "@/Components/Tweets/Tweetbox/Main";
 import { Container, Header, TweetContainer } from "./styles";
 import { useSelector } from "react-redux";
-import { RootStore } from "@/Store/Data/Store";
+import { RootStore } from "@/Data/Store/Store";
 import { useEffect } from "react";
 import { readAllTweets } from "@/Service/Tweet/TweetService";
 

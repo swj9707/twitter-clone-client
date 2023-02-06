@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { requestLogin } from "@/Service/Auth/AuthService";
-import { login_success, login_fail } from "@/Store/Slices/AuthReducer";
+import { login_success, login_fail } from "@/Data/Slices/AuthReducer";
 import {
   AuthForm,
   BtnBlue,
@@ -12,7 +12,7 @@ import {
   Title,
   Wrapper,
 } from "./styles";
-import { BaseResponse } from "@/Store/Type/BaseResponse";
+import { BaseResponse } from "@/Data/Type/BaseResponse";
 
 const AuthPage = () => {
   const [email, setEmail] = useState("");
