@@ -86,7 +86,7 @@ const SignUpPage = () => {
               width: "40%",
               marginRight: "10px",
             }}
-            type="button"
+            type="submit"
             value="Sign up"
           />
           <BtnBlue

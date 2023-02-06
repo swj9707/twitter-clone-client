@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { requestLogin } from "@/Service/Auth/AuthService";
 import { login_success, login_fail } from "@/Store/Slices/AuthReducer";
-import { LoginResponse } from "@/Store/Type/Auth/AuthRes";
 import {
   AuthForm,
   BtnBlue,

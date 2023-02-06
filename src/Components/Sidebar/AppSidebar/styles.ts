@@ -25,7 +25,7 @@ export const Container = styled.div`
 
     padding: 9px 19px 20px;
 
-    max-height: 100vh;
+    height: 100vh;
     overflow-y: auto;
   }
 `;

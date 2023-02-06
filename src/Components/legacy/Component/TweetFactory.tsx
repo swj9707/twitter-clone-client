@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  createTweet,
-  uploadTweetImageTest,
-} from "../../../Service/Tweet/TweetService";
+import { uploadTweetImageTest } from "../../../Service/Tweet/TweetService";
 import { CreateTweet, TweetImageMeta } from "../../../Store/Type/Tweet/Tweet";
 import { TwitterUserDTO } from "../../../Store/Type/Auth/Auth";
 import { getTweetImageName } from "@/Utils/StringUtils";
@@ -36,15 +33,15 @@ const TweetFactory = ({ userObj }: { userObj: TwitterUserDTO | null }) => {
       });
     }
 
-    await createTweet(tweetObject)
-      .then(() => {
-        alert("Tweet이 등록되었습니다.");
-        setTweet("");
-        window.location.reload();
-      })
-      .catch(() => {
-        alert("Tweet 생성 시 에러가 발생하였습니다.");
-      });
+    // await createTweet(tweetObject)
+    //   .then(() => {
+    //     alert("Tweet이 등록되었습니다.");
+    //     setTweet("");
+    //     window.location.reload();
+    //   })
+    //   .catch(() => {
+    //     alert("Tweet 생성 시 에러가 발생하였습니다.");
+    //   });
   };
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {

@@ -38,3 +38,5 @@ export const Header = styled.div`
     }
   }
 `;
+
+export const TweetContainer = styled.div``;

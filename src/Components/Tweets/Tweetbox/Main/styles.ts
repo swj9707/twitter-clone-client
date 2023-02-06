@@ -1,9 +1,10 @@
 import styled, { css } from "styled-components";
 import { FileMedia } from "@styled-icons/octicons";
+import { TextareaAutosize, styled as MUIStyled } from "@mui/material";
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding: 14px 16px;
   border-bottom: 1px solid var(--outline);
   padding-right: 10px;
@@ -15,6 +16,55 @@ export const Container = styled.div`
     flex-direction: column;
     width: 100%;
   }
+`;
+
+export const Content = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+export const TextareaWrapper = styled.div`
+  margin-left: 20px;
+  width: 100%;
+`;
+
+export const TweetTextArea = MUIStyled(TextareaAutosize)({
+  width: "100%",
+  border: "0",
+  fontSize: "20",
+  outline: "none",
+  resize: "none",
+});
+
+export const ContentTextArea = styled.div`
+  width: 100%;
+  border: 0;
+  fontsize: 20;
+  outline: none;
+  resize: none;
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const FooterWrapper = styled.div`
+  display: flex;
+  position: relative;
+  padding-top: 5;
+  padding-bottom: 5;
+  left: -13;
+  justify-content: space-between;
+  max-width: 450;
+  margin-top: 10;
+  padding-left: 70;
+`;
+
+export const FooterAddForm = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const Avatar = styled.div`

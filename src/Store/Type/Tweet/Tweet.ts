@@ -27,3 +27,20 @@ export interface UpdateTweet {
 export interface DeleteTweet {
   tweetId: number;
 }
+
+/// 위에 있는건 다 레거시임
+
+export interface ImageObj {
+  src: string;
+  file: File;
+}
+
+export interface TweetImage {
+  imageId: number;
+  imageUrl: string;
+}
+
+export interface TweetRequest {
+  tweetContent: string;
+  tweetImages?: Array<TweetImage>;
+}
