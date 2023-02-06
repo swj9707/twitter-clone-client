@@ -27,10 +27,6 @@ const authReducer = createSlice({
         "ACCESS_TOKEN",
         action.payload.data.tokenInfo.accessToken
       );
-      localStorage.setItem(
-        "USER_INFO",
-        JSON.stringify(action.payload.data.userInfo)
-      );
     },
     login_fail: (state: userState) => {
       state.isLoggedIn = false;
@@ -39,15 +35,12 @@ const authReducer = createSlice({
     logout: (state: userState) => {
       state.isLoggedIn = false;
       state.user = null;
-      localStorage.removeItem("USER_INFO");
-      localStorage.removeItem("ACCESS_TOKEN");
     },
     change_username: (
       state: userState,
       action: PayloadAction<EditProfileRes>
     ) => {
       state.user = action.payload.data.userInfo;
-      localStorage.setItem("USER_INFO", JSON.stringify(state.user));
     },
   },
 });

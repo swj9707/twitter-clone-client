@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import storage from "redux-persist/lib/storage";
-import { persistReducer } from "redux-persist";
+import { persistReducer, persistStore } from "redux-persist";
 import { configureStore } from "@reduxjs/toolkit";
 import AuthReducer from "../Slices/AuthReducer";
 import thunk from "redux-thunk";
@@ -23,3 +23,4 @@ const store = configureStore({
 export default store;
 export type RootStore = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
+export const persistor = persistStore(store);

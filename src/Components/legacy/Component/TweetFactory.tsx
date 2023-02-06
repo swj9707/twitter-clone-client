@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  createTweet,
-  uploadTweetImageTest,
-} from "../../../Service/Tweet/TweetService";
+import { uploadTweetImageTest } from "../../../Service/Tweet/TweetService";
 import { CreateTweet, TweetImageMeta } from "../../../Store/Type/Tweet/Tweet";
 import { TwitterUserDTO } from "../../../Store/Type/Auth/Auth";
 import { getTweetImageName } from "@/Utils/StringUtils";

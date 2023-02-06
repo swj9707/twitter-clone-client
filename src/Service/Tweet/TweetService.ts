@@ -1,6 +1,5 @@
 import { CustomAxios } from "../Api/CustomAxios";
 import {
-  CreateTweet,
   UpdateTweet,
   DeleteTweet,
   TweetRequest,
