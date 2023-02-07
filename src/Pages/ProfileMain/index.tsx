@@ -1,16 +1,27 @@
 import ProfilePage from "@/Components/Profile";
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { Container, Header, BackIcon, ProfileInfo } from "./styles";
 import { useSelector } from "react-redux";
 import { RootStore } from "@/Data/Store/Store";
+import { TwitterUserProfile } from "@/Data/Type/User/User";
+import { getUserInfo } from "@/Service/User/UserService";
 
 const ProfileMain: React.FC = () => {
   const navigate = useNavigate();
-  const user = useSelector((state: RootStore) => state.AuthReducer);
+  const params = useParams<{ userName: string }>();
+  const [userInfo, setUserInfo] = useState<TwitterUserProfile>();
+  const [isMyProfile, setIsMyProfile] = useState(false);
 
-  useEffect(() => {}, []);
+  // useEffect(() => {
+  //   if (params.userName) {
+  //     getUserInfo(params.userName).then((res) => {
+  //       setUserInfo(res.data);
+  //       console.log(userInfo);
+  //     });
+  //   }
+  // }, []);
 
   return (
     <Container>

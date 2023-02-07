@@ -8,7 +8,7 @@ import {
   TweetBoxButton,
   TweetTextArea,
 } from "./styles";
-import { ChangeEvent, useCallback, useRef, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import { ImageObj, TweetImage, TweetRequest } from "@/Data/Type/Tweet/Tweet";
 import ProfileAvatar from "../ProfileAvatar";
 import UploadImages from "../UploadImage";

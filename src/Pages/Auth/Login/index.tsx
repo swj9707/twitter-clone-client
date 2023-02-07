@@ -35,7 +35,6 @@ const AuthPage = () => {
       userEmail: email,
       password: password,
     }).then((res: BaseResponse) => {
-      console.log(res);
       if (res.status === "OK") {
         dispatch(login_success(res));
         alert("로그인 되었습니다.");

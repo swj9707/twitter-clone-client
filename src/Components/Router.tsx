@@ -7,14 +7,19 @@ import { RootContainer, RootWrapper } from "@/Components/Layout/styles";
 import ProfileMain from "@/Pages/ProfileMain";
 import MainHome from "@/Pages/Home";
 import AuthPage from "@/Pages/Auth/Login";
-
 import FooterMenu from "./FooterMenu";
 import SetupPage from "@/Pages/SetupPage";
 import TweetDetail from "@/Pages/TweetDetail";
 import SignUpPage from "@/Pages/Auth/Signup";
+import { useEffect } from "react";
 
 const AppRouter = () => {
   const user = useSelector((state: RootStore) => state.AuthReducer);
+
+  useEffect(() => {
+    // 유저 정보 패칭
+  }, []);
+
   return (
     <Router>
       <RootContainer>
@@ -24,7 +29,7 @@ const AppRouter = () => {
               <AppSidebar />
               <Routes>
                 <Route path="/" element={<MainHome />} />
-                <Route path="/profile" element={<ProfileMain />} />
+                <Route path="/profile/:userName" element={<ProfileMain />} />
                 <Route path="/setup" element={<SetupPage />} />
                 <Route path="/tweet" element={<TweetDetail />} />
               </Routes>
