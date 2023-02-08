@@ -9,11 +9,14 @@ import {
   TweetTextArea,
 } from "./styles";
 import { ChangeEvent, useCallback, useState } from "react";
-import { ImageObj, TweetImage, TweetRequest } from "@/Data/Type/Tweet/Tweet";
+import { ImageObj, TweetRequest } from "@/Data/Type/Tweet/Tweet";
 import ProfileAvatar from "../ProfileAvatar";
 import UploadImages from "../UploadImage";
 import AddTweetImage from "../AddTweetImage";
-import { createTweet, uploadTweetImage } from "@/Service/Tweet/TweetService";
+import { createTweet } from "@/Service/Tweet/TweetService";
+import { UploadImageRes } from "@/Data/Type/Image/ImageRes";
+import { uploadImage } from "@/Service/Image/ImageService";
+import { ImageInfo } from "@/Data/Type/Image/Image";
 
 const Tweetbox = () => {
   const [tweet, setTweet] = useState("");
@@ -29,46 +32,30 @@ const Tweetbox = () => {
     setTweet(e.target.value);
   };
 
-  const onClickSubmit = () => {
-    let result: Array<TweetImage> = [];
+  const onClickSubmit = async () => {
     let request: TweetRequest = {
       tweetContent: tweet,
-      tweetImages: undefined,
+      tweetImages: [],
     };
 
-    if (images.length !== 0) {
-      images.forEach((element) => {
-        const file: File = element.file;
-        uploadTweetImage(file)
-          .then((res) => {
-            const image: TweetImage = res.data;
-            result.push(image);
-          })
-          .then(() => {
-            request.tweetImages = result;
-            createTweet(request);
-          })
-          .then(() => {
-            alert("트윗이 등록되었습니다.");
-            setTweet("");
-            setImages([]);
-          })
-          .catch(() => {
-            alert("트윗 생성 과정에서 오류가 발생했습니다.");
-            return;
-          });
-      });
-    } else {
-      createTweet(request)
-        .then(() => {
-          alert("트윗이 등록되었습니다.");
-          setTweet("");
-          setImages([]);
-        })
-        .catch(() => {
-          alert("트윗 생성 과정에서 오류가 발생하였습니다.");
-        });
+    for (const element of images) {
+      const file = element.file;
+      const res: UploadImageRes = await uploadImage(file);
+      const tweetImageData: ImageInfo = res.data;
+      request.tweetImages.push(tweetImageData);
     }
+
+    await createTweet(request)
+      .then(() => {
+        alert("트윗이 등록되었습니다.");
+        setTweet("");
+        setImages([]);
+      })
+      .catch(() => {
+        alert("트윗 생성 과정에서 오류가 발생했습니다.");
+        setTweet("");
+        setImages([]);
+      });
   };
 
   return (

@@ -4,24 +4,34 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { Container, Header, BackIcon, ProfileInfo } from "./styles";
 import { useSelector } from "react-redux";
-import { RootStore } from "@/Data/Store/Store";
+import { RootStore } from "@/Data/Store";
 import { TwitterUserProfile } from "@/Data/Type/User/User";
-import { getUserInfo } from "@/Service/User/UserService";
+import { getUserProfile } from "@/Service/User/UserService";
 
 const ProfileMain: React.FC = () => {
   const navigate = useNavigate();
-  const params = useParams<{ userName: string }>();
-  const [userInfo, setUserInfo] = useState<TwitterUserProfile>();
-  const [isMyProfile, setIsMyProfile] = useState(false);
+  const userInfo = useSelector((state: RootStore) => state.UserInfoReducer);
 
-  // useEffect(() => {
-  //   if (params.userName) {
-  //     getUserInfo(params.userName).then((res) => {
-  //       setUserInfo(res.data);
-  //       console.log(userInfo);
-  //     });
-  //   }
-  // }, []);
+  const params = useParams<{ userName: string }>();
+  const [userProfile, setUserProfile] = useState<TwitterUserProfile>();
+  const [countOfTweets, setCountOfTweets] = useState(0);
+  const [isMyProfile, setIsMyProfile] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (params.userName === userInfo.userName) {
+      setIsMyProfile(true);
+    }
+  }, [userProfile]);
+
+  useEffect(() => {
+    console.log("Profile");
+    if (params.userName) {
+      getUserProfile(params.userName).then((res) => {
+        setUserProfile(res.data.userProfile);
+        setCountOfTweets(res.data.countOfTweet);
+      });
+    }
+  }, []);
 
   return (
     <Container>
@@ -31,11 +41,15 @@ const ProfileMain: React.FC = () => {
         </button>
 
         <ProfileInfo>
-          <strong>Wassup</strong>
-          <span> 2.345 Tweets</span>
+          <strong>{userProfile?.userNickname}</strong>
+          <span> {countOfTweets} Tweets</span>
         </ProfileInfo>
       </Header>
-      <ProfilePage />
+      <ProfilePage
+        isMyProfile={isMyProfile}
+        profileImage={userProfile?.profileImage}
+        backgroundImage={userProfile?.backgroundImage}
+      />
     </Container>
   );
 };

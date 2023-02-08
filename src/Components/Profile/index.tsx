@@ -4,19 +4,25 @@ import Feed from "../Feed";
 import {
   Container,
   Banner,
-  Avatar,
+  CustomAvatar,
   ProfileData,
   CakeIcon,
   Followage,
   EditButton,
 } from "./styles";
 import ProfileEdit from "../ProfileEdit";
+import { ImageInfo } from "@/Data/Type/Image/Image";
+import { useSelector } from "react-redux";
+import { RootStore } from "@/Data/Store";
 
-interface ProfilePageProps {
-  children: React.ReactNode;
+interface profilePageProps {
+  isMyProfile: boolean;
+  profileImage: ImageInfo | undefined;
+  backgroundImage: ImageInfo | undefined;
 }
 
-const ProfilePage = () => {
+const ProfilePage = (props: profilePageProps) => {
+  const userInfo = useSelector((state: RootStore) => state.UserInfoReducer);
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -30,33 +36,33 @@ const ProfilePage = () => {
   return (
     <Container>
       <Banner>
-        <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--7THYTvyf--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/oj0mjcfvpgzkf18w42n8.png" />
-        <Avatar>
-          <img src="https://twitter.clone.swj-dev.p-e.kr/cdn/test/testGif.gif" />
-        </Avatar>
+        <img src={props.backgroundImage?.imageUrl} alt="" />
+        <CustomAvatar src={props.profileImage?.imageUrl} alt="" />
       </Banner>
 
       <ProfileData>
-        <EditButton onClick={handleClickOpen} outlined>
-          Edit Profile
-        </EditButton>
+        {props.isMyProfile && (
+          <EditButton onClick={handleClickOpen} outlined>
+            Edit Profile
+          </EditButton>
+        )}
 
-        <h1>Wassup</h1>
-        <h2>email@email.com</h2>
+        <h1>{userInfo.userNickname}</h1>
+        <h2>@{userInfo.userName}</h2>
 
         <ul>
           <li>
             <CakeIcon />
-            Joined December 2022
+            Last Login {userInfo.lastLogin}
           </li>
         </ul>
 
         <Followage>
           <span>
-            <strong>2.564</strong> following
+            <strong>0</strong> following
           </span>
           <span>
-            <strong>8.965</strong> followers
+            <strong>0</strong> followers
           </span>
         </Followage>
       </ProfileData>

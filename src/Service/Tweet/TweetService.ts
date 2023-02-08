@@ -14,34 +14,6 @@ export async function createTweet(request: TweetRequest) {
   return response;
 }
 
-export async function uploadTweetImageTest(request: FormData) {
-  const response: BaseResponse = await CustomAxios.post(
-    "/api/v1/tweet/uploadImage",
-    request,
-    {
-      headers: {
-        "Content-Type": "application/form-data",
-      },
-    }
-  ).then((res) => res.data);
-  return response;
-}
-
-export async function uploadTweetImage(image: File) {
-  const formData = new FormData();
-  formData.append("file", image);
-  const response: BaseResponse = await CustomAxios.post(
-    "/api/v1/tweet/uploadTweetImage",
-    formData,
-    {
-      headers: {
-        "Content-Type": "application/form-data",
-      },
-    }
-  ).then((res) => res.data);
-  return response;
-}
-
 export async function readTweets(pageNo: number) {
   const response: BaseResponse = await CustomAxios.get("/api/v1/tweet/read", {
     params: { pageNo: pageNo },

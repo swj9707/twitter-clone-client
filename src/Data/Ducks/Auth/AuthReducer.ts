@@ -1,22 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { userState, TwitterUserAuthInfo } from "../Type/Auth/Auth";
-import { LoginResponse } from "../Type/Auth/AuthRes";
-import { EditProfileRes } from "../Type/User/UserRes";
+import { userState, TwitterUserAuthInfo } from "../../Type/Auth/Auth";
+import { LoginResponse } from "../../Type/Auth/AuthRes";
+import { EditProfileRes } from "../../Type/User/UserRes";
 
-const user: TwitterUserAuthInfo = {
+const userInitState: TwitterUserAuthInfo = {
   userId: "",
   provider: "",
 };
-const initialState: userState = user
-  ? {
-      isLoggedIn: true,
-      user: user,
-    }
-  : {
-      isLoggedIn: false,
-      user: null,
-    };
+const initialState: userState = {
+  isLoggedIn: true,
+  user: userInitState,
+};
 
 const authReducer = createSlice({
   name: "authReducer",
@@ -32,11 +27,11 @@ const authReducer = createSlice({
     },
     login_fail: (state: userState) => {
       state.isLoggedIn = false;
-      state.user = null;
+      state.user = userInitState;
     },
     logout: (state: userState) => {
       state.isLoggedIn = false;
-      state.user = null;
+      state.user = userInitState;
     },
     change_username: (
       state: userState,

@@ -36,6 +36,7 @@ html {
   --secondary: #15181C;
   --search: #202327;
   --white: #D9D9D9;
+  --darkGray : #424242;
   --gray: #7A7A7A;
   --outline: #2F3336;
   --retweet: #00C06B;

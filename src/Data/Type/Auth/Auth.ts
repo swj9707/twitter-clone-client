@@ -11,7 +11,7 @@ export interface signupForm {
 
 export interface userState {
   isLoggedIn: boolean;
-  user: TwitterUserAuthInfo | null;
+  user: TwitterUserAuthInfo;
 }
 
 export interface TwitterUserAuthInfo {
