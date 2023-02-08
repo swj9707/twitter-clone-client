@@ -1,6 +1,8 @@
 import { memo, ReactElement } from "react";
 import { Link } from "react-router-dom";
 import { Avatar, styled as MUIStyled } from "@mui/material";
+import { useSelector } from "react-redux";
+import { RootStore } from "@/Data/Store";
 
 const CustomAvatar = MUIStyled(Avatar)({
   width: "49px",
@@ -16,9 +18,11 @@ const CustomAvatar = MUIStyled(Avatar)({
 });
 
 const ProfileAvatar = memo((): ReactElement => {
+  const userInfo = useSelector((state: RootStore) => state.UserInfoReducer);
+
   return (
     <Link to="/">
-      <CustomAvatar src="https://twitter.clone.swj-dev.p-e.kr/cdn/tweetImage/2023-01-09-2cb65775-e974-228d-e273-5f8eccd557e8-.png" />
+      <CustomAvatar src={userInfo.profileImage?.imageUrl} alt="" />
     </Link>
   );
 });

@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 
 import { LocationOn, Cake } from "@/Styles/Icons";
 import button from "../button";
+import { Avatar, styled as MUIStyled } from "@mui/material";
 
 export const Container = styled.div`
   display: flex;
@@ -21,7 +22,7 @@ export const Banner = styled.div`
 
   width: 100%;
   height: min(33vw, 199px);
-  background: var(--twitter);
+  background: var(--darkGray);
   position: relative;
   img {
     width: 100%;
@@ -29,20 +30,21 @@ export const Banner = styled.div`
   }
 `;
 
-export const Avatar = styled.div`
-  > img {
-    border: 3.75px solid var(--primary);
-    width: max(45px, min(135px, 22vw));
-    height: max(45px, min(135px, 22vw));
+export const CustomAvatar = MUIStyled(Avatar)({
+  width: "max(45px, min(135px, 22vw))",
+  height: "max(45px, min(135px, 22vw))",
+  borderRadius: "50%",
+  position: "absolute",
+  bottom: "max(-60px, -10vw)",
+  left: "15px",
 
-    background: var(--gray);
-    border-radius: 50%;
-    position: absolute;
-
-    bottom: max(-60px, -10vw);
-    left: 15px;
-  }
-`;
+  background: "var(--gray)",
+  "& img": {
+    borderRadius: "50%",
+    width: "100%",
+    height: "auto",
+  },
+});
 
 export const ProfileData = styled.div`
   padding: min(calc(10vw + 7px), 67px) 16px 0;

@@ -1,3 +1,5 @@
+import { ImageInfo } from "../Image/Image";
+
 export interface TweetDTO {
   tweetId: number;
   userId: string;
@@ -35,12 +37,7 @@ export interface ImageObj {
   file: File;
 }
 
-export interface TweetImage {
-  imageId: number;
-  imageUrl: string;
-}
-
 export interface TweetRequest {
   tweetContent: string;
-  tweetImages?: Array<TweetImage>;
+  tweetImages: Array<ImageInfo>;
 }

@@ -3,41 +3,13 @@ import {
   UpdateTweet,
   DeleteTweet,
   TweetRequest,
-} from "../../Store/Type/Tweet/Tweet";
-import { BaseResponse } from "@/Store/Type/BaseResponse";
+} from "@/Data/Type/Tweet/Tweet";
+import { BaseResponse } from "@/Data/Type/BaseResponse";
 
 export async function createTweet(request: TweetRequest) {
   const response: BaseResponse = await CustomAxios.post(
     "/api/v1/tweet/create",
     request
-  ).then((res) => res.data);
-  return response;
-}
-
-export async function uploadTweetImageTest(request: FormData) {
-  const response: BaseResponse = await CustomAxios.post(
-    "/api/v1/tweet/uploadImage",
-    request,
-    {
-      headers: {
-        "Content-Type": "application/form-data",
-      },
-    }
-  ).then((res) => res.data);
-  return response;
-}
-
-export async function uploadTweetImage(image: File) {
-  const formData = new FormData();
-  formData.append("file", image);
-  const response: BaseResponse = await CustomAxios.post(
-    "/api/v1/tweet/uploadTweetImage",
-    formData,
-    {
-      headers: {
-        "Content-Type": "application/form-data",
-      },
-    }
   ).then((res) => res.data);
   return response;
 }

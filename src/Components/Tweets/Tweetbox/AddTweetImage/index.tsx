@@ -1,4 +1,4 @@
-import { ImageObj } from "@/Store/Type/Tweet/Tweet";
+import { ImageObj } from "@/Data/Type/Tweet/Tweet";
 import { FC, memo, ReactElement } from "react";
 import { CancelIcon, ImageContainer, ImageContent } from "./styles";
 

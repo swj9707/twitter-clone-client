@@ -1,11 +1,38 @@
 import ProfilePage from "@/Components/Profile";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { Container, Header, BackIcon, ProfileInfo } from "./styles";
+import { useSelector } from "react-redux";
+import { RootStore } from "@/Data/Store";
+import { TwitterUserProfile } from "@/Data/Type/User/User";
+import { getUserProfile } from "@/Service/User/UserService";
 
 const ProfileMain: React.FC = () => {
   const navigate = useNavigate();
+  const userInfo = useSelector((state: RootStore) => state.UserInfoReducer);
+
+  const params = useParams<{ userName: string }>();
+  const [userProfile, setUserProfile] = useState<TwitterUserProfile>();
+  const [countOfTweets, setCountOfTweets] = useState(0);
+  const [isMyProfile, setIsMyProfile] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (params.userName === userInfo.userName) {
+      setIsMyProfile(true);
+    }
+  }, [userProfile]);
+
+  useEffect(() => {
+    console.log("Profile");
+    if (params.userName) {
+      getUserProfile(params.userName).then((res) => {
+        setUserProfile(res.data.userProfile);
+        setCountOfTweets(res.data.countOfTweet);
+      });
+    }
+  }, []);
+
   return (
     <Container>
       <Header>
@@ -14,11 +41,15 @@ const ProfileMain: React.FC = () => {
         </button>
 
         <ProfileInfo>
-          <strong>Wassup</strong>
-          <span> 2.345 Tweets</span>
+          <strong>{userProfile?.userNickname}</strong>
+          <span> {countOfTweets} Tweets</span>
         </ProfileInfo>
       </Header>
-      <ProfilePage />
+      <ProfilePage
+        isMyProfile={isMyProfile}
+        profileImage={userProfile?.profileImage}
+        backgroundImage={userProfile?.backgroundImage}
+      />
     </Container>
   );
 };

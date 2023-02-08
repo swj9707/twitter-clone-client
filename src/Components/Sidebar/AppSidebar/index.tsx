@@ -1,5 +1,5 @@
 import {
-  Avatar,
+  CustomAvatar,
   Botside,
   Container,
   ExitIcon,
@@ -18,17 +18,19 @@ import { useState } from "react";
 import Tweetbox from "@/Components/Tweets/Tweetbox/Main";
 import CustomModal from "@/Components/Modal";
 import { requestLogout } from "@/Service/Auth/AuthService";
-import { logout } from "@/Store/Slices/AuthReducer";
-import { LogoutResponse } from "@/Store/Type/Auth/AuthRes";
-import { useDispatch } from "react-redux";
+import { logout } from "@/Data/Ducks/Auth/AuthReducer";
+import { LogoutResponse } from "@/Data/Type/Auth/AuthRes";
+import { useDispatch, useSelector } from "react-redux";
+import { RootStore } from "@/Data/Store";
 
 const AppSidebar = () => {
   const navigate = useNavigate();
+  const userInfo = useSelector((state: RootStore) => state.UserInfoReducer);
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
   const onClickLogout = () => {
-    requestLogout().then((res: LogoutResponse) => {
+    requestLogout().then(() => {
       alert("로그아웃 되었습니다.");
       dispatch(logout());
       navigate("/");
@@ -54,38 +56,24 @@ const AppSidebar = () => {
           <HomeIcon />
           <span> Home </span>
         </MenuButton>
-        {/* 
-        <MenuButton>
-          <BellIcon />
-          <span> Notification </span>
-        </MenuButton> */}
-
-        {/* <MenuButton>
-          <EmailIcon />
-          <span> Message </span>
-        </MenuButton> */}
-        <MenuButton onClick={() => navigate("/profile")}>
+        <MenuButton
+          onClick={() => {
+            navigate("/profile/" + userInfo.userName);
+          }}
+        >
           <ProfileIcon />
           <span> Profile </span>
         </MenuButton>
-        {/* <MenuButton onClick={() => navigate("/setup")}>
-          <MoreIcon />
-          <span> More </span>
-        </MenuButton> */}
-        {/* <TweetButton onClick={onClickToggleModal}>
-          <PencilIcon />
-          <span>Tweet</span>
-        </TweetButton> */}
         <TweetButton onClick={handleClickOpen}>
           <PencilIcon />
           <span>Tweet</span>
         </TweetButton>
       </Topside>
       <Botside>
-        <Avatar />
+        <CustomAvatar src={userInfo.profileImage?.imageUrl} alt="" />
         <ProfileData>
-          <strong>Test User</strong>
-          <span>@testuser</span>
+          <strong>{userInfo.userNickname}</strong>
+          <span>@{userInfo.userName}</span>
         </ProfileData>
         <ExitIcon onClick={onClickLogout} />
       </Botside>

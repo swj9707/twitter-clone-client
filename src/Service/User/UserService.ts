@@ -1,11 +1,48 @@
-import { BaseResponse } from "@/Store/Type/BaseResponse";
-import { EditUserPassword, EditUserProfile } from "../../Store/Type/User/User";
+import { BaseResponse } from "@/Data/Type/BaseResponse";
+import {
+  EditUserPassword,
+  EditUserProfile,
+  EditUserProfileReq,
+} from "@/Data/Type/User/User";
 import { CustomAxios } from "../Api/CustomAxios";
+import { UserProfileRes } from "@/Data/Type/User/UserRes";
+
+export async function getUserInfo(userId: String) {
+  const response: BaseResponse = await CustomAxios.get(
+    "/api/v1/user/getUserInfo",
+    {
+      params: {
+        userId: userId,
+      },
+    }
+  ).then((res) => res.data);
+  return response;
+}
+
+export async function getUserProfile(userName: String) {
+  const response: UserProfileRes = await CustomAxios.get(
+    "/api/v1/user/getUserProfile",
+    {
+      params: {
+        userName: userName,
+      },
+    }
+  ).then((res) => res.data);
+  return response;
+}
 
 export async function editUserProfile(EditUserProfile: EditUserProfile) {
   const response: BaseResponse = await CustomAxios.put(
     "/api/v1/user/editProfile",
     EditUserProfile
+  ).then((res) => res.data);
+  return response;
+}
+
+export async function editUserProfileReq(EditUserProfie: EditUserProfileReq) {
+  const response: BaseResponse = await CustomAxios.put(
+    "/api/v1/user/editUserProfile",
+    EditUserProfie
   ).then((res) => res.data);
   return response;
 }

@@ -1,9 +1,9 @@
 import { BaseResponse } from "../BaseResponse";
-import { TwitterUserDTO } from "./Auth";
+import { TwitterUserAuthInfo } from "./Auth";
 
 export interface LoginResponse extends BaseResponse {
   data: {
-    userInfo: TwitterUserDTO;
+    userInfo: TwitterUserAuthInfo;
     tokenInfo: {
       accessToken: string;
       refreshToken: string;

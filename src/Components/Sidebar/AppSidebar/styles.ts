@@ -10,6 +10,7 @@ import {
   MoreHorizontalOutline,
 } from "@/Styles/Icons";
 import styled, { css } from "styled-components";
+import { Avatar, styled as MUIStyled } from "@mui/material";
 
 export const Container = styled.div`
   display: none;
@@ -170,16 +171,18 @@ export const Botside = styled.div`
   display: flex;
   align-items: center;
 `;
-
-export const Avatar = styled.div`
-  width: 39px;
-  height: 39px;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-  background: var(--gray);
-`;
+export const CustomAvatar = MUIStyled(Avatar)({
+  width: "39px",
+  height: "39px",
+  borderRadius: "50%",
+  flexShrink: "0",
+  background: "var(--gray)",
+  "& img": {
+    borderRadius: "50%",
+    width: "100%",
+    height: "auto",
+  },
+});
 
 export const ProfileData = styled.div`
   display: none;

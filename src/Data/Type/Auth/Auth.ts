@@ -11,15 +11,10 @@ export interface signupForm {
 
 export interface userState {
   isLoggedIn: boolean;
-  user: TwitterUserDTO | null;
+  user: TwitterUserAuthInfo;
 }
 
-export interface TwitterUserDTO {
+export interface TwitterUserAuthInfo {
   userId: string;
-  email: string;
-  userName: string;
-  userRole: string;
   provider: string;
-  userStatus: string;
-  lastLogin?: Date;
 }

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { requestLogin } from "@/Service/Auth/AuthService";
-import { login_success, login_fail } from "@/Store/Slices/AuthReducer";
+import { login_success, login_fail } from "@/Data/Ducks/Auth/AuthReducer";
 import {
   AuthForm,
   BtnBlue,
@@ -12,7 +12,9 @@ import {
   Title,
   Wrapper,
 } from "./styles";
-import { BaseResponse } from "@/Store/Type/BaseResponse";
+import { LoginResponse } from "@/Data/Type/Auth/AuthRes";
+import { getUserInfo } from "@/Service/User/UserService";
+import { setUserInfo } from "@/Data/Ducks/User/UserInfoReducer";
 
 const AuthPage = () => {
   const [email, setEmail] = useState("");
@@ -34,17 +36,21 @@ const AuthPage = () => {
     requestLogin({
       userEmail: email,
       password: password,
-    }).then((res: BaseResponse) => {
-      console.log(res);
-      if (res.status === "OK") {
-        dispatch(login_success(res));
-        alert("로그인 되었습니다.");
-        navigate("/");
-      } else {
-        alert(res);
+    })
+      .then((res: LoginResponse) => {
+        if (res.status === "OK") {
+          dispatch(login_success(res));
+          alert("로그인 되었습니다.");
+          navigate("/");
+        } else {
+          alert(res);
+          dispatch(login_fail());
+        }
+      })
+      .catch(() => {
         dispatch(login_fail());
-      }
-    });
+        alert("로그인 과정에 문제가 생겼습니다.");
+      });
   };
 
   return (

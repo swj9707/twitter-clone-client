@@ -1,8 +1,7 @@
 import styled, { css } from "styled-components";
 import { LocationOn, Cake } from "@/Styles/Icons";
 import button from "../button";
-import { TextField, styled as MUIStyled, alpha } from "@mui/material";
-import InputBase from "@mui/material/InputBase";
+import { Avatar, styled as MUIStyled } from "@mui/material";
 
 export const Container = styled.div`
   display: flex;
@@ -48,15 +47,32 @@ export const Banner = styled.div`
 
   width: 100%;
   height: min(33vw, 199px);
-  background: var(--twitter-dark-hover);
+  background: var(--darkGray);
   position: relative;
   img {
+    border: none;
     width: 100%;
     height: 100%;
   }
 `;
 
-export const Avatar = styled.div`
+export const CustomAvatar = MUIStyled(Avatar)({
+  width: "max(45px, min(135px, 22vw))",
+  height: "max(45px, min(135px, 22vw))",
+  borderRadius: "50%",
+  position: "absolute",
+  bottom: "max(-60px, -10vw)",
+  left: "15px",
+
+  background: "var(--gray)",
+  "& img": {
+    borderRadius: "50%",
+    width: "100%",
+    height: "auto",
+  },
+});
+
+export const LegacyAvatar = styled.div`
   > img {
     border: 3.75px solid var(--primary);
     width: max(45px, min(135px, 22vw));

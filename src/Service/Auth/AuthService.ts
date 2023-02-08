@@ -1,5 +1,5 @@
-import { BaseResponse } from "@/Store/Type/BaseResponse";
-import loginForm, { signupForm } from "../../Store/Type/Auth/Auth";
+import { BaseResponse } from "@/Data/Type/BaseResponse";
+import loginForm, { signupForm } from "@/Data/Type/Auth/Auth";
 import { CustomAxios } from "../Api/CustomAxios";
 
 export async function requestLogin(loginForm: loginForm) {
