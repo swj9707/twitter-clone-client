@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store, { persistor } from "./Data/Store";
 import { PersistGate } from "redux-persist/integration/react";
+import "./index.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

@@ -13,8 +13,6 @@ import {
   Wrapper,
 } from "./styles";
 import { LoginResponse } from "@/Data/Type/Auth/AuthRes";
-import { getUserInfo } from "@/Service/User/UserService";
-import { setUserInfo } from "@/Data/Ducks/User/UserInfoReducer";
 
 const AuthPage = () => {
   const [email, setEmail] = useState("");

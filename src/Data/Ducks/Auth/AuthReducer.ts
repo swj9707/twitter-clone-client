@@ -9,7 +9,7 @@ const userInitState: TwitterUserAuthInfo = {
   provider: "",
 };
 const initialState: userState = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   user: userInitState,
 };
 

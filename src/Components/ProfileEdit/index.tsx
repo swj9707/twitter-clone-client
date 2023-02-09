@@ -8,14 +8,12 @@ import {
   ProfileData,
 } from "./styles";
 import { RootStore } from "@/Data/Store";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ImageObj } from "@/Data/Type/Tweet/Tweet";
-import { ImageInfo } from "@/Data/Type/Image/Image";
 import { UploadImageRes } from "@/Data/Type/Image/ImageRes";
 import { uploadImage } from "@/Service/Image/ImageService";
 import { EditUserProfileReq } from "@/Data/Type/User/User";
 import { editUserProfileReq } from "@/Service/User/UserService";
-import { Windows } from "styled-icons/boxicons-logos";
 
 const ProfileEdit = () => {
   const userInfo = useSelector((state: RootStore) => state.UserInfoReducer);
@@ -119,7 +117,7 @@ const ProfileEdit = () => {
 
           {profileImage !== undefined ? (
             <CustomAvatar
-              onClick={(e) => {
+              onClick={(e: any) => {
                 e.stopPropagation();
                 inputProfileRef.current?.click();
               }}
@@ -128,7 +126,7 @@ const ProfileEdit = () => {
             />
           ) : (
             <CustomAvatar
-              onClick={(e) => {
+              onClick={(e: any) => {
                 e.stopPropagation();
                 inputProfileRef.current?.click();
               }}
