@@ -9,6 +9,8 @@ export const Container = styled.div`
   border-bottom: 1px solid var(--outline);
   padding-right: 10px;
   width: 100%;
+  min-width: 399px;
+  background-color: var(--primary);
 
   height: auto;
   form {

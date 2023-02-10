@@ -6,32 +6,32 @@ import WidgetBar from "@/Components/Appbar";
 import { RootContainer, RootWrapper } from "@/Components/Layout/styles";
 import ProfileMain from "@/Pages/ProfileMain";
 import MainHome from "@/Pages/Home";
-import AuthPage from "@/Pages/Auth/Login";
 import FooterMenu from "./FooterMenu";
 import SetupPage from "@/Pages/SetupPage";
 import TweetDetail from "@/Pages/TweetDetail";
-import SignUpPage from "@/Pages/Auth/Signup";
 import { useEffect } from "react";
 import { getUserInfo } from "@/Service/User/UserService";
 import { setUserInfo } from "@/Data/Ducks/User/UserInfoReducer";
+import AuthPage from "@/Pages/Auth";
 
 const AppRouter = () => {
   const userAuthInfo = useSelector((state: RootStore) => state.AuthReducer);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("Router");
-    getUserInfo(userAuthInfo.user.userId).then((res) => {
-      dispatch(setUserInfo(res));
-    });
+    if (userAuthInfo.isLoggedIn !== false) {
+      getUserInfo(userAuthInfo.user.userId).then((res) => {
+        dispatch(setUserInfo(res));
+      });
+    }
   }, []);
 
   return (
     <Router>
       <RootContainer>
-        <RootWrapper>
-          {userAuthInfo.isLoggedIn ? (
-            <>
+        {userAuthInfo.isLoggedIn ? (
+          <>
+            <RootWrapper>
               <AppSidebar />
               <Routes>
                 <Route path="/" element={<MainHome />} />
@@ -41,14 +41,13 @@ const AppRouter = () => {
               </Routes>
               <WidgetBar />
               <FooterMenu />
-            </>
-          ) : (
-            <Routes>
-              <Route path="/" element={<AuthPage />} />
-              <Route path="/signup" element={<SignUpPage />} />
-            </Routes>
-          )}
-        </RootWrapper>
+            </RootWrapper>
+          </>
+        ) : (
+          <Routes>
+            <Route path="/" element={<AuthPage />} />
+          </Routes>
+        )}
       </RootContainer>
     </Router>
   );

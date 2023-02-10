@@ -19,9 +19,9 @@ import Tweetbox from "@/Components/Tweets/Tweetbox/Main";
 import CustomModal from "@/Components/Modal";
 import { requestLogout } from "@/Service/Auth/AuthService";
 import { logout } from "@/Data/Ducks/Auth/AuthReducer";
-import { LogoutResponse } from "@/Data/Type/Auth/AuthRes";
 import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "@/Data/Store";
+import AddTweetModal from "@/Components/ModalComponent/AddTweetModal";
 
 const AppSidebar = () => {
   const navigate = useNavigate();
@@ -77,7 +77,11 @@ const AppSidebar = () => {
         </ProfileData>
         <ExitIcon onClick={onClickLogout} />
       </Botside>
-      <CustomModal open={open} onClose={handleClose} children={<Tweetbox />} />
+      <CustomModal
+        open={open}
+        onClose={handleClose}
+        children={<AddTweetModal />}
+      />
     </Container>
   );
 };
