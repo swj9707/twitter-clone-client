@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import {
+  Wrapper,
   CustomAvatar,
   Banner,
   Container,
@@ -96,77 +97,79 @@ const ProfileEdit = () => {
   }, []);
 
   return (
-    <Container>
-      <form>
-        <Header>
-          <h2>Profile</h2>
-        </Header>
-        <EditButton onClick={onClickEditProfile} outlined>
-          Edit Profile
-        </EditButton>
-        <Banner
-          onClick={() => {
-            inputBackgroundRef.current?.click();
-          }}
-        >
-          {backgroundImage !== undefined ? (
-            <img src={backgroundImage.src} alt="" />
-          ) : (
-            <img src={userInfo.backgroundImage?.imageUrl} alt="" />
-          )}
-
-          {profileImage !== undefined ? (
-            <CustomAvatar
-              onClick={(e: any) => {
-                e.stopPropagation();
-                inputProfileRef.current?.click();
-              }}
-              src={profileImage.src}
-              alt=""
-            />
-          ) : (
-            <CustomAvatar
-              onClick={(e: any) => {
-                e.stopPropagation();
-                inputProfileRef.current?.click();
-              }}
-              src={userInfo.profileImage?.imageUrl}
-              alt=""
-            />
-          )}
-        </Banner>
-        <ProfileData>
-          <div
-            style={{
-              marginBottom: "10px",
+    <Wrapper>
+      <Container>
+        <form>
+          <Header>
+            <h2>Profile</h2>
+          </Header>
+          <EditButton onClick={onClickEditProfile} outlined>
+            Edit Profile
+          </EditButton>
+          <Banner
+            onClick={() => {
+              inputBackgroundRef.current?.click();
             }}
           >
-            <input
-              type="text"
-              placeholder="Username"
-              onChange={onChangeNickname}
-              value={userNickname}
-            />
-          </div>
-        </ProfileData>
-        <input
-          ref={inputBackgroundRef}
-          type="file"
-          accept="image/*"
-          id="upload-BannerImage"
-          onChange={onBannerImageChange}
-          hidden
-        />
-        <input
-          ref={inputProfileRef}
-          type="file"
-          accept="image/*"
-          id="upload-ProfileImage"
-          onChange={onProfileImageChange}
-          hidden
-        />
-      </form>
-    </Container>
+            {backgroundImage !== undefined ? (
+              <img src={backgroundImage.src} alt="" />
+            ) : (
+              <img src={userInfo.backgroundImage?.imageUrl} alt="" />
+            )}
+
+            {profileImage !== undefined ? (
+              <CustomAvatar
+                onClick={(e: any) => {
+                  e.stopPropagation();
+                  inputProfileRef.current?.click();
+                }}
+                src={profileImage.src}
+                alt=""
+              />
+            ) : (
+              <CustomAvatar
+                onClick={(e: any) => {
+                  e.stopPropagation();
+                  inputProfileRef.current?.click();
+                }}
+                src={userInfo.profileImage?.imageUrl}
+                alt=""
+              />
+            )}
+          </Banner>
+          <ProfileData>
+            <div
+              style={{
+                marginBottom: "10px",
+              }}
+            >
+              <input
+                type="text"
+                placeholder="Username"
+                onChange={onChangeNickname}
+                value={userNickname}
+              />
+            </div>
+          </ProfileData>
+          <input
+            ref={inputBackgroundRef}
+            type="file"
+            accept="image/*"
+            id="upload-BannerImage"
+            onChange={onBannerImageChange}
+            hidden
+          />
+          <input
+            ref={inputProfileRef}
+            type="file"
+            accept="image/*"
+            id="upload-ProfileImage"
+            onChange={onProfileImageChange}
+            hidden
+          />
+        </form>
+      </Container>
+    </Wrapper>
   );
 };
 

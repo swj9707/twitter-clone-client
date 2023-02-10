@@ -6,6 +6,7 @@ export default interface loginForm {
 export interface signupForm {
   userEmail: string;
   userName: string;
+  userNickname: string;
   password: string;
 }
 

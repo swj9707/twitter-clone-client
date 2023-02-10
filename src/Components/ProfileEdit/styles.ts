@@ -2,14 +2,36 @@ import styled, { css } from "styled-components";
 import { LocationOn, Cake } from "@/Styles/Icons";
 import button from "../button";
 import { Avatar, styled as MUIStyled } from "@mui/material";
+import tw from "twin.macro";
+
+export const Wrapper = styled.div`
+  ${tw`outline-none 
+  absolute
+   border 
+   top-1/4 
+   left-1/2
+    lg:left-1/2
+     transform 
+     -translate-x-1/2
+      -translate-y-1/4 
+      origin-center
+       w-2/3 
+       lg:w-1/2 
+       h-auto 
+       pt-2 
+       pb-3 
+       rounded-2xl 
+       flex 
+       flex-col 
+       justify-start
+        items-start`}
+`;
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-
+  width: min(601px, 100%);
   max-height: 100%;
   overflow-y: auto;
-
+  background: var(--primary);
   scrollbar-width: none; /**Firefox */
   ::-webkit-scrollbar {
     display: none;
@@ -26,7 +48,7 @@ export const Header = styled.div`
 
   text-align: left;
 
-  padding: 8px 0 9px 13px;
+  padding: 8px 9px 13px;
   border-bottom: 1px solid var(--outline);
 
   > button {
@@ -43,8 +65,6 @@ export const Header = styled.div`
 `;
 
 export const Banner = styled.div`
-  flex-shrink: 0;
-
   width: 100%;
   height: min(33vw, 199px);
   background: var(--darkGray);
@@ -52,7 +72,7 @@ export const Banner = styled.div`
   img {
     border: none;
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 `;
 
@@ -100,7 +120,7 @@ export const ProfileData = styled.div`
 export const EditButton = styled(button)`
   position: absolute;
   top: 2vw;
-  right: 7px;
+  right: 40px;
 
   padding: 4px 16px;
   font-size: 13px;

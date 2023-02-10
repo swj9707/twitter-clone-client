@@ -3,19 +3,32 @@ import RegisterContainer from "@/Components/RegisterContainer";
 import { useState } from "react";
 import twitterlogin from "@/Assets/twitter-auth.jpg";
 import logo from "@/Assets/twitter-logo-2.png";
+import {
+  Container,
+  AuthContainer,
+  BackgroundContainer,
+  BackgroundImage,
+  MainContainer,
+} from "./style";
+import CustomModal from "@/Components/Modal";
+import LoginFormModal from "@/Components/ModalComponent/LoginFormModal";
 
-const AuthPageTest = () => {
+const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const toggleLogin = () => setIsLogin(!isLogin);
+
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="w-full h-full bg-white transition delay-75 duration-300 dark:bg-black ">
-      <div className="h-full w-full flex flex-col lg:flex-row-reverse relative">
-        <div className="h-full w-full lg:w-1/2 px-8 py-16 flex flex-col">
+    <Container>
+      <MainContainer>
+        <BackgroundContainer>
+          <BackgroundImage src={twitterlogin} alt="bg" />
+        </BackgroundContainer>
+        <AuthContainer>
           <div className="w-full h-auto">
             <div className="h-24">
               <img src={logo} alt="logo" className="h-full" />
@@ -36,23 +49,18 @@ const AuthPageTest = () => {
               />
             )}
           </div>
-        </div>
-        <div className="h-full w-full lg:w-1/2 ">
-          <img
-            src={twitterlogin}
-            alt="bg"
-            className="h-full w-full object-cover"
-          />
-        </div>
-        {/* <LoginFormModal
-      isLogin={isLogin}
-      handleClose={handleClose}
-      open={open}
-    />
+        </AuthContainer>
+        <CustomModal
+          open={open}
+          onClose={handleClose}
+          children={<LoginFormModal isLogin={isLogin} />}
+        ></CustomModal>
+
+        {/* 
     <Loading loading={loading} /> */}
-      </div>
-    </div>
+      </MainContainer>
+    </Container>
   );
 };
 
-export default AuthPageTest;
+export default AuthPage;
