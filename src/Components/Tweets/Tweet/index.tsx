@@ -5,7 +5,6 @@ import {
   Container,
   Retweeted,
   Body,
-  Avatar,
   Content,
   Header,
   Dot,
@@ -17,8 +16,29 @@ import {
   RetweetIcon,
   LikeIcon,
 } from "./styles";
+import { TweetInfo } from "@/Data/Type/Tweet/Tweet";
+import { Avatar, styled as MUIStyled } from "@mui/material";
 
-const Tweet: React.FC = () => {
+const CustomAvatar = MUIStyled(Avatar)({
+  width: "49px",
+  height: "49px",
+  borderRadius: "50%",
+  flexShrink: "0",
+  background: "var(--gray)",
+  "& img": {
+    borderRadius: "50%",
+    width: "100%",
+    height: "auto",
+  },
+});
+
+interface TweetProps {
+  tweetInfo: TweetInfo;
+}
+
+const Tweet = (props: TweetProps) => {
+  const { tweetInfo } = props;
+
   return (
     <Container>
       {/* <Retweeted>
@@ -26,10 +46,15 @@ const Tweet: React.FC = () => {
         Wassup
       </Retweeted> */}
       <Body>
-        <Avatar />
+        {tweetInfo.userInfo.profileImage ? (
+          <CustomAvatar src={tweetInfo.userInfo.profileImage.imageUrl} alt="" />
+        ) : (
+          <CustomAvatar alt="" />
+        )}
+
         <Content>
           <Header>
-            <strong>Yeah</strong>
+            <strong>{tweetInfo.userInfo.userNickname}</strong>
             <FontAwesomeIcon
               icon={faCheckCircle}
               style={{
@@ -38,16 +63,17 @@ const Tweet: React.FC = () => {
                 marginRight: "5px",
               }}
             />
-            <span>@yeah</span>
+            <span>@{tweetInfo.userInfo.userName}</span>
             <Dot />
-            <time> 15 m</time>
+            <time> {tweetInfo.createdAt}</time>
           </Header>
 
-          <Description>Haha</Description>
+          <Description>{tweetInfo.tweetContent}</Description>
 
           <ImageContent>
-            {/* <img src="https://twitter.clone.swj-dev.p-e.kr/cdn/test/testGif.gif" /> */}
-            <img src="https://res.cloudinary.com/practicaldev/image/fetch/s--7THYTvyf--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/oj0mjcfvpgzkf18w42n8.png" />
+            {tweetInfo.images.map((img) => {
+              return <img key={img.imageId} src={img.imageUrl} alt="" />;
+            })}
           </ImageContent>
 
           <Icons>

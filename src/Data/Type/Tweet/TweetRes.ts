@@ -1,11 +1,8 @@
 import { BaseResponse } from "../BaseResponse";
-import { TweetDTO } from "./Tweet";
-export interface TweetInfo {
-  tweetId: number;
-}
+import { TweetInfo } from "./Tweet";
 
 export interface ReadAllTweetsResponse extends BaseResponse {
-  data: TweetDTO[];
+  data: TweetInfo[];
 }
 
 export interface UploadTweetImageTestRes extends BaseResponse {
@@ -17,7 +14,7 @@ export interface UploadTweetImageTestRes extends BaseResponse {
 
 export interface ReadTweetsResponse extends BaseResponse {
   data: {
-    tweets: TweetDTO[];
+    tweets: TweetInfo[];
     size: number;
     number: number;
     first: boolean;

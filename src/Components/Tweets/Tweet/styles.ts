@@ -46,7 +46,7 @@ export const Content = styled.div`
   flex-direction: column;
   width: 100%;
   margin-top: 2px;
-  padding-left: 59px;
+  padding-left: 20px;
 `;
 
 export const Header = styled.div`

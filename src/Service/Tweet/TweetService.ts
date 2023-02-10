@@ -5,6 +5,7 @@ import {
   TweetRequest,
 } from "@/Data/Type/Tweet/Tweet";
 import { BaseResponse } from "@/Data/Type/BaseResponse";
+import { ReadAllTweetsResponse } from "@/Data/Type/Tweet/TweetRes";
 
 export async function createTweet(request: TweetRequest) {
   const response: BaseResponse = await CustomAxios.post(
@@ -22,7 +23,7 @@ export async function readTweets(pageNo: number) {
 }
 
 export async function readAllTweets() {
-  const response: BaseResponse = await CustomAxios.get(
+  const response: ReadAllTweetsResponse = await CustomAxios.get(
     "/api/v1/tweet/readAll"
   ).then((res) => res.data);
   return response;

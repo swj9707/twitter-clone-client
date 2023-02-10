@@ -11,6 +11,12 @@ export interface TwitterUserInfo {
   backgroundImage?: ImageInfo;
 }
 
+export interface TweetOwnerInfo {
+  userName: string;
+  userNickname: string;
+  profileImage?: ImageInfo;
+}
+
 export interface TwitterUserProfile {
   userName: string;
   userNickname: string;
