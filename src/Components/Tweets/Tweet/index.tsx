@@ -16,6 +16,7 @@ import {
 } from "./styles";
 import { TweetInfo } from "@/Data/Type/Tweet/Tweet";
 import { Avatar, styled as MUIStyled } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const CustomAvatar = MUIStyled(Avatar)({
   width: "49px",
@@ -36,9 +37,13 @@ interface TweetProps {
 
 const Tweet = (props: TweetProps) => {
   const { tweetInfo } = props;
+  const navigate = useNavigate();
+  const onClickTweet = () => {
+    navigate("/profile/" + tweetInfo.userInfo.userName);
+  };
 
   return (
-    <Container>
+    <Container onClick={onClickTweet}>
       {/* <Retweeted>
         <RetweetIcon />
         Wassup

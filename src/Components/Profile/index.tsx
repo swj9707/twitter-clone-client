@@ -11,17 +11,17 @@ import {
   EditButton,
 } from "./styles";
 import ProfileEdit from "../ProfileEdit";
-import { ImageInfo } from "@/Data/Type/Image/Image";
 import { useSelector } from "react-redux";
 import { RootStore } from "@/Data/Store";
+import { TwitterUserProfile } from "@/Data/Type/User/User";
 
 interface profilePageProps {
   isMyProfile: boolean;
-  profileImage: ImageInfo | undefined;
-  backgroundImage: ImageInfo | undefined;
+  userProfile: TwitterUserProfile;
 }
 
 const ProfilePage = (props: profilePageProps) => {
+  const { isMyProfile, userProfile } = props;
   const userInfo = useSelector((state: RootStore) => state.UserInfoReducer);
   const [open, setOpen] = useState(false);
 
@@ -36,12 +36,12 @@ const ProfilePage = (props: profilePageProps) => {
   return (
     <Container>
       <Banner>
-        <img src={props.backgroundImage?.imageUrl} alt="" />
-        <CustomAvatar src={props.profileImage?.imageUrl} alt="" />
+        <img src={userProfile.backgroundImage?.imageUrl} alt="" />
+        <CustomAvatar src={userProfile.profileImage?.imageUrl} alt="" />
       </Banner>
 
       <ProfileData>
-        {props.isMyProfile && (
+        {isMyProfile && (
           <EditButton onClick={handleClickOpen} outlined>
             Edit Profile
           </EditButton>
@@ -59,14 +59,13 @@ const ProfilePage = (props: profilePageProps) => {
 
         <Followage>
           <span>
-            <strong>0</strong> following
+            <strong>{userProfile.followingCount}</strong> following
           </span>
           <span>
-            <strong>0</strong> followers
+            <strong>{userProfile.followerCount}</strong> followers
           </span>
         </Followage>
       </ProfileData>
-
       <Feed />
       <Modal open={open} onClose={handleClose} children={<ProfileEdit />} />
     </Container>

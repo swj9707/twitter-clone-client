@@ -22,6 +22,8 @@ export interface TwitterUserProfile {
   userNickname: string;
   profileImage: ImageInfo;
   backgroundImage: ImageInfo;
+  followerCount: number;
+  followingCount: number;
 }
 
 export interface TwitterUserProfileState {

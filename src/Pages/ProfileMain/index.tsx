@@ -45,11 +45,9 @@ const ProfileMain: React.FC = () => {
           <span> {countOfTweets} Tweets</span>
         </ProfileInfo>
       </Header>
-      <ProfilePage
-        isMyProfile={isMyProfile}
-        profileImage={userProfile?.profileImage}
-        backgroundImage={userProfile?.backgroundImage}
-      />
+      {userProfile && (
+        <ProfilePage isMyProfile={isMyProfile} userProfile={userProfile} />
+      )}
     </Container>
   );
 };
