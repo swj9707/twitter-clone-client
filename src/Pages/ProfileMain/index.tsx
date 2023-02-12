@@ -26,7 +26,6 @@ const ProfileMain: React.FC = () => {
   useEffect(() => {
     if (params.userName) {
       getUserProfile(params.userName).then((res) => {
-        console.log(res);
         setUserProfile(res.data.userProfile);
         setCountOfTweets(res.data.countOfTweet);
       });

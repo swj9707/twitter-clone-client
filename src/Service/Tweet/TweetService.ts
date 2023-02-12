@@ -28,9 +28,12 @@ export async function readTweets(pageNo: number) {
   return response;
 }
 
-export async function readAllTweets() {
-  const response: ReadAllTweetsResponse = await CustomAxios.get(
-    "/api/v1/tweet/readAll"
+export async function readUserTweets(pageNo: number, userName: string) {
+  const response: ReadTweetsResponse = await CustomAxios.get(
+    "/api/v1/tweet/user",
+    {
+      params: { page: pageNo, userName: userName },
+    }
   ).then((res) => res.data);
   return response;
 }
