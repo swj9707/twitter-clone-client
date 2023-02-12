@@ -69,25 +69,26 @@ const Tweet = (props: TweetProps) => {
           <Description>{tweetInfo.tweetContent}</Description>
 
           <ImageContent>
-            {tweetInfo.images.map((img) => {
-              return <img key={img.imageId} src={img.imageUrl} alt="" />;
-            })}
+            {tweetInfo.images.length !== 0 &&
+              tweetInfo.images.map((img) => {
+                return <img key={img.imageId} src={img.imageUrl} alt="" />;
+              })}
           </ImageContent>
 
           <Icons>
             <Status>
               <ComentIcon />
-              187
+              {tweetInfo.repliesCount}
             </Status>
 
             <Status>
               <RetweetIcon />
-              7832
+              {tweetInfo.retweetsCount}
             </Status>
 
             <Status>
               <LikeIcon />
-              8.945
+              {tweetInfo.likedTweetsCount}
             </Status>
           </Icons>
         </Content>

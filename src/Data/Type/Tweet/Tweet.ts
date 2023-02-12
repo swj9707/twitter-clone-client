@@ -41,6 +41,9 @@ export interface TweetInfo {
   createdAt: string;
   status: string;
   userInfo: TweetOwnerInfo;
+  likedTweetsCount: number;
+  retweetsCount: number;
+  repliesCount: number;
 }
 
 export interface ImageObj {

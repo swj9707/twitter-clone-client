@@ -15,13 +15,18 @@ const MainHome = () => {
 
   const getTweets = useCallback(async () => {
     setLoading(true);
-    readTweets(pageNo).then((res) => {
-      const result: TweetInfo[] = res.data.tweets;
-      const lastPage = res.data.last;
-      setLastPage(lastPage);
-      setTweets(tweets.concat(result));
-    });
+    if (!lastPage) {
+      readTweets(pageNo).then((res) => {
+        console.log(res.data);
+        const result: TweetInfo[] = res.data.tweets;
+        const lastPage = res.data.last;
+        setLastPage(lastPage);
+        setTweets([...tweets, ...result]);
+      });
+    }
+
     setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNo]);
 
   useEffect(() => {
@@ -43,17 +48,26 @@ const MainHome = () => {
       </Header>
       <Tweetbox />
       <TweetContainer>
-        {tweets.map((tweet, idx) =>
-          tweets.length - 1 === idx ? (
-            <>
+        {tweets.length !== 0 ? (
+          tweets.map((tweet, idx) =>
+            tweets.length - 1 === idx ? (
+              <>
+                <Tweet key={tweet.tweetId} tweetInfo={tweet} />
+                <div
+                  ref={ref}
+                  className="w-full flex-1 flex justify-center items-center"
+                >
+                  마지막 페이지입니다.
+                </div>
+              </>
+            ) : (
               <Tweet key={tweet.tweetId} tweetInfo={tweet} />
-              <span key={idx} ref={ref}>
-                마지막 페이지입니다.
-              </span>
-            </>
-          ) : (
-            <Tweet key={tweet.tweetId} tweetInfo={tweet} />
+            )
           )
+        ) : (
+          <div className="w-full flex-1 flex justify-center items-center mt-8">
+            등록된 Tweet이 없습니다.
+          </div>
         )}
       </TweetContainer>
     </Container>
