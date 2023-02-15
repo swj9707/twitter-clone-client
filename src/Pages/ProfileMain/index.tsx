@@ -24,7 +24,6 @@ const ProfileMain: React.FC = () => {
   }, [userProfile]);
 
   useEffect(() => {
-    console.log("Profile");
     if (params.userName) {
       getUserProfile(params.userName).then((res) => {
         setUserProfile(res.data.userProfile);
@@ -45,11 +44,9 @@ const ProfileMain: React.FC = () => {
           <span> {countOfTweets} Tweets</span>
         </ProfileInfo>
       </Header>
-      <ProfilePage
-        isMyProfile={isMyProfile}
-        profileImage={userProfile?.profileImage}
-        backgroundImage={userProfile?.backgroundImage}
-      />
+      {userProfile && (
+        <ProfilePage isMyProfile={isMyProfile} userProfile={userProfile} />
+      )}
     </Container>
   );
 };

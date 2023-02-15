@@ -1,14 +1,12 @@
 import { requestSignup } from "@/Service/Auth/AuthService";
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [userNickname, setUserNickname] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const onChangeInput = (e: React.FormEvent<HTMLInputElement>) => {
     const target = e.currentTarget;
@@ -33,7 +31,7 @@ const RegisterForm = () => {
     })
       .then(() => {
         alert("회원가입이 완료되었습니다.");
-        navigate("/");
+        window.location.reload();
       })
       .catch((ex) => {
         alert("회원 가입에 실패하였습니다.");

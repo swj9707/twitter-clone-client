@@ -1,4 +1,5 @@
 import { ImageInfo } from "../Image/Image";
+import { TweetOwnerInfo } from "../User/User";
 
 export interface TweetDTO {
   tweetId: number;
@@ -32,9 +33,27 @@ export interface DeleteTweet {
 
 /// 위에 있는건 다 레거시임
 
+export interface TweetInfo {
+  tweetId: number;
+  tweetContent: string;
+  images: Array<ImageInfo>;
+  modified: boolean;
+  createdAt: string;
+  status: string;
+  userInfo: TweetOwnerInfo;
+  likedTweetsCount: number;
+  retweetsCount: number;
+  repliesCount: number;
+}
+
 export interface ImageObj {
   src: string;
   file: File;
+}
+
+export interface TweetData {
+  tweetInfo: TweetInfo;
+  userInfo: TweetOwnerInfo;
 }
 
 export interface TweetRequest {

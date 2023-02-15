@@ -50,11 +50,13 @@ const Tweetbox = () => {
         alert("트윗이 등록되었습니다.");
         setTweet("");
         setImages([]);
+        window.location.reload();
       })
       .catch(() => {
         alert("트윗 생성 과정에서 오류가 발생했습니다.");
         setTweet("");
         setImages([]);
+        window.location.reload();
       });
   };
 
