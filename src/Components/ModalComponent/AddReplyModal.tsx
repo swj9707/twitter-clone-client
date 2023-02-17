@@ -1,42 +1,28 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-import {
-  Container,
-  Body,
-  Content,
-  Header,
-  Dot,
-  Description,
-  ImageContent,
-  Icons,
-  Status,
-  ComentIcon,
-  RetweetIcon,
-  LikeIcon,
-  CustomAvatar,
-} from "./styles";
 import { TweetInfo } from "@/Data/Type/Tweet/Tweet";
+import Tweetbox from "../Tweets/Tweetbox/Main";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import CustomModal from "@/Components/Modal";
-import AddReplyModal from "@/Components/ModalComponent/AddReplyModal";
-import { retweet } from "@/Service/Tweet/TweetService";
+import {
+  Body,
+  ComentIcon,
+  Content,
+  CustomAvatar,
+  Description,
+  Dot,
+  Header,
+  Icons,
+  ImageContent,
+  Status,
+} from "../Tweets/Tweet/styles";
 
-interface TweetProps {
+interface PropsInter {
   tweetInfo: TweetInfo;
 }
 
-const Tweet = (props: TweetProps) => {
+const AddReplyModal = (props: PropsInter) => {
   const { tweetInfo } = props;
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const onClickShowUserProfile = () => {
     navigate("/profile/" + tweetInfo.userInfo.userName);
@@ -45,20 +31,8 @@ const Tweet = (props: TweetProps) => {
   const onClickTweetDetail = () => {
     navigate("/detail/");
   };
-
-  const onClickRetweet = () => {
-    retweet(tweetInfo.tweetId).then((res) => {
-      alert("리트윗이 완료되었습니다.");
-      window.location.reload();
-    });
-  };
-
   return (
-    <Container>
-      {/* <Retweeted>
-        <RetweetIcon />
-        Wassup
-      </Retweeted> */}
+    <div className="outline-none absolute border bg-[#000] top-1/4 left-1/2 lg:left-1/2 transform -translate-x-1/2 -translate-y-1/4 origin-center w-2/3 lg:w-1/2 h-auto pt-2 pb-3 rounded-2xl flex flex-col justify-start items-start">
       <Body>
         {tweetInfo.userInfo.profileImage ? (
           <CustomAvatar
@@ -98,32 +72,11 @@ const Tweet = (props: TweetProps) => {
                 return <img key={img.imageId} src={img.imageUrl} alt="" />;
               })}
           </ImageContent>
-
-          <Icons>
-            <Status onClick={handleClickOpen}>
-              <ComentIcon />
-              {tweetInfo.repliesCount}
-            </Status>
-
-            <Status onClick={onClickRetweet}>
-              <RetweetIcon />
-              {tweetInfo.retweetsCount}
-            </Status>
-
-            <Status>
-              <LikeIcon />
-              {tweetInfo.likedTweetsCount}
-            </Status>
-          </Icons>
         </Content>
       </Body>
-      <CustomModal
-        open={open}
-        onClose={handleClose}
-        children={<AddReplyModal tweetInfo={tweetInfo} />}
-      />
-    </Container>
+      <Tweetbox isReply={true} connectedTweetId={tweetInfo.tweetId} />
+    </div>
   );
 };
 
-export default Tweet;
+export default AddReplyModal;

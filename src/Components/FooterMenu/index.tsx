@@ -22,7 +22,11 @@ const FooterMenu = () => {
       <SearchIcon />
       <BellIcon />
       <EmailIcon />
-      <CustomModal open={open} onClose={handleClose} children={<Tweetbox />} />
+      <CustomModal
+        open={open}
+        onClose={handleClose}
+        children={<Tweetbox isReply={false} />}
+      />
     </Container>
   );
 };

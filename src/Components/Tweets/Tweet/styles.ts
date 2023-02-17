@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-
+import { Avatar, styled as MUIStyled } from "@mui/material";
 import { Chat, Retweet, Favorite } from "@/Styles/Icons";
 
 export const Container = styled.div`
@@ -28,18 +28,18 @@ export const Body = styled.div`
   position: relative;
 `;
 
-export const Avatar = styled.div`
-  width: 49px;
-  height: 49px;
-
-  border-radius: 50%;
-  flex-shrink: 0;
-  background: var(--gray);
-
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
+export const CustomAvatar = MUIStyled(Avatar)({
+  width: "49px",
+  height: "49px",
+  borderRadius: "50%",
+  flexShrink: "0",
+  background: "var(--gray)",
+  "& img": {
+    borderRadius: "50%",
+    width: "100%",
+    height: "auto",
+  },
+});
 
 export const Content = styled.div`
   display: flex;

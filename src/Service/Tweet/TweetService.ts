@@ -18,6 +18,24 @@ export async function createTweet(request: TweetRequest) {
   return response;
 }
 
+export async function createReplyTweet(request: TweetRequest) {
+  const response: BaseResponse = await CustomAxios.post(
+    "/api/v1/tweet/reply",
+    request
+  ).then((res) => res.data);
+  return response;
+}
+
+export async function retweet(tweetId: number) {
+  const response: ReadTweetsResponse = await CustomAxios.get(
+    "/api/v1/tweet/retweet",
+    {
+      params: { tweetId: tweetId },
+    }
+  ).then((res) => res.data);
+  return response;
+}
+
 export async function readTweets(pageNo: number) {
   const response: ReadTweetsResponse = await CustomAxios.get(
     "/api/v1/tweet/read",
