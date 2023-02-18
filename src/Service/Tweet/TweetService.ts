@@ -8,6 +8,8 @@ import { BaseResponse } from "@/Data/Type/BaseResponse";
 import {
   ReadAllTweetsResponse,
   ReadTweetsResponse,
+  RetweetResponse,
+  TweetResponse,
 } from "@/Data/Type/Tweet/TweetRes";
 
 export async function createTweet(request: TweetRequest) {
@@ -27,12 +29,19 @@ export async function createReplyTweet(request: TweetRequest) {
 }
 
 export async function retweet(tweetId: number) {
-  const response: ReadTweetsResponse = await CustomAxios.get(
+  const response: RetweetResponse = await CustomAxios.get(
     "/api/v1/tweet/retweet",
     {
       params: { tweetId: tweetId },
     }
   ).then((res) => res.data);
+  return response;
+}
+
+export async function like(tweetId: number) {
+  const response: TweetResponse = await CustomAxios.get("/api/v1/tweet/like", {
+    params: { tweetId: tweetId },
+  }).then((res) => res.data);
   return response;
 }
 

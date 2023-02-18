@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import CustomModal from "@/Components/Modal";
 import AddReplyModal from "@/Components/ModalComponent/AddReplyModal";
-import { retweet } from "@/Service/Tweet/TweetService";
+import { like, retweet } from "@/Service/Tweet/TweetService";
 
 interface TweetProps {
   tweetInfo: TweetInfo;
@@ -49,6 +49,13 @@ const Tweet = (props: TweetProps) => {
   const onClickRetweet = () => {
     retweet(tweetInfo.tweetId).then((res) => {
       alert("리트윗이 완료되었습니다.");
+      window.location.reload();
+    });
+  };
+
+  const onClickLike = () => {
+    like(tweetInfo.tweetId).then(() => {
+      alert("좋아요 처리가 완료되었습니다.");
       window.location.reload();
     });
   };
@@ -110,7 +117,7 @@ const Tweet = (props: TweetProps) => {
               {tweetInfo.retweetsCount}
             </Status>
 
-            <Status>
+            <Status onClick={onClickLike}>
               <LikeIcon />
               {tweetInfo.likedTweetsCount}
             </Status>
