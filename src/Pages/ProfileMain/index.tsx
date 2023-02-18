@@ -8,7 +8,7 @@ import { RootStore } from "@/Data/Store";
 import { TwitterUserProfile } from "@/Data/Type/User/User";
 import { getUserProfile } from "@/Service/User/UserService";
 
-const ProfileMain: React.FC = () => {
+const ProfileMain = () => {
   const navigate = useNavigate();
   const userInfo = useSelector((state: RootStore) => state.UserInfoReducer);
 

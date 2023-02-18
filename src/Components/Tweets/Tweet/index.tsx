@@ -13,23 +13,14 @@ import {
   ComentIcon,
   RetweetIcon,
   LikeIcon,
+  CustomAvatar,
 } from "./styles";
 import { TweetInfo } from "@/Data/Type/Tweet/Tweet";
-import { Avatar, styled as MUIStyled } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
-const CustomAvatar = MUIStyled(Avatar)({
-  width: "49px",
-  height: "49px",
-  borderRadius: "50%",
-  flexShrink: "0",
-  background: "var(--gray)",
-  "& img": {
-    borderRadius: "50%",
-    width: "100%",
-    height: "auto",
-  },
-});
+import { useState } from "react";
+import CustomModal from "@/Components/Modal";
+import AddReplyModal from "@/Components/ModalComponent/AddReplyModal";
+import { like, retweet } from "@/Service/Tweet/TweetService";
 
 interface TweetProps {
   tweetInfo: TweetInfo;
@@ -38,26 +29,59 @@ interface TweetProps {
 const Tweet = (props: TweetProps) => {
   const { tweetInfo } = props;
   const navigate = useNavigate();
-  const onClickTweet = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const onClickShowUserProfile = () => {
     navigate("/profile/" + tweetInfo.userInfo.userName);
   };
 
+  const onClickTweetDetail = () => {
+    navigate("/detail/");
+  };
+
+  const onClickRetweet = () => {
+    retweet(tweetInfo.tweetId).then((res) => {
+      alert("리트윗이 완료되었습니다.");
+      window.location.reload();
+    });
+  };
+
+  const onClickLike = () => {
+    like(tweetInfo.tweetId).then(() => {
+      alert("좋아요 처리가 완료되었습니다.");
+      window.location.reload();
+    });
+  };
+
   return (
-    <Container onClick={onClickTweet}>
+    <Container>
       {/* <Retweeted>
         <RetweetIcon />
         Wassup
       </Retweeted> */}
       <Body>
         {tweetInfo.userInfo.profileImage ? (
-          <CustomAvatar src={tweetInfo.userInfo.profileImage.imageUrl} alt="" />
+          <CustomAvatar
+            onClick={onClickShowUserProfile}
+            src={tweetInfo.userInfo.profileImage.imageUrl}
+            alt=""
+          />
         ) : (
-          <CustomAvatar alt="" />
+          <CustomAvatar onClick={onClickShowUserProfile} alt="" />
         )}
 
         <Content>
           <Header>
-            <strong>{tweetInfo.userInfo.userNickname}</strong>
+            <strong onClick={onClickShowUserProfile}>
+              {tweetInfo.userInfo.userNickname}
+            </strong>
             <FontAwesomeIcon
               icon={faCheckCircle}
               style={{
@@ -66,7 +90,9 @@ const Tweet = (props: TweetProps) => {
                 marginRight: "5px",
               }}
             />
-            <span>@{tweetInfo.userInfo.userName}</span>
+            <span onClick={onClickShowUserProfile}>
+              @{tweetInfo.userInfo.userName}
+            </span>
             <Dot />
             <time> {tweetInfo.createdAt}</time>
           </Header>
@@ -81,23 +107,28 @@ const Tweet = (props: TweetProps) => {
           </ImageContent>
 
           <Icons>
-            <Status>
+            <Status onClick={handleClickOpen}>
               <ComentIcon />
               {tweetInfo.repliesCount}
             </Status>
 
-            <Status>
+            <Status onClick={onClickRetweet}>
               <RetweetIcon />
               {tweetInfo.retweetsCount}
             </Status>
 
-            <Status>
+            <Status onClick={onClickLike}>
               <LikeIcon />
               {tweetInfo.likedTweetsCount}
             </Status>
           </Icons>
         </Content>
       </Body>
+      <CustomModal
+        open={open}
+        onClose={handleClose}
+        children={<AddReplyModal tweetInfo={tweetInfo} />}
+      />
     </Container>
   );
 };

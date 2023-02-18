@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { readTweets } from "@/Service/Tweet/TweetService";
 import { TweetInfo } from "@/Data/Type/Tweet/Tweet";
 import { useInView } from "react-intersection-observer";
+import Spinner from "@/Components/Spinner";
 
 const MainHome = () => {
   const [pageNo, setPageNo] = useState(0);
@@ -46,24 +47,27 @@ const MainHome = () => {
       <Header>
         <h2>Home</h2>
       </Header>
-      <Tweetbox />
+      <Tweetbox isReply={false} />
       <TweetContainer>
         {tweets.length !== 0 ? (
-          tweets.map((tweet, idx) =>
-            tweets.length - 1 === idx ? (
-              <>
+          <>
+            {tweets.map((tweet, idx) =>
+              tweets.length - 1 === idx ? (
+                <>
+                  <Tweet key={tweet.tweetId} tweetInfo={tweet} />
+                  <div
+                    ref={ref}
+                    className="w-full flex-1 flex justify-center items-center"
+                  >
+                    마지막 페이지입니다.
+                  </div>
+                </>
+              ) : (
                 <Tweet key={tweet.tweetId} tweetInfo={tweet} />
-                <div
-                  ref={ref}
-                  className="w-full flex-1 flex justify-center items-center"
-                >
-                  마지막 페이지입니다.
-                </div>
-              </>
-            ) : (
-              <Tweet key={tweet.tweetId} tweetInfo={tweet} />
-            )
-          )
+              )
+            )}
+            {loading && <Spinner />}
+          </>
         ) : (
           <div className="w-full flex-1 flex justify-center items-center mt-8">
             등록된 Tweet이 없습니다.

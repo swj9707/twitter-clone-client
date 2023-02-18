@@ -5,6 +5,12 @@ export interface ReadAllTweetsResponse extends BaseResponse {
   data: TweetInfo[];
 }
 
+export interface TweetResponse extends BaseResponse {
+  data: {
+    tweetId: number;
+  };
+}
+
 export interface UploadTweetImageTestRes extends BaseResponse {
   data: {
     imageName: string;
@@ -21,5 +27,11 @@ export interface ReadTweetsResponse extends BaseResponse {
     last: boolean;
     numberOfElements: number;
     empty: boolean;
+  };
+}
+
+export interface RetweetResponse extends BaseResponse {
+  data: {
+    result: boolean;
   };
 }

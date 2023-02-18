@@ -13,12 +13,19 @@ import { ImageObj, TweetRequest } from "@/Data/Type/Tweet/Tweet";
 import ProfileAvatar from "../ProfileAvatar";
 import UploadImages from "../UploadImage";
 import AddTweetImage from "../AddTweetImage";
-import { createTweet } from "@/Service/Tweet/TweetService";
+import { createReplyTweet, createTweet } from "@/Service/Tweet/TweetService";
 import { UploadImageRes } from "@/Data/Type/Image/ImageRes";
 import { uploadImage } from "@/Service/Image/ImageService";
 import { ImageInfo } from "@/Data/Type/Image/Image";
 
-const Tweetbox = () => {
+interface TweetboxProp {
+  isReply: Boolean;
+  connectedTweetId?: number;
+}
+
+const Tweetbox = (prop: TweetboxProp) => {
+  const { isReply, connectedTweetId } = prop;
+
   const [tweet, setTweet] = useState("");
   const [images, setImages] = useState<ImageObj[]>([]);
 
@@ -38,6 +45,10 @@ const Tweetbox = () => {
       tweetImages: [],
     };
 
+    if (isReply) {
+      request.tweetId = connectedTweetId;
+    }
+
     for (const element of images) {
       const file = element.file;
       const res: UploadImageRes = await uploadImage(file);
@@ -45,19 +56,35 @@ const Tweetbox = () => {
       request.tweetImages.push(tweetImageData);
     }
 
-    await createTweet(request)
-      .then(() => {
-        alert("트윗이 등록되었습니다.");
-        setTweet("");
-        setImages([]);
-        window.location.reload();
-      })
-      .catch(() => {
-        alert("트윗 생성 과정에서 오류가 발생했습니다.");
-        setTweet("");
-        setImages([]);
-        window.location.reload();
-      });
+    if (!isReply) {
+      await createTweet(request)
+        .then(() => {
+          alert("트윗이 등록되었습니다.");
+          setTweet("");
+          setImages([]);
+          window.location.reload();
+        })
+        .catch(() => {
+          alert("트윗 생성 과정에서 오류가 발생했습니다.");
+          setTweet("");
+          setImages([]);
+          window.location.reload();
+        });
+    } else {
+      await createReplyTweet(request)
+        .then(() => {
+          alert("트윗이 등록되었습니다.");
+          setTweet("");
+          setImages([]);
+          window.location.reload();
+        })
+        .catch(() => {
+          alert("트윗 생성 과정에서 오류가 발생했습니다.");
+          setTweet("");
+          setImages([]);
+          window.location.reload();
+        });
+    }
   };
 
   return (

@@ -57,6 +57,7 @@ export interface TweetData {
 }
 
 export interface TweetRequest {
+  tweetId?: number;
   tweetContent: string;
   tweetImages: Array<ImageInfo>;
 }
