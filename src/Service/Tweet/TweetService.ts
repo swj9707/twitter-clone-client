@@ -8,6 +8,7 @@ import { BaseResponse } from "@/Data/Type/BaseResponse";
 import {
   ReadAllTweetsResponse,
   ReadTweetsResponse,
+  ReatUserTweetsResponse,
   RetweetResponse,
   TweetResponse,
 } from "@/Data/Type/Tweet/TweetRes";
@@ -60,6 +61,19 @@ export async function readUserTweets(pageNo: number, userName: string) {
     "/api/v1/tweet/user",
     {
       params: { page: pageNo, userName: userName },
+    }
+  ).then((res) => res.data);
+  return response;
+}
+
+export async function readUserTweetsAndRetweets(
+  pageNo: number,
+  userId: string
+) {
+  const response: ReatUserTweetsResponse = await CustomAxios.get(
+    "/api/v1/tweet/getUsersTweet",
+    {
+      params: { page: pageNo, userId: userId },
     }
   ).then((res) => res.data);
   return response;

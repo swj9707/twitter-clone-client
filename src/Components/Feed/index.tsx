@@ -3,32 +3,36 @@ import React, { useCallback, useEffect, useState } from "react";
 import Tweet from "../Tweets/Tweet";
 
 import { ButtonContainer, Container, Tab, Tweets } from "./styles";
-import { TweetInfo } from "@/Data/Type/Tweet/Tweet";
+import { TweetInfo, UserTweetInfo } from "@/Data/Type/Tweet/Tweet";
 import { useInView } from "react-intersection-observer";
-import { readUserTweets } from "@/Service/Tweet/TweetService";
+import {
+  readUserTweets,
+  readUserTweetsAndRetweets,
+} from "@/Service/Tweet/TweetService";
+import { useSelector } from "react-redux";
+import { RootStore } from "@/Data/Store";
 
-interface Props {
-  userName: string;
-}
+const Feed = () => {
+  const userAuthInfo = useSelector((state: RootStore) => state.AuthReducer);
 
-const Feed = (props: Props) => {
   const [pageNo, setPageNo] = useState(0);
   const [lastPage, setLastPage] = useState(false);
-  const { userName } = props;
-  const [tweets, setTweets] = useState<TweetInfo[]>([]);
+  const [tweets, setTweets] = useState<UserTweetInfo[]>([]);
   const [loading, setLoading] = useState(false);
   const [ref, inView] = useInView();
 
   const getTweets = useCallback(async () => {
     setLoading(true);
     if (!lastPage) {
-      readUserTweets(pageNo, userName).then((res) => {
-        console.log(res.data);
-        const result: TweetInfo[] = res.data.tweets;
-        const lastPage = res.data.last;
-        setLastPage(lastPage);
-        setTweets([...tweets, ...result]);
-      });
+      readUserTweetsAndRetweets(pageNo, userAuthInfo.user.userId).then(
+        (res) => {
+          console.log(res.data);
+          const result: UserTweetInfo[] = res.data.tweets;
+          const lastPage = res.data.last;
+          setLastPage(lastPage);
+          setTweets([...tweets, ...result]);
+        }
+      );
     }
 
     setLoading(false);
@@ -59,7 +63,11 @@ const Feed = (props: Props) => {
           tweets.map((tweet, idx) =>
             tweets.length - 1 === idx ? (
               <>
-                <Tweet key={tweet.tweetId} tweetInfo={tweet} />
+                <Tweet
+                  isRetweeted={tweet.isRetweeted}
+                  key={idx}
+                  tweetInfo={tweet}
+                />
                 <div
                   ref={ref}
                   className="w-full flex-1 flex justify-center items-center"
@@ -68,7 +76,11 @@ const Feed = (props: Props) => {
                 </div>
               </>
             ) : (
-              <Tweet key={tweet.tweetId} tweetInfo={tweet} />
+              <Tweet
+                isRetweeted={tweet.isRetweeted}
+                key={idx}
+                tweetInfo={tweet}
+              />
             )
           )
         ) : (

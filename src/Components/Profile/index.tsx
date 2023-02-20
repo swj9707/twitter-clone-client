@@ -66,7 +66,7 @@ const ProfilePage = (props: profilePageProps) => {
           </span>
         </Followage>
       </ProfileData>
-      <Feed userName={userProfile.userName} />
+      <Feed />
       <Modal open={open} onClose={handleClose} children={<ProfileEdit />} />
     </Container>
   );

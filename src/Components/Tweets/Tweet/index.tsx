@@ -14,6 +14,7 @@ import {
   RetweetIcon,
   LikeIcon,
   CustomAvatar,
+  Retweeted,
 } from "./styles";
 import { TweetInfo } from "@/Data/Type/Tweet/Tweet";
 import { useNavigate } from "react-router-dom";
@@ -24,10 +25,11 @@ import { like, retweet } from "@/Service/Tweet/TweetService";
 
 interface TweetProps {
   tweetInfo: TweetInfo;
+  isRetweeted?: Boolean;
 }
 
 const Tweet = (props: TweetProps) => {
-  const { tweetInfo } = props;
+  const { tweetInfo, isRetweeted } = props;
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
@@ -62,10 +64,13 @@ const Tweet = (props: TweetProps) => {
 
   return (
     <Container>
-      {/* <Retweeted>
-        <RetweetIcon />
-        Wassup
-      </Retweeted> */}
+      {isRetweeted && (
+        <Retweeted>
+          <RetweetIcon />
+          Wassup
+        </Retweeted>
+      )}
+
       <Body>
         {tweetInfo.userInfo.profileImage ? (
           <CustomAvatar

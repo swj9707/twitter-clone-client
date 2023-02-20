@@ -46,6 +46,21 @@ export interface TweetInfo {
   repliesCount: number;
 }
 
+export interface UserTweetInfo {
+  tweetId: number;
+  tweetContent: string;
+  images: Array<ImageInfo>;
+  modified: boolean;
+  createdAt: string;
+  status: string;
+  userInfo: TweetOwnerInfo;
+  isRetweeted: boolean;
+  retweetedDate: string;
+  likedTweetsCount: number;
+  retweetsCount: number;
+  repliesCount: number;
+}
+
 export interface ImageObj {
   src: string;
   file: File;

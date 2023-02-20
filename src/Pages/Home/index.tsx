@@ -54,7 +54,11 @@ const MainHome = () => {
             {tweets.map((tweet, idx) =>
               tweets.length - 1 === idx ? (
                 <>
-                  <Tweet key={tweet.tweetId} tweetInfo={tweet} />
+                  <Tweet
+                    isRetweeted={false}
+                    key={tweet.tweetId}
+                    tweetInfo={tweet}
+                  />
                   <div
                     ref={ref}
                     className="w-full flex-1 flex justify-center items-center"
@@ -63,7 +67,11 @@ const MainHome = () => {
                   </div>
                 </>
               ) : (
-                <Tweet key={tweet.tweetId} tweetInfo={tweet} />
+                <Tweet
+                  isRetweeted={false}
+                  key={tweet.tweetId}
+                  tweetInfo={tweet}
+                />
               )
             )}
             {loading && <Spinner />}
