@@ -10,7 +10,7 @@ import {
   Followage,
   EditButton,
 } from "./styles";
-import ProfileEdit from "../ProfileEdit";
+import ProfileEdit from "./ProfileEdit";
 import { useSelector } from "react-redux";
 import { RootStore } from "@/Data/Store";
 import { TwitterUserProfile } from "@/Data/Type/User/User";

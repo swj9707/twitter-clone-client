@@ -8,8 +8,8 @@ import {
 } from "./styles";
 
 import List from "../List";
-import FollowSugestion from "../FollowSugestion";
-import News from "../News";
+import FollowSugestion from "./FollowSugestion";
+import News from "./News";
 
 const WidgetBar = () => {
   return (
@@ -18,7 +18,7 @@ const WidgetBar = () => {
         <SearchInput placeholder="Search Twitter" />
         <SearchIcon />
       </SearchWrapper>
-      {/* <StickyBox>
+      <StickyBox>
         <Body>
           <List
             title="Who to Follow"
@@ -34,7 +34,7 @@ const WidgetBar = () => {
             elements={[<News />, <News />, <News />]}
           />
         </Body>
-      </StickyBox> */}
+      </StickyBox>
     </Container>
   );
 };

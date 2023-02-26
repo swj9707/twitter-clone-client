@@ -1,4 +1,4 @@
-import FloatButton from "../FloatButton";
+import FloatButton from "../Buttons/FloatButton";
 import { BellIcon, Container, EmailIcon, HomeIcon, SearchIcon } from "./styles";
 import CustomModal from "@/Components/Modal";
 import { useState } from "react";
