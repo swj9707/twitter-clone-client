@@ -18,6 +18,7 @@ export interface TweetOwnerInfo {
 }
 
 export interface TwitterUserProfile {
+  userId: string;
   userName: string;
   userNickname: string;
   profileImage: ImageInfo;

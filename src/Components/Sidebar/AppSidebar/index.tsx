@@ -58,7 +58,7 @@ const AppSidebar = () => {
         </MenuButton>
         <MenuButton
           onClick={() => {
-            navigate("/profile/" + userInfo.userName);
+            navigate("/profile/" + userInfo.userName + "/tweet");
           }}
         >
           <ProfileIcon />

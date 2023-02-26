@@ -42,7 +42,7 @@ const Tweet = (props: TweetProps) => {
   };
 
   const onClickShowUserProfile = () => {
-    navigate("/profile/" + tweetInfo.userInfo.userName);
+    navigate("/profile/" + tweetInfo.userInfo.userName + "/tweet");
   };
 
   const onClickTweetDetail = () => {
@@ -76,12 +76,21 @@ const Tweet = (props: TweetProps) => {
       <Body>
         {tweetInfo.userInfo.profileImage ? (
           <CustomAvatar
-            onClick={onClickShowUserProfile}
+            onClick={(e) => {
+              e.stopPropagation();
+              onClickShowUserProfile();
+            }}
             src={tweetInfo.userInfo.profileImage.imageUrl}
             alt=""
           />
         ) : (
-          <CustomAvatar onClick={onClickShowUserProfile} alt="" />
+          <CustomAvatar
+            onClick={(e) => {
+              e.stopPropagation();
+              onClickShowUserProfile();
+            }}
+            alt=""
+          />
         )}
 
         <Content>

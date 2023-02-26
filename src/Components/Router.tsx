@@ -35,7 +35,7 @@ const AppRouter = () => {
               <AppSidebar />
               <Routes>
                 <Route path="/" element={<MainHome />} />
-                <Route path="/profile/:userName" element={<ProfileMain />} />
+                <Route path="/profile/:userName/*" element={<ProfileMain />} />
                 <Route path="/setup" element={<SetupPage />} />
                 <Route path="/tweet/:tweetId" element={<TweetDetail />} />
               </Routes>

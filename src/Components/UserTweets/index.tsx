@@ -1,24 +1,45 @@
 import { useState } from "react";
+import { Routes, Route, useNavigate, Link } from "react-router-dom";
 
 import { ButtonContainer, Container, Tab } from "./styles";
 import UserPageTweets from "./UserPageTweets";
 
-const UserTweets = () => {
-  const [activeTab, setActiveTab] = useState(1);
+interface props {
+  userName: string;
+  userId: string;
+}
 
-  const onClickMenu = (menuNo: number) => {
-    window.scrollTo(0, 0);
-    setActiveTab(menuNo);
-  };
+const UserTweets = (prop: props) => {
+  const { userName, userId } = prop;
+  const navigate = useNavigate();
 
   return (
     <Container>
       <ButtonContainer>
-        <Tab onClick={() => onClickMenu(1)}>Tweets</Tab>
-        <Tab onClick={() => onClickMenu(2)}>Tweets & replies</Tab>
-        <Tab onClick={() => onClickMenu(3)}>Likes</Tab>
+        <Tab onClick={() => navigate("/profile/" + userName + "/tweet")}>
+          Tweets
+        </Tab>
+        <Tab onClick={() => navigate("/profile/" + userName + "/reply")}>
+          Tweets & replies
+        </Tab>
+        <Tab onClick={() => navigate("/profile/" + userName + "/likes")}>
+          Likes
+        </Tab>
       </ButtonContainer>
-      <UserPageTweets activeTab={activeTab} />
+      <Routes>
+        <Route
+          path="tweet"
+          element={<UserPageTweets activeTab={1} userId={userId} />}
+        />
+        <Route
+          path="reply"
+          element={<UserPageTweets activeTab={2} userId={userId} />}
+        />
+        <Route
+          path="likes"
+          element={<UserPageTweets activeTab={3} userId={userId} />}
+        />
+      </Routes>
     </Container>
   );
 };
