@@ -1,12 +1,8 @@
 import { CustomAxios } from "../Api/CustomAxios";
-import {
-  UpdateTweet,
-  DeleteTweet,
-  TweetRequest,
-} from "@/Data/Type/Tweet/Tweet";
+import { AxiosResponse } from "axios";
+import { DeleteTweet, TweetRequest } from "@/Data/Type/Tweet/Tweet";
 import { BaseResponse } from "@/Data/Type/BaseResponse";
 import {
-  ReadAllTweetsResponse,
   ReadTweetResponse,
   ReadTweetsResponse,
   ReatUserTweetsResponse,
@@ -18,7 +14,7 @@ export async function createTweet(request: TweetRequest) {
   const response: BaseResponse = await CustomAxios.post(
     "/api/v1/tweet/create",
     request
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
 
@@ -26,7 +22,7 @@ export async function createReplyTweet(request: TweetRequest) {
   const response: BaseResponse = await CustomAxios.post(
     "/api/v1/tweet/reply",
     request
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
 
@@ -36,14 +32,14 @@ export async function retweet(tweetId: number) {
     {
       params: { tweetId: tweetId },
     }
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
 
 export async function like(tweetId: number) {
   const response: TweetResponse = await CustomAxios.get("/api/v1/tweet/like", {
     params: { tweetId: tweetId },
-  }).then((res) => res.data);
+  }).then((res: AxiosResponse) => res.data);
   return response;
 }
 
@@ -53,7 +49,7 @@ export async function readTweets(pageNo: number) {
     {
       params: { page: pageNo },
     }
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
 
@@ -63,7 +59,7 @@ export async function readUserTweets(pageNo: number, userName: string) {
     {
       params: { page: pageNo, userName: userName },
     }
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
 
@@ -73,7 +69,7 @@ export async function getTweet(tweetId: number) {
     {
       params: { tweetId: tweetId },
     }
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
 
@@ -83,7 +79,7 @@ export async function getReplies(pageNo: number, tweetId: number) {
     {
       params: { pageNo: pageNo, tweetId: tweetId },
     }
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
 
@@ -96,7 +92,7 @@ export async function readUserTweetsAndRetweets(
     {
       params: { page: pageNo, userId: userId },
     }
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
 
@@ -109,7 +105,7 @@ export async function readUsersRepliesAndRetweets(
     {
       params: { page: pageNo, userId: userId },
     }
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
 
@@ -119,15 +115,7 @@ export async function readUsersLikes(pageNo: number, userId: string) {
     {
       params: { page: pageNo, userId: userId },
     }
-  ).then((res) => res.data);
-  return response;
-}
-
-export async function updateTweet(request: UpdateTweet) {
-  const response: BaseResponse = await CustomAxios.put(
-    "/api/v1/tweet/update",
-    request
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
 
@@ -135,6 +123,6 @@ export async function deleteTweet(request: DeleteTweet) {
   const response: BaseResponse = await CustomAxios.put(
     "/api/v1/tweet/delete",
     request
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }

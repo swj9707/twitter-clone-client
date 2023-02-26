@@ -13,12 +13,11 @@ import Tweet from "@/Components/Tweets/Tweet";
 
 interface Props {
   activeTab: number;
+  userId: string;
 }
 
 const UserPageTweets = (props: Props) => {
-  const userAuthInfo = useSelector((state: RootStore) => state.AuthReducer);
-
-  const { activeTab } = props;
+  const { activeTab, userId } = props;
 
   const [pageNo, setPageNo] = useState(0);
   const [lastPage, setLastPage] = useState(false);
@@ -27,8 +26,7 @@ const UserPageTweets = (props: Props) => {
   const [ref, inView] = useInView();
 
   const firstOption = () => {
-    readUserTweetsAndRetweets(pageNo, userAuthInfo.user.userId).then((res) => {
-      console.log(res.data);
+    readUserTweetsAndRetweets(pageNo, userId).then((res) => {
       const result: UserTweetInfo[] = res.data.tweets;
       const lastPage = res.data.last;
       setLastPage(lastPage);
@@ -37,20 +35,16 @@ const UserPageTweets = (props: Props) => {
   };
 
   const secondOption = () => {
-    readUsersRepliesAndRetweets(pageNo, userAuthInfo.user.userId).then(
-      (res) => {
-        console.log(res.data);
-        const result: UserTweetInfo[] = res.data.tweets;
-        const lastPage = res.data.last;
-        setLastPage(lastPage);
-        setTweets([...tweets, ...result]);
-      }
-    );
+    readUsersRepliesAndRetweets(pageNo, userId).then((res) => {
+      const result: UserTweetInfo[] = res.data.tweets;
+      const lastPage = res.data.last;
+      setLastPage(lastPage);
+      setTweets([...tweets, ...result]);
+    });
   };
 
   const thirdOption = () => {
-    readUsersLikes(pageNo, userAuthInfo.user.userId).then((res) => {
-      console.log(res.data);
+    readUsersLikes(pageNo, userId).then((res) => {
       const result: UserTweetInfo[] = res.data.tweets;
       const lastPage = res.data.last;
       setLastPage(lastPage);
@@ -60,13 +54,17 @@ const UserPageTweets = (props: Props) => {
 
   const getTweets = useCallback(async () => {
     setLoading(true);
-    if (!lastPage) {
-      if (activeTab === 1) {
-        firstOption();
-      } else if (activeTab === 2) {
-        secondOption();
-      } else if (activeTab === 3) {
-        thirdOption();
+    if (pageNo === -1) {
+      setPageNo(0);
+    } else {
+      if (!lastPage) {
+        if (activeTab === 1) {
+          firstOption();
+        } else if (activeTab === 2) {
+          secondOption();
+        } else if (activeTab === 3) {
+          thirdOption();
+        }
       }
     }
 
@@ -87,11 +85,9 @@ const UserPageTweets = (props: Props) => {
   }, [inView, loading]);
 
   useEffect(() => {
-    console.log("Wassup");
-    setPageNo(0);
-    setLastPage(false);
     setTweets([]);
-    getTweets();
+    setPageNo(-1);
+    setLastPage(false);
   }, [activeTab]);
 
   return (

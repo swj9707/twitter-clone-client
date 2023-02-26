@@ -1,4 +1,5 @@
 import { BaseResponse } from "@/Data/Type/BaseResponse";
+import { AxiosResponse } from "axios";
 import {
   EditUserPassword,
   EditUserProfile,
@@ -15,7 +16,7 @@ export async function getUserInfo(userId: String) {
         userId: userId,
       },
     }
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
 
@@ -27,7 +28,7 @@ export async function getUserProfile(userName: String) {
         userName: userName,
       },
     }
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
 
@@ -35,7 +36,7 @@ export async function editUserProfile(EditUserProfile: EditUserProfile) {
   const response: BaseResponse = await CustomAxios.put(
     "/api/v1/user/editProfile",
     EditUserProfile
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
 
@@ -43,7 +44,7 @@ export async function editUserProfileReq(EditUserProfie: EditUserProfileReq) {
   const response: BaseResponse = await CustomAxios.put(
     "/api/v1/user/editUserProfile",
     EditUserProfie
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
 
@@ -51,6 +52,6 @@ export async function editUserPassword(EditUserPassword: EditUserPassword) {
   const response: BaseResponse = await CustomAxios.put(
     "/api/v1/user/editPassword",
     EditUserPassword
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }

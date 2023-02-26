@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { LocationOn, Cake } from "@/Styles/Icons";
-import button from "../button";
+import button from "../../button";
 import { Avatar, styled as MUIStyled } from "@mui/material";
 import tw from "twin.macro";
 

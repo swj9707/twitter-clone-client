@@ -33,7 +33,6 @@ const ProfileEdit = () => {
   const onBannerImageChange = (event: any) => {
     if (event.target) {
       const target = event.target as HTMLInputElement;
-      console.log(target.id);
       const file = target.files?.[0];
       if (file) {
         const fileObj = new Blob([file]);
@@ -48,7 +47,6 @@ const ProfileEdit = () => {
   const onProfileImageChange = (event: any) => {
     if (event.target) {
       const target = event.target as HTMLInputElement;
-      console.log(target.id);
       const file = target.files?.[0];
       if (file) {
         const fileObj = new Blob([file]);
@@ -86,7 +84,6 @@ const ProfileEdit = () => {
         window.location.reload();
       })
       .catch((ex) => {
-        console.log(ex);
         alert("유저 프로필 업데이트에 실패했습니다.");
         window.location.reload();
       });

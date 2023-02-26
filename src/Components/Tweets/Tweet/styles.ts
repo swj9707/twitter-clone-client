@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { Avatar, styled as MUIStyled } from "@mui/material";
-import { Chat, Retweet, Favorite } from "@/Styles/Icons";
+import { Chat, Retweet, Favorite, ThreeDots } from "@/Styles/Icons";
 
 export const Container = styled.div`
   display: flex;
@@ -52,6 +52,7 @@ export const Content = styled.div`
 export const Header = styled.div`
   display: flex;
   align-items: center;
+  position : relative
 
   font-size: 15px;
   white-space: nowrap;
@@ -129,32 +130,31 @@ export const Icons = styled.div`
 export const Status = styled.div`
   display: flex;
   align-items: center;
-
+  color: var(--gray);
   font-size: 14px;
 
   > svg {
     margin-right: 5px;
   }
+`;
 
-  &:nth-child(1) {
-    &,
-    > svg path {
-      color: var(--gray);
-    }
+export const Option = styled.div`
+  display: flex;
+  align-items: center;
+  color: var(--gray);
+  font-size: 14px;
+  position: absolute;
+  right: 15px;
+
+  > svg {
+    margin-right: 5px;
   }
 
-  &:nth-child(2) {
-    color: var(--retweet);
-    > svg path {
-      fill: var(--retweet);
-    }
-  }
+  > div {
+    cursor: pointer;
 
-  &:nth-child(3) {
-    color: var(--like);
-
-    > svg path {
-      color: var(--like);
+    &:hover {
+      opacity: 0.7;
     }
   }
 `;
@@ -168,6 +168,10 @@ const iconCSS = css`
 `;
 
 export const ComentIcon = styled(Chat)`
+  ${iconCSS}
+`;
+
+export const OptionIcon = styled(ThreeDots)`
   ${iconCSS}
 `;
 

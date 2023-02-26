@@ -10,7 +10,7 @@ import {
   Followage,
   EditButton,
 } from "./styles";
-import ProfileEdit from "../ProfileEdit";
+import ProfileEdit from "./ProfileEdit";
 import { useSelector } from "react-redux";
 import { RootStore } from "@/Data/Store";
 import { TwitterUserProfile } from "@/Data/Type/User/User";
@@ -66,7 +66,7 @@ const ProfilePage = (props: profilePageProps) => {
           </span>
         </Followage>
       </ProfileData>
-      <UserTweets />
+      <UserTweets userName={userProfile.userName} userId={userProfile.userId} />
       <Modal open={open} onClose={handleClose} children={<ProfileEdit />} />
     </Container>
   );

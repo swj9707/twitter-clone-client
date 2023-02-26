@@ -1,5 +1,6 @@
 import { BaseResponse } from "@/Data/Type/BaseResponse";
 import { CustomAxios } from "../Api/CustomAxios";
+import { AxiosResponse } from "axios";
 
 export async function uploadImage(image: File) {
   const formData = new FormData();
@@ -12,6 +13,6 @@ export async function uploadImage(image: File) {
         "Content-Type": "application/form-data",
       },
     }
-  ).then((res) => res.data);
+  ).then((res: AxiosResponse) => res.data);
   return response;
 }
