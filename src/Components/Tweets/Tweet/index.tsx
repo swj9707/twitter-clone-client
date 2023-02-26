@@ -14,6 +14,7 @@ import {
   RetweetIcon,
   LikeIcon,
   CustomAvatar,
+  Retweeted,
 } from "./styles";
 import { TweetInfo } from "@/Data/Type/Tweet/Tweet";
 import { useNavigate } from "react-router-dom";
@@ -24,10 +25,12 @@ import { like, retweet } from "@/Service/Tweet/TweetService";
 
 interface TweetProps {
   tweetInfo: TweetInfo;
+  isRetweeted?: Boolean;
+  isReadOnly?: Boolean;
 }
 
 const Tweet = (props: TweetProps) => {
-  const { tweetInfo } = props;
+  const { tweetInfo, isRetweeted, isReadOnly } = props;
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
@@ -43,7 +46,8 @@ const Tweet = (props: TweetProps) => {
   };
 
   const onClickTweetDetail = () => {
-    navigate("/detail/");
+    navigate("/tweet/" + tweetInfo.tweetId);
+    window.location.reload();
   };
 
   const onClickRetweet = () => {
@@ -61,11 +65,14 @@ const Tweet = (props: TweetProps) => {
   };
 
   return (
-    <Container>
-      {/* <Retweeted>
-        <RetweetIcon />
-        Wassup
-      </Retweeted> */}
+    <Container onClick={!isReadOnly ? onClickTweetDetail : undefined}>
+      {isRetweeted && (
+        <Retweeted>
+          <RetweetIcon />
+          Wassup
+        </Retweeted>
+      )}
+
       <Body>
         {tweetInfo.userInfo.profileImage ? (
           <CustomAvatar
