@@ -23,9 +23,9 @@ const WidgetBar = () => {
           <List
             title="Who to Follow"
             elements={[
-              <FollowSugestion name="Wassup" nickname="@wassup" />,
-              <FollowSugestion name="Wassup" nickname="@wassup" />,
-              <FollowSugestion name="Wassup" nickname="@wassup" />,
+              <FollowSugestion name="추후 구현 예정" nickname="@wassup" />,
+              <FollowSugestion name="추후 구현 예정" nickname="@wassup" />,
+              <FollowSugestion name="추후 구현 예정" nickname="@wassup" />,
             ]}
           />
 

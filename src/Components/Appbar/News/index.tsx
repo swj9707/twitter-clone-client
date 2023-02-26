@@ -4,7 +4,7 @@ import { Container } from "./styles";
 const News: React.FC = () => {
   return (
     <Container>
-      <span>Wasssup</span>
+      <span>다음 패치를 기대하시라</span>
       <strong>wassup</strong>
     </Container>
   );
