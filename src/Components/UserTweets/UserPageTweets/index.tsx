@@ -1,19 +1,24 @@
-import React, { useCallback, useEffect, useState } from "react";
-
-import Tweet from "../Tweets/Tweet";
-
-import { ButtonContainer, Container, Tab, Tweets } from "./styles";
-import { TweetInfo, UserTweetInfo } from "@/Data/Type/Tweet/Tweet";
-import { useInView } from "react-intersection-observer";
+import { UserTweetInfo } from "@/Data/Type/Tweet/Tweet";
 import {
-  readUserTweets,
   readUserTweetsAndRetweets,
+  readUsersLikes,
+  readUsersRepliesAndRetweets,
 } from "@/Service/Tweet/TweetService";
+import { useCallback, useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 import { useSelector } from "react-redux";
 import { RootStore } from "@/Data/Store";
+import { Tweets } from "../styles";
+import Tweet from "@/Components/Tweets/Tweet";
 
-const Feed = () => {
+interface Props {
+  activeTab: number;
+}
+
+const UserPageTweets = (props: Props) => {
   const userAuthInfo = useSelector((state: RootStore) => state.AuthReducer);
+
+  const { activeTab } = props;
 
   const [pageNo, setPageNo] = useState(0);
   const [lastPage, setLastPage] = useState(false);
@@ -21,18 +26,48 @@ const Feed = () => {
   const [loading, setLoading] = useState(false);
   const [ref, inView] = useInView();
 
+  const firstOption = () => {
+    readUserTweetsAndRetweets(pageNo, userAuthInfo.user.userId).then((res) => {
+      console.log(res.data);
+      const result: UserTweetInfo[] = res.data.tweets;
+      const lastPage = res.data.last;
+      setLastPage(lastPage);
+      setTweets([...tweets, ...result]);
+    });
+  };
+
+  const secondOption = () => {
+    readUsersRepliesAndRetweets(pageNo, userAuthInfo.user.userId).then(
+      (res) => {
+        console.log(res.data);
+        const result: UserTweetInfo[] = res.data.tweets;
+        const lastPage = res.data.last;
+        setLastPage(lastPage);
+        setTweets([...tweets, ...result]);
+      }
+    );
+  };
+
+  const thirdOption = () => {
+    readUsersLikes(pageNo, userAuthInfo.user.userId).then((res) => {
+      console.log(res.data);
+      const result: UserTweetInfo[] = res.data.tweets;
+      const lastPage = res.data.last;
+      setLastPage(lastPage);
+      setTweets([...tweets, ...result]);
+    });
+  };
+
   const getTweets = useCallback(async () => {
     setLoading(true);
     if (!lastPage) {
-      readUserTweetsAndRetweets(pageNo, userAuthInfo.user.userId).then(
-        (res) => {
-          console.log(res.data);
-          const result: UserTweetInfo[] = res.data.tweets;
-          const lastPage = res.data.last;
-          setLastPage(lastPage);
-          setTweets([...tweets, ...result]);
-        }
-      );
+      if (activeTab === 1) {
+        firstOption();
+      } else if (activeTab === 2) {
+        secondOption();
+      } else if (activeTab === 3) {
+        thirdOption();
+      }
     }
 
     setLoading(false);
@@ -51,13 +86,16 @@ const Feed = () => {
     }
   }, [inView, loading]);
 
+  useEffect(() => {
+    console.log("Wassup");
+    setPageNo(0);
+    setLastPage(false);
+    setTweets([]);
+    getTweets();
+  }, [activeTab]);
+
   return (
-    <Container>
-      <ButtonContainer>
-        <Tab>Tweets</Tab>
-        <Tab>Tweets & replies</Tab>
-        <Tab>Likes</Tab>
-      </ButtonContainer>
+    <>
       <Tweets>
         {tweets.length !== 0 ? (
           tweets.map((tweet, idx) =>
@@ -89,8 +127,8 @@ const Feed = () => {
           </div>
         )}
       </Tweets>
-    </Container>
+    </>
   );
 };
 
-export default Feed;
+export default UserPageTweets;

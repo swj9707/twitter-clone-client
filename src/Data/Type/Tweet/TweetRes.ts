@@ -18,6 +18,10 @@ export interface UploadTweetImageTestRes extends BaseResponse {
   };
 }
 
+export interface ReadTweetResponse extends BaseResponse {
+  data: TweetInfo;
+}
+
 export interface ReadTweetsResponse extends BaseResponse {
   data: {
     tweets: TweetInfo[];

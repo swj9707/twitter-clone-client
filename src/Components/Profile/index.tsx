@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "@/Components/Modal";
-import Feed from "../Feed";
+import UserTweets from "../UserTweets";
 import {
   Container,
   Banner,
@@ -66,7 +66,7 @@ const ProfilePage = (props: profilePageProps) => {
           </span>
         </Followage>
       </ProfileData>
-      <Feed />
+      <UserTweets />
       <Modal open={open} onClose={handleClose} children={<ProfileEdit />} />
     </Container>
   );

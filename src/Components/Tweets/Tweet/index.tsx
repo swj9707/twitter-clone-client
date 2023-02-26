@@ -26,10 +26,11 @@ import { like, retweet } from "@/Service/Tweet/TweetService";
 interface TweetProps {
   tweetInfo: TweetInfo;
   isRetweeted?: Boolean;
+  isReadOnly?: Boolean;
 }
 
 const Tweet = (props: TweetProps) => {
-  const { tweetInfo, isRetweeted } = props;
+  const { tweetInfo, isRetweeted, isReadOnly } = props;
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
@@ -45,7 +46,8 @@ const Tweet = (props: TweetProps) => {
   };
 
   const onClickTweetDetail = () => {
-    navigate("/detail/");
+    navigate("/tweet/" + tweetInfo.tweetId);
+    window.location.reload();
   };
 
   const onClickRetweet = () => {
@@ -63,7 +65,7 @@ const Tweet = (props: TweetProps) => {
   };
 
   return (
-    <Container>
+    <Container onClick={!isReadOnly ? onClickTweetDetail : undefined}>
       {isRetweeted && (
         <Retweeted>
           <RetweetIcon />

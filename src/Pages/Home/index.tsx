@@ -58,6 +58,7 @@ const MainHome = () => {
                     isRetweeted={false}
                     key={tweet.tweetId}
                     tweetInfo={tweet}
+                    isReadOnly={false}
                   />
                   <div
                     ref={ref}
@@ -71,6 +72,7 @@ const MainHome = () => {
                   isRetweeted={false}
                   key={tweet.tweetId}
                   tweetInfo={tweet}
+                  isReadOnly={false}
                 />
               )
             )}

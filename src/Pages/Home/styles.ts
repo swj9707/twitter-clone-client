@@ -1,10 +1,10 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: min(601px, 100%); /*vai ter no máx 601px ou 100% da tela*/
+  width: min(601px, 100%);
 
   @media (min-width: 500px) {
     border-left: 1px solid var(--outline);
