@@ -2,10 +2,6 @@ import { useEffect } from "react";
 import { BackCircle, FrontCircle, Loading, SpinnerContainer } from "./style";
 
 const Spinner = () => {
-  useEffect(() => {
-    console.log("Wassup");
-  }, []);
-
   return (
     <Loading>
       <SpinnerContainer>

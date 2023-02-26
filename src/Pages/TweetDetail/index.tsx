@@ -20,7 +20,6 @@ const TweetDetail = () => {
     setLoading(true);
     if (!lastPage) {
       getReplies(pageNo, Number(params.tweetId)).then((res) => {
-        console.log(res.data);
         const result: TweetInfo[] = res.data.tweets;
         const lastPage = res.data.last;
         setLastPage(lastPage);
@@ -47,9 +46,7 @@ const TweetDetail = () => {
   useEffect(() => {
     getTweet(Number(params.tweetId))
       .then((res) => {
-        console.log(res);
         setTweetInfo(res.data);
-        console.log(tweetInfo);
       })
       .catch((err) => {
         alert(err);

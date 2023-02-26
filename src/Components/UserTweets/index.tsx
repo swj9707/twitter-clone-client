@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 
 import { ButtonContainer, Container, Tab } from "./styles";
@@ -16,13 +15,28 @@ const UserTweets = (prop: props) => {
   return (
     <Container>
       <ButtonContainer>
-        <Tab onClick={() => navigate("/profile/" + userName + "/tweet")}>
+        <Tab
+          onClick={() => {
+            window.scrollTo(0, 0);
+            navigate("/profile/" + userName + "/tweet");
+          }}
+        >
           Tweets
         </Tab>
-        <Tab onClick={() => navigate("/profile/" + userName + "/reply")}>
+        <Tab
+          onClick={() => {
+            window.scrollTo(0, 0);
+            navigate("/profile/" + userName + "/reply");
+          }}
+        >
           Tweets & replies
         </Tab>
-        <Tab onClick={() => navigate("/profile/" + userName + "/likes")}>
+        <Tab
+          onClick={() => {
+            window.scrollTo(0, 0);
+            navigate("/profile/" + userName + "/likes");
+          }}
+        >
           Likes
         </Tab>
       </ButtonContainer>

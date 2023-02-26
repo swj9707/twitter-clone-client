@@ -18,7 +18,6 @@ const MainHome = () => {
     setLoading(true);
     if (!lastPage) {
       readTweets(pageNo).then((res) => {
-        console.log(res.data);
         const result: TweetInfo[] = res.data.tweets;
         const lastPage = res.data.last;
         setLastPage(lastPage);

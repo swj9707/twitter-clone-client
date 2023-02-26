@@ -27,7 +27,6 @@ const UserPageTweets = (props: Props) => {
 
   const firstOption = () => {
     readUserTweetsAndRetweets(pageNo, userId).then((res) => {
-      console.log(res.data);
       const result: UserTweetInfo[] = res.data.tweets;
       const lastPage = res.data.last;
       setLastPage(lastPage);
@@ -37,7 +36,6 @@ const UserPageTweets = (props: Props) => {
 
   const secondOption = () => {
     readUsersRepliesAndRetweets(pageNo, userId).then((res) => {
-      console.log(res.data);
       const result: UserTweetInfo[] = res.data.tweets;
       const lastPage = res.data.last;
       setLastPage(lastPage);
@@ -47,7 +45,6 @@ const UserPageTweets = (props: Props) => {
 
   const thirdOption = () => {
     readUsersLikes(pageNo, userId).then((res) => {
-      console.log(res.data);
       const result: UserTweetInfo[] = res.data.tweets;
       const lastPage = res.data.last;
       setLastPage(lastPage);

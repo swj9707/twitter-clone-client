@@ -11,8 +11,10 @@ import {
   Icons,
   Status,
   ComentIcon,
+  OptionIcon,
   RetweetIcon,
   LikeIcon,
+  Option,
   CustomAvatar,
   Retweeted,
 } from "./styles";
@@ -22,6 +24,9 @@ import { useState } from "react";
 import CustomModal from "@/Components/Modal";
 import AddReplyModal from "@/Components/ModalComponent/AddReplyModal";
 import { like, retweet } from "@/Service/Tweet/TweetService";
+import { useSelector } from "react-redux";
+import { RootStore } from "@/Data/Store";
+import { deleteTweet } from "@/Service/Tweet/TweetService";
 
 interface TweetProps {
   tweetInfo: TweetInfo;
@@ -30,6 +35,8 @@ interface TweetProps {
 }
 
 const Tweet = (props: TweetProps) => {
+  const userInfo = useSelector((state: RootStore) => state.UserInfoReducer);
+
   const { tweetInfo, isRetweeted, isReadOnly } = props;
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -41,13 +48,25 @@ const Tweet = (props: TweetProps) => {
     setOpen(false);
   };
 
+  const onClickDeleteTweet = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      deleteTweet({
+        tweetId: tweetInfo.tweetId,
+      }).then(() => {
+        alert("삭제되었습니다.");
+        window.location.reload();
+      });
+    }
+  };
+
   const onClickShowUserProfile = () => {
+    window.scrollTo(0, 0);
     navigate("/profile/" + tweetInfo.userInfo.userName + "/tweet");
   };
 
   const onClickTweetDetail = () => {
+    window.scrollTo(0, 0);
     navigate("/tweet/" + tweetInfo.tweetId);
-    window.location.reload();
   };
 
   const onClickRetweet = () => {
@@ -92,7 +111,6 @@ const Tweet = (props: TweetProps) => {
             alt=""
           />
         )}
-
         <Content>
           <Header>
             <strong onClick={onClickShowUserProfile}>
@@ -111,8 +129,17 @@ const Tweet = (props: TweetProps) => {
             </span>
             <Dot />
             <time> {tweetInfo.createdAt}</time>
+            <Option>
+              <OptionIcon
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (tweetInfo.userInfo.userName === userInfo.userName) {
+                    onClickDeleteTweet();
+                  }
+                }}
+              />
+            </Option>
           </Header>
-
           <Description>{tweetInfo.tweetContent}</Description>
 
           <ImageContent>
@@ -123,17 +150,32 @@ const Tweet = (props: TweetProps) => {
           </ImageContent>
 
           <Icons>
-            <Status onClick={handleClickOpen}>
+            <Status
+              onClick={(e) => {
+                e.stopPropagation();
+                handleClickOpen();
+              }}
+            >
               <ComentIcon />
               {tweetInfo.repliesCount}
             </Status>
 
-            <Status onClick={onClickRetweet}>
+            <Status
+              onClick={(e) => {
+                e.stopPropagation();
+                onClickRetweet();
+              }}
+            >
               <RetweetIcon />
               {tweetInfo.retweetsCount}
             </Status>
 
-            <Status onClick={onClickLike}>
+            <Status
+              onClick={(e) => {
+                e.stopPropagation();
+                onClickLike();
+              }}
+            >
               <LikeIcon />
               {tweetInfo.likedTweetsCount}
             </Status>
