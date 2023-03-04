@@ -1,6 +1,7 @@
 import {
   ContainerHeader,
   ContainerToggleButton,
+  Toggle,
 } from "@/Styles/Page/AuthPage/style";
 import EmailButton from "../../Buttons/EmailLoginButton";
 
@@ -14,12 +15,12 @@ const LoginContainer = (props: LoginContainerProps) => {
     <>
       <ContainerHeader>Login</ContainerHeader>
       <EmailButton handleOpen={props.handleOpen} isLogin={true} />
-      <h1>
+      <Toggle>
         계정이 없으신가요?
         <ContainerToggleButton onClick={props.toggleLogin}>
           가입하기
         </ContainerToggleButton>
-      </h1>
+      </Toggle>
     </>
   );
 };

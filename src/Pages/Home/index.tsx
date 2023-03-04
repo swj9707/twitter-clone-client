@@ -10,6 +10,7 @@ import {
   MainHeader,
   TweetContainer,
 } from "@/Styles/Page/MainPage/style";
+import { TweetFooter } from "@/Styles/components/Tweet/style";
 
 const MainHome = () => {
   const [pageNo, setPageNo] = useState(0);
@@ -63,12 +64,7 @@ const MainHome = () => {
                     tweetInfo={tweet}
                     isReadOnly={false}
                   />
-                  <div
-                    ref={ref}
-                    className="w-full flex-1 flex justify-center items-center"
-                  >
-                    마지막 페이지입니다.
-                  </div>
+                  <TweetFooter ref={ref}>마지막 페이지입니다.</TweetFooter>
                 </>
               ) : (
                 <Tweet
@@ -82,9 +78,7 @@ const MainHome = () => {
             {loading && <Spinner />}
           </>
         ) : (
-          <div className="w-full flex-1 flex justify-center items-center mt-8">
-            등록된 Tweet이 없습니다.
-          </div>
+          <TweetFooter>등록된 Tweet이 없습니다.</TweetFooter>
         )}
       </TweetContainer>
     </MainContainer>

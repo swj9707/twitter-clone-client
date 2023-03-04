@@ -184,37 +184,6 @@ export const InputImageContent = styled.div`
   }
 `;
 
-const ImageIconCSS = css`
-  flex-shrink: 0;
-  width: 30px;
-  height: 30px;
-  fill: rgba(70, 78, 84, 0.6);
-`;
-
-export const CancelIcon = styled(Cancel)`
-  ${ImageIconCSS}
-`;
-
-export const EditIcon = styled(Edit)`
-  ${ImageIconCSS}
-`;
-
-export const ComentIcon = styled(Chat)`
-  ${iconCSS}
-`;
-
-export const OptionIcon = styled(ThreeDots)`
-  ${iconCSS}
-`;
-
-export const LikeIcon = styled(Favorite)`
-  ${iconCSS}
-`;
-
-export const RetweetIcon = styled(Retweet)`
-  ${iconCSS}
-`;
-
 export const TweetFormContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -368,17 +337,6 @@ export const TweetFormImageContent = styled.div`
   }
 `;
 
-const TweetFormIconCSS = css`
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  color: var(--twitter);
-`;
-
-export const FileIcon = styled(FileMedia)`
-  ${TweetFormIconCSS}
-`;
-
 export const UploadImageInputButton = styled.button`
   border-radius: 50%;
   width: 35px;
@@ -387,17 +345,6 @@ export const UploadImageInputButton = styled.button`
   &:hover {
     background: var(--twitter-dark-hover);
   }
-`;
-
-const UploadImageIconCSS = css`
-  flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  color: var(--twitter);
-`;
-
-export const UploadImageFileIcon = styled(FileMedia)`
-  ${UploadImageIconCSS}
 `;
 
 export const UserTweetContainer = styled.div`
@@ -436,4 +383,64 @@ export const UserTweets = styled.div`
   flex-direction: column;
 
   flex-shrink: 0;
+`;
+
+export const TweetFooter = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 10px 0;
+`;
+
+const ImageIconCSS = css`
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  fill: rgba(70, 78, 84, 0.6);
+`;
+
+const UploadImageIconCSS = css`
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--twitter);
+`;
+
+const TweetFormIconCSS = css`
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--twitter);
+`;
+
+export const CancelIcon = styled(Cancel)`
+  ${ImageIconCSS}
+`;
+
+export const EditIcon = styled(Edit)`
+  ${ImageIconCSS}
+`;
+
+export const ComentIcon = styled(Chat)`
+  ${iconCSS}
+`;
+
+export const OptionIcon = styled(ThreeDots)`
+  ${iconCSS}
+`;
+
+export const LikeIcon = styled(Favorite)`
+  ${iconCSS}
+`;
+
+export const RetweetIcon = styled(Retweet)`
+  ${iconCSS}
+`;
+
+export const UploadImageFileIcon = styled(FileMedia)`
+  ${UploadImageIconCSS}
+`;
+
+export const FileIcon = styled(FileMedia)`
+  ${TweetFormIconCSS}
 `;

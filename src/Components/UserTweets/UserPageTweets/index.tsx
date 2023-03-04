@@ -7,7 +7,7 @@ import {
 import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import Tweet from "@/Components/Tweets/Tweet";
-import { UserTweets } from "@/Styles/components/Tweet/style";
+import { TweetFooter, UserTweets } from "@/Styles/components/Tweet/style";
 
 interface Props {
   activeTab: number;
@@ -100,12 +100,7 @@ const UserPageTweets = (props: Props) => {
                   key={idx}
                   tweetInfo={tweet}
                 />
-                <div
-                  ref={ref}
-                  className="w-full flex-1 flex justify-center items-center"
-                >
-                  마지막 페이지입니다.
-                </div>
+                <TweetFooter ref={ref}>마지막 페이지입니다.</TweetFooter>
               </>
             ) : (
               <Tweet
@@ -116,9 +111,7 @@ const UserPageTweets = (props: Props) => {
             )
           )
         ) : (
-          <div className="w-full flex-1 flex justify-center items-center mt-8">
-            등록된 Tweet이 없습니다.
-          </div>
+          <TweetFooter>등록된 Tweet이 없습니다.</TweetFooter>
         )}
       </UserTweets>
     </>

@@ -54,3 +54,37 @@ export const FormInputButton = styled.input`
   font-weight: bold;
   padding: 7px 0px 7px 0px;
 `;
+
+export const TweetModalContainer = styled.div`
+  outline-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  padding: 10px 10px 10px 10px;
+  transform: translate(-50%, -50%);
+  top: 30%;
+  left: 50%;
+  width: auto;
+  min-width: 600px;
+  height: auto;
+  background-color: var(--primary);
+  border-radius: 15px;
+`;
+
+export const ProfileEditWrapper = styled.div`
+  outline-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: fixed;
+  padding: 10px 10px 10px 10px;
+  transform: translate(-50%, -50%);
+  top: 30%;
+  left: 50%;
+  width: auto;
+  min-width: 600px;
+  height: auto;
+  background-color: var(--primary);
+  border-radius: 15px;
+`;

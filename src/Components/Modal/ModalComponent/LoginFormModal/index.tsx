@@ -1,7 +1,4 @@
-import {
-  FormContainer,
-  FormTitle,
-} from "@/Styles/components/LoginFormModal/style";
+import { FormContainer, FormTitle } from "@/Styles/components/Modals/style";
 import AuthForm from "../AuthForm";
 import RegisterForm from "../RegisterForm";
 

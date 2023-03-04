@@ -4,7 +4,7 @@ import {
   FormDiv,
   FormInput,
   FormInputButton,
-} from "@/Styles/components/LoginFormModal/style";
+} from "@/Styles/components/Modals/style";
 
 import { useState } from "react";
 

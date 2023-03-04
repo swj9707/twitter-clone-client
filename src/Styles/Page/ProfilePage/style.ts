@@ -11,7 +11,6 @@ import {
 } from "@/Styles/Icons";
 import button from "@/Components/Buttons/button";
 import { Avatar, styled as MUIStyled } from "@mui/material";
-import tw from "twin.macro";
 
 export const Container = styled.div`
   display: flex;
@@ -210,29 +209,6 @@ export const BottomMenu = styled.div`
   }
 `;
 
-export const ProfileEditWrapper = styled.div`
-  ${tw`outline-none 
-  absolute
-   border 
-   top-1/4 
-   left-1/2
-    lg:left-1/2
-     transform 
-     -translate-x-1/2
-      -translate-y-1/4 
-      origin-center
-       w-2/3 
-       lg:w-1/2 
-       h-auto 
-       pt-2 
-       pb-3 
-       rounded-2xl 
-       flex 
-       flex-col 
-       justify-start
-        items-start`}
-`;
-
 export const ProfileEditContainer = styled.div`
   width: min(601px, 100%);
   max-height: 100%;
@@ -271,14 +247,22 @@ export const ProfileEditHeader = styled.div`
 `;
 
 export const ProfileEditBanner = styled.div`
+  flex-shrink: 0;
   width: 100%;
+  min-width: 600px;
   height: min(33vw, 199px);
   background: var(--darkGray);
+  vertical-align: middle;
   position: relative;
+  display: table;
+
   img {
+    position: absolute;
+    top: 0;
+    left: 0;
     border: none;
     width: 100%;
-    height: auto;
+    height: min(33vw, 199px);
   }
 `;
 
@@ -313,14 +297,37 @@ export const ProfileEditLegacyAvatar = styled.div`
   }
 `;
 
-export const ProfileEditProfileData = styled.div`
+export const ProfileEditForm = styled.div`
   padding: min(calc(10vw + 7px), 67px) 16px 0;
-  margin-top : 15px;
+  margin-top: 15px;
   margin-bottom: 15px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  }
+`;
+
+export const ProfileEditFormDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 5px 0 5px 0;
+  margin-bottom: 4px;
+`;
+
+export const ProfileEditMenu = styled.span`
+  color: var(--white);
+  width: 100%;
+  margin: 5px 0 0 15px;
+`;
+
+export const ProfileEditInput = styled.input`
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  outline: none;
+  color: var(--secondary);
+  background-color: var(--white);
+  padding: 7px 0 7px 10px;
 `;
 
 export const ProfileEditEditButton = styled(button)`

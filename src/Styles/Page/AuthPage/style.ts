@@ -70,3 +70,8 @@ export const Policy = styled.h1`
     color: var(--deepBlue);
   }
 `;
+
+export const Toggle = styled.h1`
+  font-size: 1.4rem;
+  margin: 15px 0 0 0;
+`;

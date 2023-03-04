@@ -158,7 +158,7 @@ export const MenuButton = styled.button`
 export const TweetButton = styled(MenuButton)`
   background: var(--twitter);
   color: var(--white);
-  padding: 8.25px;
+  padding: 8.25px 2px 8.25px 2px;
 
   &:hover {
     background: var(--twitter-hover);
@@ -566,7 +566,12 @@ export const MoreIcon = styled(MoreHorizontalOutline)`
 `;
 
 export const PencilIcon = styled(PencilSquare)`
-  ${iconCSS}
+  flex-shrink: 0;
+
+  width: 25px;
+  height: 25px;
+  color: var(--white);
+  margin: 0 0 0 5px;
 `;
 
 export const FooterHomeIcon = styled(Home)`

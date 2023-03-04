@@ -2,6 +2,7 @@ import {
   ContainerHeader,
   ContainerToggleButton,
   Policy,
+  Toggle,
 } from "@/Styles/Page/AuthPage/style";
 import EmailButton from "../../Buttons/EmailLoginButton";
 
@@ -21,13 +22,13 @@ const RegisterContainer = (props: RegisterContainerProps) => {
         <span style={{ color: "#2e64fe" }}>Privacy Policy</span>, including{" "}
         <span style={{ color: "#2e64fe" }}>Cookie Use.</span>
       </Policy>
-      <h1>
+      <Toggle>
         트위터 아이디가 있으세요?{" "}
         <ContainerToggleButton onClick={props.toggleLogin}>
           로그인
         </ContainerToggleButton>
         하기
-      </h1>
+      </Toggle>
     </>
   );
 };

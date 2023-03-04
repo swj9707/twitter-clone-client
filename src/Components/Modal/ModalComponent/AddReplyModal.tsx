@@ -12,6 +12,7 @@ import {
   ImageContent,
 } from "@/Styles/components/Tweet/style";
 import { CustomAvatar } from "@/Styles/components/CustomAvator/style";
+import { TweetModalContainer } from "@/Styles/components/Modals/style";
 
 interface PropsInter {
   tweetInfo: TweetInfo;
@@ -25,7 +26,7 @@ const AddReplyModal = (props: PropsInter) => {
     navigate("/profile/" + tweetInfo.userInfo.userName + "/tweet");
   };
   return (
-    <div className="outline-none absolute border bg-[#000] top-1/4 left-1/2 lg:left-1/2 transform -translate-x-1/2 -translate-y-1/4 origin-center w-2/3 lg:w-1/2 h-auto pt-2 pb-3 rounded-2xl flex flex-col justify-start items-start">
+    <TweetModalContainer>
       <Body>
         {tweetInfo.userInfo.profileImage ? (
           <CustomAvatar
@@ -68,7 +69,7 @@ const AddReplyModal = (props: PropsInter) => {
         </Content>
       </Body>
       <Tweetbox isReply={true} connectedTweetId={tweetInfo.tweetId} />
-    </div>
+    </TweetModalContainer>
   );
 };
 

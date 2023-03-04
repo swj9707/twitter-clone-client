@@ -1,12 +1,14 @@
 import { useSelector } from "react-redux";
 import {
-  ProfileEditWrapper,
   ProfileEditCustomAvatar,
   ProfileEditBanner,
   ProfileEditContainer,
   ProfileEditEditButton,
   ProfileEditHeader,
-  ProfileEditProfileData,
+  ProfileEditInput,
+  ProfileEditForm,
+  ProfileEditFormDiv,
+  ProfileEditMenu,
 } from "@/Styles/Page/ProfilePage/style";
 import { RootStore } from "@/Data/Store";
 import { useEffect, useRef, useState } from "react";
@@ -15,6 +17,7 @@ import { UploadImageRes } from "@/Data/Type/Image/ImageRes";
 import { uploadImage } from "@/Service/Image/ImageService";
 import { EditUserProfileReq } from "@/Data/Type/User/User";
 import { editUserProfileReq } from "@/Service/User/UserService";
+import { ProfileEditWrapper } from "@/Styles/components/Modals/style";
 
 const ProfileEdit = () => {
   const userInfo = useSelector((state: RootStore) => state.UserInfoReducer);
@@ -83,7 +86,7 @@ const ProfileEdit = () => {
         alert("유저 프로필이 업데이트 되었습니다.");
         window.location.reload();
       })
-      .catch((ex) => {
+      .catch(() => {
         alert("유저 프로필 업데이트에 실패했습니다.");
         window.location.reload();
       });
@@ -134,20 +137,17 @@ const ProfileEdit = () => {
               />
             )}
           </ProfileEditBanner>
-          <ProfileEditProfileData>
-            <div
-              style={{
-                marginBottom: "10px",
-              }}
-            >
-              <input
+          <ProfileEditForm>
+            <ProfileEditFormDiv>
+              <ProfileEditMenu>닉네임</ProfileEditMenu>
+              <ProfileEditInput
                 type="text"
                 placeholder="Username"
                 onChange={onChangeNickname}
                 value={userNickname}
               />
-            </div>
-          </ProfileEditProfileData>
+            </ProfileEditFormDiv>
+          </ProfileEditForm>
           <input
             ref={inputBackgroundRef}
             type="file"
