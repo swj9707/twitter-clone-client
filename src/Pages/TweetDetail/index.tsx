@@ -1,11 +1,11 @@
-import { Container, Header } from "./styles";
+import { Container, Header } from "@/Styles/Page/TweetDetailPage/styles";
 import { useParams } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
 import { TweetInfo } from "@/Data/Type/Tweet/Tweet";
 import { getReplies, getTweet } from "@/Service/Tweet/TweetService";
 import Tweet from "@/Components/Tweets/Tweet";
 import { useInView } from "react-intersection-observer";
-import Spinner from "@/Components/Spinner";
+import Spinner from "@/Components/Amination/Spinner";
 
 const TweetDetail = () => {
   const params = useParams<{ tweetId: string }>();

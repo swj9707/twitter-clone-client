@@ -1,12 +1,12 @@
+import { NewsContainer } from "@/Styles/Page/MainPage/style";
 import React from "react";
 
-import { Container } from "./styles";
 const News: React.FC = () => {
   return (
-    <Container>
+    <NewsContainer>
       <span>다음 패치를 기대하시라</span>
       <strong>wassup</strong>
-    </Container>
+    </NewsContainer>
   );
 };
 

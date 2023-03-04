@@ -41,6 +41,7 @@ html {
   --outline: #2F3336;
   --retweet: #00C06B;
   --like: #E8265E;
+  --deepBlue: #2e64fe;
   --twitter: #33A1F2;
   --twitter-hover: #1a8cd8;
   --twitter-dark-hover: #011017;

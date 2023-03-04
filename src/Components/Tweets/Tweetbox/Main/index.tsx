@@ -1,13 +1,13 @@
 import {
-  Container,
-  Content,
+  TweetFormContainer,
+  TweetFormContent,
   Footer,
   FooterAddForm,
   FooterWrapper,
   TextareaWrapper,
-  TweetBoxButton,
+  TweetFormButton,
   TweetTextArea,
-} from "./styles";
+} from "@/Styles/components/Tweet/style";
 import { ChangeEvent, useCallback, useState } from "react";
 import { ImageObj, TweetRequest } from "@/Data/Type/Tweet/Tweet";
 import ProfileAvatar from "../ProfileAvatar";
@@ -88,8 +88,8 @@ const Tweetbox = (prop: TweetboxProp) => {
   };
 
   return (
-    <Container>
-      <Content>
+    <TweetFormContainer>
+      <TweetFormContent>
         <ProfileAvatar />
         <TextareaWrapper>
           <TweetTextArea
@@ -99,17 +99,17 @@ const Tweetbox = (prop: TweetboxProp) => {
             maxLength={120}
           />
         </TextareaWrapper>
-      </Content>
+      </TweetFormContent>
       <AddTweetImage images={images} removeImage={removeImage} />
       <Footer>
         <FooterWrapper>
           <UploadImages imageCount={imageCount} onChangeImages={setImages} />
         </FooterWrapper>
         <FooterAddForm>
-          <TweetBoxButton onClick={onClickSubmit}>Tweet</TweetBoxButton>
+          <TweetFormButton onClick={onClickSubmit}>Tweet</TweetFormButton>
         </FooterAddForm>
       </Footer>
-    </Container>
+    </TweetFormContainer>
   );
 };
 

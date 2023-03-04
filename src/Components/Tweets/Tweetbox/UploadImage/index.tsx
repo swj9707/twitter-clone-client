@@ -1,6 +1,9 @@
 import { ImageObj } from "@/Data/Type/Tweet/Tweet";
 import { FC, memo, ReactElement, useCallback, useEffect, useRef } from "react";
-import { FileIcon, InputButton } from "./styles";
+import {
+  UploadImageFileIcon,
+  UploadImageInputButton,
+} from "@/Styles/components/Tweet/style";
 
 interface UploadImageProps {
   imageCount: number;
@@ -53,9 +56,9 @@ const UploadImages: FC<UploadImageProps> = memo(
 
     return (
       <>
-        <InputButton>
-          <FileIcon onClick={handleClickImage} />
-        </InputButton>
+        <UploadImageInputButton>
+          <UploadImageFileIcon onClick={handleClickImage} />
+        </UploadImageInputButton>
         <input ref={inputRef} type="file" id="upload-input" hidden />
       </>
     );

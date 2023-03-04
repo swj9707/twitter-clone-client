@@ -1,6 +1,10 @@
 import { ImageObj } from "@/Data/Type/Tweet/Tweet";
 import { FC, memo, ReactElement } from "react";
-import { CancelIcon, ImageContainer, ImageContent } from "./styles";
+import {
+  CancelIcon,
+  ImageContainer,
+  ImageContent,
+} from "@/Styles/components/Tweet/style";
 
 interface AddTweetImageProps {
   images: ImageObj[];

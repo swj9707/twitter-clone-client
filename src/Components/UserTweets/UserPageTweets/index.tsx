@@ -6,10 +6,8 @@ import {
 } from "@/Service/Tweet/TweetService";
 import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { useSelector } from "react-redux";
-import { RootStore } from "@/Data/Store";
-import { Tweets } from "../styles";
 import Tweet from "@/Components/Tweets/Tweet";
+import { UserTweets } from "@/Styles/components/Tweet/style";
 
 interface Props {
   activeTab: number;
@@ -92,7 +90,7 @@ const UserPageTweets = (props: Props) => {
 
   return (
     <>
-      <Tweets>
+      <UserTweets>
         {tweets.length !== 0 ? (
           tweets.map((tweet, idx) =>
             tweets.length - 1 === idx ? (
@@ -122,7 +120,7 @@ const UserPageTweets = (props: Props) => {
             등록된 Tweet이 없습니다.
           </div>
         )}
-      </Tweets>
+      </UserTweets>
     </>
   );
 };

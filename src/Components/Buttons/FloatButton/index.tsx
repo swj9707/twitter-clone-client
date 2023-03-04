@@ -1,10 +1,13 @@
-import { Container, LogoIcon } from "./styles";
+import {
+  FloatButtonContainer,
+  FloatLogoIcon,
+} from "@/Styles/Page/MainPage/style";
 
 const FloatButton = () => {
   return (
-    <Container>
-      <LogoIcon />
-    </Container>
+    <FloatButtonContainer>
+      <FloatLogoIcon />
+    </FloatButtonContainer>
   );
 };
 

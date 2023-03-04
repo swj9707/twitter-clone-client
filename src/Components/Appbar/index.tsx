@@ -1,11 +1,11 @@
 import StickyBox from "react-sticky-box";
 import {
-  Body,
-  Container,
+  AppbarBody,
+  AppbarContainer,
   SearchIcon,
   SearchInput,
   SearchWrapper,
-} from "./styles";
+} from "@/Styles/Page/MainPage/style";
 
 import List from "../List";
 import FollowSugestion from "./FollowSugestion";
@@ -13,13 +13,13 @@ import News from "./News";
 
 const WidgetBar = () => {
   return (
-    <Container>
+    <AppbarContainer>
       <SearchWrapper>
         <SearchInput placeholder="Search Twitter" />
         <SearchIcon />
       </SearchWrapper>
       <StickyBox>
-        <Body>
+        <AppbarBody>
           <List
             title="Who to Follow"
             elements={[
@@ -33,9 +33,9 @@ const WidgetBar = () => {
             title="Trends for you"
             elements={[<News />, <News />, <News />]}
           />
-        </Body>
+        </AppbarBody>
       </StickyBox>
-    </Container>
+    </AppbarContainer>
   );
 };
 

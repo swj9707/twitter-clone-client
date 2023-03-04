@@ -1,11 +1,15 @@
 import Tweet from "@/Components/Tweets/Tweet";
 import Tweetbox from "@/Components/Tweets/Tweetbox/Main";
-import { Container, Header, TweetContainer } from "./styles";
 import { useCallback, useEffect, useState } from "react";
 import { readTweets } from "@/Service/Tweet/TweetService";
 import { TweetInfo } from "@/Data/Type/Tweet/Tweet";
 import { useInView } from "react-intersection-observer";
-import Spinner from "@/Components/Spinner";
+import Spinner from "@/Components/Amination/Spinner";
+import {
+  MainContainer,
+  MainHeader,
+  TweetContainer,
+} from "@/Styles/Page/MainPage/style";
 
 const MainHome = () => {
   const [pageNo, setPageNo] = useState(0);
@@ -42,10 +46,10 @@ const MainHome = () => {
   }, [inView, loading]);
 
   return (
-    <Container>
-      <Header>
+    <MainContainer>
+      <MainHeader>
         <h2>Home</h2>
-      </Header>
+      </MainHeader>
       <Tweetbox isReply={false} />
       <TweetContainer>
         {tweets.length !== 0 ? (
@@ -83,7 +87,7 @@ const MainHome = () => {
           </div>
         )}
       </TweetContainer>
-    </Container>
+    </MainContainer>
   );
 };
 
