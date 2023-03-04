@@ -15,18 +15,18 @@ import {
   RetweetIcon,
   LikeIcon,
   Option,
-  CustomAvatar,
   Retweeted,
-} from "./styles";
+} from "@/Styles/components/Tweet/style";
 import { TweetInfo } from "@/Data/Type/Tweet/Tweet";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import CustomModal from "@/Components/Modal";
-import AddReplyModal from "@/Components/ModalComponent/AddReplyModal";
 import { like, retweet } from "@/Service/Tweet/TweetService";
 import { useSelector } from "react-redux";
 import { RootStore } from "@/Data/Store";
 import { deleteTweet } from "@/Service/Tweet/TweetService";
+import { CustomAvatar } from "@/Styles/components/CustomAvator/style";
+import AddReplyModal from "@/Components/Modal/ModalComponent/AddReplyModal";
 
 interface TweetProps {
   tweetInfo: TweetInfo;

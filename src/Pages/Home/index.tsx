@@ -1,11 +1,16 @@
 import Tweet from "@/Components/Tweets/Tweet";
 import Tweetbox from "@/Components/Tweets/Tweetbox/Main";
-import { Container, Header, TweetContainer } from "./styles";
 import { useCallback, useEffect, useState } from "react";
 import { readTweets } from "@/Service/Tweet/TweetService";
 import { TweetInfo } from "@/Data/Type/Tweet/Tweet";
 import { useInView } from "react-intersection-observer";
-import Spinner from "@/Components/Spinner";
+import Spinner from "@/Components/Amination/Spinner";
+import {
+  MainContainer,
+  MainHeader,
+  TweetContainer,
+} from "@/Styles/Page/MainPage/style";
+import { TweetFooter } from "@/Styles/components/Tweet/style";
 
 const MainHome = () => {
   const [pageNo, setPageNo] = useState(0);
@@ -42,10 +47,10 @@ const MainHome = () => {
   }, [inView, loading]);
 
   return (
-    <Container>
-      <Header>
+    <MainContainer>
+      <MainHeader>
         <h2>Home</h2>
-      </Header>
+      </MainHeader>
       <Tweetbox isReply={false} />
       <TweetContainer>
         {tweets.length !== 0 ? (
@@ -59,12 +64,7 @@ const MainHome = () => {
                     tweetInfo={tweet}
                     isReadOnly={false}
                   />
-                  <div
-                    ref={ref}
-                    className="w-full flex-1 flex justify-center items-center"
-                  >
-                    마지막 페이지입니다.
-                  </div>
+                  <TweetFooter ref={ref}>마지막 페이지입니다.</TweetFooter>
                 </>
               ) : (
                 <Tweet
@@ -78,12 +78,10 @@ const MainHome = () => {
             {loading && <Spinner />}
           </>
         ) : (
-          <div className="w-full flex-1 flex justify-center items-center mt-8">
-            등록된 Tweet이 없습니다.
-          </div>
+          <TweetFooter>등록된 Tweet이 없습니다.</TweetFooter>
         )}
       </TweetContainer>
-    </Container>
+    </MainContainer>
   );
 };
 

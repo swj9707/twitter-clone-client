@@ -1,5 +1,9 @@
+import {
+  ListContainer,
+  ListItem,
+  ListTitle,
+} from "@/Styles/Page/MainPage/style";
 import React from "react";
-import { Container, Item, Title } from "./styles";
 
 interface Props {
   title: string;
@@ -8,15 +12,15 @@ interface Props {
 
 const List: React.FC<Props> = ({ title, elements }) => {
   return (
-    <Container>
-      <Item>
-        <Title>{title}</Title>
-      </Item>
+    <ListContainer>
+      <ListItem>
+        <ListTitle>{title}</ListTitle>
+      </ListItem>
 
       {elements.map((element, index) => (
-        <Item key={index}>{element}</Item>
+        <ListItem key={index}>{element}</ListItem>
       ))}
-    </Container>
+    </ListContainer>
   );
 };
 

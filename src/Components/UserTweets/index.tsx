@@ -1,6 +1,10 @@
-import { Routes, Route, useNavigate, Link } from "react-router-dom";
+import {
+  UserTweetButtonContainer,
+  UserTweetContainer,
+  UserTweetTab,
+} from "@/Styles/components/Tweet/style";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
-import { ButtonContainer, Container, Tab } from "./styles";
 import UserPageTweets from "./UserPageTweets";
 
 interface props {
@@ -13,33 +17,33 @@ const UserTweets = (prop: props) => {
   const navigate = useNavigate();
 
   return (
-    <Container>
-      <ButtonContainer>
-        <Tab
+    <UserTweetContainer>
+      <UserTweetButtonContainer>
+        <UserTweetTab
           onClick={() => {
             window.scrollTo(0, 0);
             navigate("/profile/" + userName + "/tweet");
           }}
         >
           Tweets
-        </Tab>
-        <Tab
+        </UserTweetTab>
+        <UserTweetTab
           onClick={() => {
             window.scrollTo(0, 0);
             navigate("/profile/" + userName + "/reply");
           }}
         >
           Tweets & replies
-        </Tab>
-        <Tab
+        </UserTweetTab>
+        <UserTweetTab
           onClick={() => {
             window.scrollTo(0, 0);
             navigate("/profile/" + userName + "/likes");
           }}
         >
           Likes
-        </Tab>
-      </ButtonContainer>
+        </UserTweetTab>
+      </UserTweetButtonContainer>
       <Routes>
         <Route
           path="tweet"
@@ -54,7 +58,7 @@ const UserTweets = (prop: props) => {
           element={<UserPageTweets activeTab={3} userId={userId} />}
         />
       </Routes>
-    </Container>
+    </UserTweetContainer>
   );
 };
 

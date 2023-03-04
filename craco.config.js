@@ -8,11 +8,6 @@ module.exports = {
         source: "tsconfig",
         tsConfigPath: "tsconfig.paths.json",
       },
-      style: {
-        postcss: {
-          plugins: [require("tailwindcss"), require("autoprefixer")],
-        },
-      },
     },
   ],
 };

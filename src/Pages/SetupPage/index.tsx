@@ -1,4 +1,8 @@
-import { Container, Header, SetupContainer } from "./styles";
+import {
+  Container,
+  Header,
+  SetupContainer,
+} from "@/Styles/Page/SetupPage/style";
 
 const SetupPage = () => {
   return (

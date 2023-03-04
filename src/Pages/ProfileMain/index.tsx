@@ -1,8 +1,13 @@
-import ProfilePage from "@/Components/Profile";
+import ProfilePage from "@/Pages/ProfilePage";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { Container, Header, BackIcon, ProfileInfo } from "./styles";
+import {
+  MainContainer,
+  MainHeader,
+  BackIcon,
+  ProfileInfo,
+} from "@/Styles/Page/ProfilePage/style";
 import { useSelector } from "react-redux";
 import { RootStore } from "@/Data/Store";
 import { TwitterUserProfile } from "@/Data/Type/User/User";
@@ -33,8 +38,8 @@ const ProfileMain = () => {
   }, []);
 
   return (
-    <Container>
-      <Header>
+    <MainContainer>
+      <MainHeader>
         <button onClick={() => navigate("/")}>
           <BackIcon />
         </button>
@@ -43,11 +48,11 @@ const ProfileMain = () => {
           <strong>{userProfile?.userNickname}</strong>
           <span> {countOfTweets} Tweets</span>
         </ProfileInfo>
-      </Header>
+      </MainHeader>
       {userProfile && (
         <ProfilePage isMyProfile={isMyProfile} userProfile={userProfile} />
       )}
-    </Container>
+    </MainContainer>
   );
 };
 
