@@ -1,49 +1,54 @@
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
-import { useSelector } from "react-redux";
-import {
-  Auth,
-  EditProfile,
-  FollowerPage,
-  Home,
-  Profile,
-  Signup,
-} from "./views/Pages";
-import Navigation from "./views/Component/Navigation";
-import { RootStore } from "../Store/Data/Store";
-import EditPassword from "./views/Pages/EditPassword/EditPassword";
+import { useDispatch, useSelector } from "react-redux";
+import { RootStore } from "@/Data/Store";
+import AppSidebar from "@/Components/Layout/AppSidebar";
+import WidgetBar from "@/Components/Appbar";
+import ProfileMain from "@/Pages/ProfileMain";
+import MainHome from "@/Pages/Home";
+import FooterMenu from "./Container/FooterMenu";
+import SetupPage from "@/Pages/SetupPage";
+import TweetDetail from "@/Pages/TweetDetail";
+import { useEffect } from "react";
+import { getUserInfo } from "@/Service/User/UserService";
+import { setUserInfo } from "@/Data/Ducks/User/UserInfoReducer";
+import AuthPage from "@/Pages/Auth";
+import { RootContainer, RootWrapper } from "@/Styles/Page/Root";
 
 const AppRouter = () => {
-  const user = useSelector((state: RootStore) => state.AuthReducer);
+  const userAuthInfo = useSelector((state: RootStore) => state.AuthReducer);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (userAuthInfo.isLoggedIn !== false) {
+      getUserInfo(userAuthInfo.user.userId).then((res) => {
+        dispatch(setUserInfo(res));
+      });
+    }
+  }, []);
+
   return (
     <Router>
-      {user.isLoggedIn && <Navigation />}
-      <div
-        style={{
-          maxWidth: 890,
-          width: "100%",
-          margin: "0 auto",
-          marginTop: 80,
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <Routes>
-          {user.isLoggedIn ? (
-            <>
-              <Route path="/" element={<Home />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/editProfile" element={<EditProfile />} />
-              <Route path="/editPassword" element={<EditPassword />} />
-              <Route path="/followers" element={<FollowerPage />} />
-            </>
-          ) : (
-            <>
-              <Route path="/" element={<Auth />} />
-              <Route path="/signup" element={<Signup />} />
-            </>
-          )}
-        </Routes>
-      </div>
+      <RootContainer>
+        {userAuthInfo.isLoggedIn ? (
+          <>
+            <RootWrapper>
+              <AppSidebar />
+              <Routes>
+                <Route path="/" element={<MainHome />} />
+                <Route path="/profile/:userName/*" element={<ProfileMain />} />
+                <Route path="/setup" element={<SetupPage />} />
+                <Route path="/tweet/:tweetId" element={<TweetDetail />} />
+              </Routes>
+              <WidgetBar />
+              <FooterMenu />
+            </RootWrapper>
+          </>
+        ) : (
+          <Routes>
+            <Route path="/" element={<AuthPage />} />
+          </Routes>
+        )}
+      </RootContainer>
     </Router>
   );
 };
