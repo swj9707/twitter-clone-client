@@ -24,6 +24,7 @@ const AppRouter = () => {
         dispatch(setUserInfo(res));
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -26,6 +26,7 @@ const ProfileMain = () => {
     if (params.userName === userInfo.userName) {
       setIsMyProfile(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userProfile]);
 
   useEffect(() => {
@@ -35,6 +36,7 @@ const ProfileMain = () => {
         setCountOfTweets(res.data.countOfTweet);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

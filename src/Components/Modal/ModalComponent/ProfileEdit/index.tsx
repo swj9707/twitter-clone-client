@@ -94,6 +94,7 @@ const ProfileEdit = () => {
 
   useEffect(() => {
     setUserNickname(userInfo.userNickname);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

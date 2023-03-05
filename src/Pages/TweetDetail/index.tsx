@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Container, Header } from "@/Styles/Page/TweetDetailPage/styles";
 import { useParams } from "react-router-dom";
 import { useCallback, useEffect, useState } from "react";
@@ -41,6 +42,7 @@ const TweetDetail = () => {
         setPageNo((prev) => prev + 1);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView, loading]);
 
   useEffect(() => {

@@ -41,6 +41,7 @@ const UploadImages: FC<UploadImageProps> = memo(
           ]);
         }
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -49,9 +50,11 @@ const UploadImages: FC<UploadImageProps> = memo(
       }
       return () => {
         if (inputRef.current) {
+          // eslint-disable-next-line react-hooks/exhaustive-deps
           inputRef.current.removeEventListener("change", handleChangeFileInput);
         }
       };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
