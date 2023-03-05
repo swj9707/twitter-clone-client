@@ -6,7 +6,7 @@ import {
   FooterWrapper,
   TextareaWrapper,
   TweetFormButton,
-  TweetTextArea,
+  TextArea,
 } from "@/Styles/components/Tweet/style";
 import { ChangeEvent, useCallback, useState } from "react";
 import { ImageObj, TweetRequest } from "@/Data/Type/Tweet/Tweet";
@@ -92,7 +92,7 @@ const Tweetbox = (prop: TweetboxProp) => {
       <TweetFormContent>
         <ProfileAvatar />
         <TextareaWrapper>
-          <TweetTextArea
+          <TextArea
             onChange={onChange}
             placeholder={"What's on your mind?"}
             value={tweet}

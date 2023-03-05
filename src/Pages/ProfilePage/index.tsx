@@ -57,14 +57,14 @@ const ProfilePage = (props: profilePageProps) => {
           </li>
         </ul>
 
-        <Followage>
+        {/* <Followage>
           <span>
             <strong>{userProfile.followingCount}</strong> following
           </span>
           <span>
             <strong>{userProfile.followerCount}</strong> followers
           </span>
-        </Followage>
+        </Followage> */}
       </ProfileData>
       <UserTweets userName={userProfile.userName} userId={userProfile.userId} />
       <Modal open={open} onClose={handleClose} children={<ProfileEdit />} />

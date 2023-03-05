@@ -9,8 +9,8 @@ import {
   Email,
   ArrowLeft,
 } from "@/Styles/Icons";
-import button from "@/Components/Buttons/button";
 import { Avatar, styled as MUIStyled } from "@mui/material";
+import button from "@/Components/Buttons/button";
 
 export const Container = styled.div`
   display: flex;

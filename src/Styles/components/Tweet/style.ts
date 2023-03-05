@@ -7,20 +7,17 @@ import {
   Cancel,
   Edit,
 } from "@/Styles/Icons";
-import { TextareaAutosize, styled as MUIStyled } from "@mui/material";
 import { FileMedia } from "styled-icons/octicons";
 
 export const Container = styled.div`
   display: flex;
   cursor: pointer;
   flex-direction: column;
+  position: relative;
   padding: 14px 16px;
   border-bottom: 1px solid var(--outline);
   max-width: 100%;
   height: auto;
-  &:hover {
-    background: var(--primary-hover);
-  }
 `;
 
 export const Retweeted = styled.div`
@@ -39,6 +36,7 @@ export const Body = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 100%;
   margin-top: 2px;
   padding-left: 20px;
@@ -47,7 +45,7 @@ export const Content = styled.div`
 export const Header = styled.div`
   display: flex;
   align-items: center;
-  position : relative
+  position: relative;
 
   font-size: 15px;
   white-space: nowrap;
@@ -69,11 +67,21 @@ export const Header = styled.div`
   }
 `;
 
+export const DropdownContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  z-index: 40;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+`;
+
 export const Dot = styled.div`
   background: var(--gray);
   width: 2px;
   height: 2px;
   margin: 0 10px;
+  position: relative;
 `;
 
 export const Description = styled.p`
@@ -212,13 +220,16 @@ export const TextareaWrapper = styled.div`
   width: 100%;
 `;
 
-export const TweetTextArea = MUIStyled(TextareaAutosize)({
-  width: "100%",
-  border: "0",
-  fontSize: "20",
-  outline: "none",
-  resize: "none",
-});
+export const TextArea = styled.textarea`
+  width: 100%;
+  height: 80px;
+  padding: 0.75rem 0 0.75rem 0;
+  resize: none;
+  overflow: hidden;
+  border: none;
+  outline: none;
+  line-height: 1.75rem;
+`;
 
 export const ContentTextArea = styled.div`
   width: 100%;

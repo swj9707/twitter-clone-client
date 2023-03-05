@@ -10,6 +10,7 @@ import {
   PencilSquare,
   MoreHorizontalOutline,
   Search,
+  ThreeDots,
 } from "@/Styles/Icons";
 
 import { Avatar, styled as MUIStyled } from "@mui/material";
@@ -58,7 +59,6 @@ export const TweetContainer = styled.div``;
 
 export const SideBarContainer = styled.div`
   display: none;
-
   @media (min-width: 500px) {
     display: flex;
     flex-direction: column;
@@ -72,6 +72,7 @@ export const SideBarContainer = styled.div`
 
     height: 100vh;
     overflow-y: auto;
+    overflow-x: visible;
   }
 `;
 
@@ -96,6 +97,13 @@ export const Topside = styled.div`
   }
 `;
 
+export const Botside = styled.div`
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const MenuButton = styled.button`
   display: flex;
   align-items: center;
@@ -116,7 +124,6 @@ export const MenuButton = styled.button`
     padding-right: 15px;
   }
 
-  padding: 8.25px 0;
   outline: 0;
 
   & + button {
@@ -165,24 +172,19 @@ export const TweetButton = styled(MenuButton)`
   }
 `;
 
-export const DropdownContainer = styled.div`
-  outline: 0;
-  button {
-    width: 100%;
-    height: auto;
-  }
-
-  & + button {
-    margin-top: 16px;
-  }
-`;
-
-export const Botside = styled.div`
-  margin-top: 20px;
-
+export const UserMenu = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: row;
+
+  padding: 20px 20px 20px 20px;
+
+  border-radius: 25px;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--primary-hover);
+  }
 `;
+
 export const CustomAvatar = MUIStyled(Avatar)({
   width: "39px",
   height: "39px",
@@ -212,7 +214,7 @@ export const ProfileData = styled.div`
   }
 `;
 
-export const ExitIcon = styled(ExitToApp)`
+export const MenuIcon = styled(ThreeDots)`
   display: none;
 
   @media (min-width: 1280px) {
@@ -223,27 +225,20 @@ export const ExitIcon = styled(ExitToApp)`
 
     color: var(--white);
     margin-left: 30px;
-    cursor: pointer;
-
-    &:hover {
-      > path {
-        color: var(--twitter);
-      }
-    }
   }
 `;
+
 export const DropdownMenu = styled.div`
-  background: var(--twitter-dark-hover);
-  position: relative;
-  left: 200%;
-  width: 100px;
-  text-align: center;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-  opacity: 1;
-  transform: translate(-50%, 0);
-  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
-  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  z-index: 4;
+  margin-bottom: 20px;
+`;
+
+export const SidebarDropdownButton = styled(MenuButton)`
+  &:hover {
+    background: var(--twitter-dark-hover);
+  }
 `;
 
 export const Ul = styled.ul`
@@ -562,6 +557,9 @@ export const ProfileIcon = styled(Person)`
 `;
 
 export const MoreIcon = styled(MoreHorizontalOutline)`
+  ${iconCSS}
+`;
+export const LogoutIcon = styled(ExitToApp)`
   ${iconCSS}
 `;
 
