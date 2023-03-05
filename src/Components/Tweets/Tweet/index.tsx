@@ -29,6 +29,7 @@ import { deleteTweet } from "@/Service/Tweet/TweetService";
 import { CustomAvatar } from "@/Styles/components/CustomAvator/style";
 import AddReplyModal from "@/Components/Modal/ModalComponent/AddReplyModal";
 import DropdownButton from "@/Components/Buttons/DropdownButton";
+import { DropdownButtonDiv } from "@/Styles/components/Buttons/style";
 
 interface TweetProps {
   tweetInfo: TweetInfo;
@@ -170,18 +171,23 @@ const Tweet = (props: TweetProps) => {
               />
               {fun && (
                 <DropdownContainer>
-                  <DropdownButton
-                    onClick={() => onClickDeleteTweet}
-                    text={"Delete Tweet"}
-                  />
-                  <DropdownButton
+                  <DropdownButtonDiv
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onClickDeleteTweet();
+                    }}
+                  >
+                    Delete Tweet
+                  </DropdownButtonDiv>
+
+                  {/* <DropdownButton
                     onClick={() => console.log("Wassup")}
                     text={"Follow"}
                   />
                   <DropdownButton
                     onClick={() => console.log("Wassup2")}
                     text={"Report this Tweet"}
-                  />
+                  /> */}
                 </DropdownContainer>
               )}
             </Option>
