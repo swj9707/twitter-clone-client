@@ -16,10 +16,11 @@ import {
   LikeIcon,
   Option,
   Retweeted,
+  DropdownContainer,
 } from "@/Styles/components/Tweet/style";
 import { TweetInfo } from "@/Data/Type/Tweet/Tweet";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CustomModal from "@/Components/Modal";
 import { like, retweet } from "@/Service/Tweet/TweetService";
 import { useSelector } from "react-redux";
@@ -27,6 +28,7 @@ import { RootStore } from "@/Data/Store";
 import { deleteTweet } from "@/Service/Tweet/TweetService";
 import { CustomAvatar } from "@/Styles/components/CustomAvator/style";
 import AddReplyModal from "@/Components/Modal/ModalComponent/AddReplyModal";
+import DropdownButton from "@/Components/Buttons/DropdownButton";
 
 interface TweetProps {
   tweetInfo: TweetInfo;
@@ -39,13 +41,29 @@ const Tweet = (props: TweetProps) => {
 
   const { tweetInfo, isRetweeted, isReadOnly } = props;
   const navigate = useNavigate();
+
+  const funcRef = useRef<HTMLDivElement>(null);
+
   const [open, setOpen] = useState(false);
+  const [fun, setFun] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleDeleteOpen = () => {
+    setDeleteOpen(true);
+  };
+  const handleDeleteClose = () => {
+    setDeleteOpen(false);
+  };
+
+  const toggleFunc = () => {
+    if (tweetInfo.userInfo.userName === userInfo.userName) setFun(!fun);
   };
 
   const onClickDeleteTweet = () => {
@@ -83,6 +101,20 @@ const Tweet = (props: TweetProps) => {
     });
   };
 
+  useEffect(() => {
+    if (!fun) return;
+    function handleClick(e: any) {
+      if (funcRef.current === null) {
+        return;
+      } else if (!funcRef.current.contains(e.target)) {
+        setFun(false);
+      }
+    }
+    window.addEventListener("click", handleClick);
+
+    return () => window.removeEventListener("click", handleClick);
+  }, [fun]);
+
   return (
     <Container onClick={!isReadOnly ? onClickTweetDetail : undefined}>
       {isRetweeted && (
@@ -113,7 +145,7 @@ const Tweet = (props: TweetProps) => {
         )}
         <Content>
           <Header>
-            <strong onClick={onClickShowUserProfile}>
+            <strong onClick={() => onClickShowUserProfile}>
               {tweetInfo.userInfo.userNickname}
             </strong>
             <FontAwesomeIcon
@@ -124,20 +156,34 @@ const Tweet = (props: TweetProps) => {
                 marginRight: "5px",
               }}
             />
-            <span onClick={onClickShowUserProfile}>
+            <span onClick={() => onClickShowUserProfile}>
               @{tweetInfo.userInfo.userName}
             </span>
             <Dot />
             <time> {tweetInfo.createdAt}</time>
-            <Option>
+            <Option ref={funcRef}>
               <OptionIcon
                 onClick={(e) => {
                   e.stopPropagation();
-                  if (tweetInfo.userInfo.userName === userInfo.userName) {
-                    onClickDeleteTweet();
-                  }
+                  toggleFunc();
                 }}
               />
+              {fun && (
+                <DropdownContainer>
+                  <DropdownButton
+                    onClick={() => onClickDeleteTweet}
+                    text={"Delete Tweet"}
+                  />
+                  <DropdownButton
+                    onClick={() => console.log("Wassup")}
+                    text={"Follow"}
+                  />
+                  <DropdownButton
+                    onClick={() => console.log("Wassup2")}
+                    text={"Report this Tweet"}
+                  />
+                </DropdownContainer>
+              )}
             </Option>
           </Header>
           <Description>{tweetInfo.tweetContent}</Description>
@@ -184,7 +230,7 @@ const Tweet = (props: TweetProps) => {
       </Body>
       <CustomModal
         open={open}
-        onClose={handleClose}
+        onClose={() => handleClose}
         children={<AddReplyModal tweetInfo={tweetInfo} />}
       />
     </Container>
