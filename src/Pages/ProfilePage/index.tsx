@@ -7,7 +7,6 @@ import {
   CustomAvatar,
   ProfileData,
   CakeIcon,
-  Followage,
   EditButton,
 } from "@/Styles/Page/ProfilePage/style";
 import ProfileEdit from "../../Components/Modal/ModalComponent/ProfileEdit";

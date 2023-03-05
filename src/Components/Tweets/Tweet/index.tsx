@@ -28,7 +28,6 @@ import { RootStore } from "@/Data/Store";
 import { deleteTweet } from "@/Service/Tweet/TweetService";
 import { CustomAvatar } from "@/Styles/components/CustomAvator/style";
 import AddReplyModal from "@/Components/Modal/ModalComponent/AddReplyModal";
-import DropdownButton from "@/Components/Buttons/DropdownButton";
 import { DropdownButtonDiv } from "@/Styles/components/Buttons/style";
 
 interface TweetProps {
@@ -47,7 +46,7 @@ const Tweet = (props: TweetProps) => {
 
   const [open, setOpen] = useState(false);
   const [fun, setFun] = useState(false);
-  const [deleteOpen, setDeleteOpen] = useState(false);
+  // const [deleteOpen, setDeleteOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -56,12 +55,12 @@ const Tweet = (props: TweetProps) => {
     setOpen(false);
   };
 
-  const handleDeleteOpen = () => {
-    setDeleteOpen(true);
-  };
-  const handleDeleteClose = () => {
-    setDeleteOpen(false);
-  };
+  // const handleDeleteOpen = () => {
+  //   setDeleteOpen(true);
+  // };
+  // const handleDeleteClose = () => {
+  //   setDeleteOpen(false);
+  // };
 
   const toggleFunc = () => {
     if (tweetInfo.userInfo.userName === userInfo.userName) setFun(!fun);

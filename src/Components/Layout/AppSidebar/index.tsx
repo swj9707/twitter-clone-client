@@ -33,7 +33,6 @@ const AppSidebar = () => {
   const funcRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
   const [func, setFunc] = useState(false);
-  const [logoutOpen, setLogoutOpen] = useState(false);
 
   const onClickLogout = () => {
     requestLogout().then(() => {
@@ -48,14 +47,6 @@ const AppSidebar = () => {
   };
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleLogoutOpen = () => {
-    setLogoutOpen(true);
-  };
-
-  const handleLogoutClose = () => {
-    setLogoutOpen(false);
   };
 
   const toggleFunc = () => {
