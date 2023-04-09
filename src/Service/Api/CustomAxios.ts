@@ -37,13 +37,18 @@ CustomAxios.interceptors.response.use(
     if (responseData.status === "UNAUTHORIZED") {
       if (responseData.data === "Token Expired") {
         const originRequest = error.config;
-        await refreshToken().then(() => {
-          if (originRequest !== undefined) {
-            window.location.reload();
-            const result = CustomAxios(originRequest);
-            return Promise.resolve(result);
-          }
-        });
+        try {
+          await refreshToken().then(() => {
+            if (originRequest !== undefined) {
+              const result = await CustomAxios(originRequest);
+              return result;
+            }
+          });
+        } catch (err) {
+          persistor.purge();
+          localStorage.removeItem("ACCESS_TOKEN");
+          window.location.replace("/");
+        }
       }
     } else if (
       responseData.status === "FORBIDDEN" ||
