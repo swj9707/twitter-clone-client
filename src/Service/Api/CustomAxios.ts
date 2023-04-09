@@ -38,7 +38,7 @@ CustomAxios.interceptors.response.use(
       if (responseData.data === "ERROR-TK-05") {
         const originRequest = error.config;
         try {
-          await refreshToken().then(() => {
+          await refreshToken().then(async () => {
             if (originRequest !== undefined) {
               const result = await CustomAxios(originRequest);
               return result;
