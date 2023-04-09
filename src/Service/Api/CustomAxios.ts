@@ -35,7 +35,7 @@ CustomAxios.interceptors.response.use(
   async (error: AxiosError) => {
     const responseData: FailureResponse | any = error.response?.data;
     if (responseData.status === "UNAUTHORIZED") {
-      if (responseData.data === "Token Expired") {
+      if (responseData.data === "ERROR-TK-05") {
         const originRequest = error.config;
         try {
           await refreshToken().then(() => {
@@ -55,8 +55,8 @@ CustomAxios.interceptors.response.use(
       responseData.status === "BAD_REQUEST"
     ) {
       if (
-        responseData.data === "리프레쉬 토큰이 만료되었습니다." ||
-        responseData.data === "올바르지 않은 토큰 요청입니다."
+        responseData.data === "ERROR-FB-01" ||
+        responseData.data === "ERROR-BR-02"
       ) {
         persistor.purge();
         localStorage.removeItem("ACCESS_TOKEN");
